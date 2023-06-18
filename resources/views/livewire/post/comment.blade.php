@@ -47,16 +47,30 @@
 
           {{-- feature --}}
           <div class="d-flex mt-2">
-            <div class=" pe-0 align-items-center">2 
+            {{-- <div class=" pe-0 align-items-center">2 
               <i class="bi bi-heart-fill"></i>
-            </div>
+            </div> --}}
             @auth
               {{-- <div class=" pe-2"><a href="" class="">Like</a></div> --}}
-              <button type="button" class="btn btn-link pe-0 py-0" @if($item->user->id == Auth::user()->id) disabled @endif>Like</button>
-              <button type="button" class="btn btn-link pe-0 py-0" wire:click="selectReply({{ $item->id }})">balas</button>
+
+              {{-- <button type="button" class="btn btn-link pe-0 py-0" @if($item->user->id == Auth::user()->id) disabled @endif>Like</button> --}}
+
+              @if (isset($item->hasLike) && !empty($item->hasLike))
+                <button wire:click="like({{ $item->id }})" class="btn btn-sm btn-danger">
+                  <i class="bi bi-heart-fill"></i>
+                  ({{ $item->totalLikes() }})
+                </button>
+              @else
+                <button wire:click="like({{ $item->id }})" class="btn btn-sm btn-dark">
+                  <i class="bi bi-heart-fill"></i>
+                  ({{ $item->totalLikes() }})
+                </button>
+              @endif
+
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="selectReply({{ $item->id }})">Balas</button>
               @if ($item->user->id == Auth::user()->id)
-              <button type="button" class="btn btn-link pe-0 py-0" wire:click="selectEdit({{ $item->id }})">edit</button>
-              <button type="button" class="btn btn-link pe-0 py-0" wire:click="delete({{ $item->id }})">Hapus</button>
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="selectEdit({{ $item->id }})">Edit</button>
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="delete({{ $item->id }})">Hapus</button>
               @endif
             @endauth
           </div>
@@ -113,10 +127,20 @@
 
             {{-- fitur --}}
             <div class="d-flex flex-row mt-2">
-              <div class=" pe-2 align-items-center">2 
-                <i class="bi bi-heart-fill"></i>
-              </div>
               @auth
+
+              @if ($item2->hasLike())
+                <button wire:click="like({{ $item2->id }})" class="btn btn-sm btn-danger">
+                  <i class="bi bi-heart-fill"></i>
+                  ({{ $item2->totalLikes() }})
+                </button>
+              @else
+                <button wire:click="like({{ $item2->id }})" class="btn btn-sm btn-dark">
+                  <i class="bi bi-heart-fill"></i>
+                  ({{ $item2->totalLikes() }})
+                </button>
+              @endif
+
               <button type="button" class="btn btn-link pe-0 py-0" @if($item2->user->id == Auth::user()->id) disabled @endif>Like</button>
               <button type="button" class="btn btn-link pe-0 py-0" wire:click="selectReply({{ $item2->id }})">balas</button>
               @if ($item2->user->id == Auth::user()->id)

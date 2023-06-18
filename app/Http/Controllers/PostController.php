@@ -28,9 +28,12 @@ class PostController extends Controller
         $totalPosts = Post::filter(request(['search', 'admin', 'category']))->paginate(7);
         $totalPostsCount = $totalPosts->total();
 
+        // $total_comment_count = Post::withCount('comments')->get();
+        // dd($total_comment_count);
         return view('posts', [
             "title" => "All Posts " . $title,
             "active" => 'posts',
+            // 'total_comment_count' => $total_comment_count,
             'total_posts_count' => $totalPostsCount,
             "posts" => Post::latest()->filter(request(['search', 'admin', 'category']))->paginate(7)->withQueryString(),
             'categories' => Category::all()

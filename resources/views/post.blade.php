@@ -32,7 +32,6 @@
                 <div>
                   <h3>Comments Section </h3>
                     <div>
-                      {{-- kenapa ga kebaca --}}
                       @livewire('post.comment', ['id' => $post->id]) 
                     </div>
                 </div>
