@@ -79,7 +79,7 @@
               <div class="mb-3">
                 <h5 class=" mb-0"><a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h5>
                 <small class="mt-0">
-                  <p class="mb-0">100 Likes | 50 comments</p>
+                  <p class="mb-0">100 Likes | {{ $post->comments_count ?? 0 }} comments</p>
                 </small>
 
                 <small>

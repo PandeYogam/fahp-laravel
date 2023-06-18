@@ -27,8 +27,6 @@
                     {!! $post->body !!}
                 </article>
 
-                
-                
                 <div>
                   <h3>Comments Section </h3>
                     <div>
