@@ -40,7 +40,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('post', [
-            "title" => "Singe Post",
+            "title" => "Single Post",
             "active" => 'posts',
             "post" => $post,
             'categories' => Category::all()

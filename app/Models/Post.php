@@ -43,6 +43,11 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function postLike()
+    {
+        return $this->belongsTo(PostLike::class);
+    }
+
     public function admin()
     {
         return $this->belongsTo(User::class, 'user_id');

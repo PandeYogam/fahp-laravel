@@ -19,36 +19,36 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Sub Kriteria
-        Kriteria::create([
-            'name' => '500 K - 1 Juta',
-            'kriteria_id' => 1, //Bisa pake factory buat acak
-            // 'Keterangan' => 'Biaya yang diperkirakan',
+        // Kriteria::create([
+        //     'name' => '500 K - 1 Juta',
+        //     // 'id' => 1, //Bisa pake factory buat acak
+        //     // 'Keterangan' => 'Biaya yang diperkirakan',
 
-            // $table->id();
-            // $table->string('nama');
-            // $table->unsignedBigInteger('kriteria_id');
-            // $table->foreign('kriteria_id')->references('id')->on('kriterias')->onDelete('cascade');
-            // $table->float('bobot', 5, 2);
-            // $table->string('keterangan')->nullable();
-            // $table->timestamps();
-        ]);
-        
+        //     // $table->id();
+        //     // $table->string('nama');
+        //     // $table->unsignedBigInteger('kriteria_id');
+        //     // $table->foreign('kriteria_id')->references('id')->on('kriterias')->onDelete('cascade');
+        //     // $table->float('bobot', 5, 2);
+        //     // $table->string('keterangan')->nullable();
+        //     // $table->timestamps();
+        // ]);
+
         // Kriteria
         Kriteria::create([
             'name' => 'Budget',
-            'Keterangan' => 'Biaya yang diperkirakan',
+            'keterangan' => 'Biaya yang diperkirakan',
         ]);
         Kriteria::create([
             'name' => 'Rating',
-            'Keterangan' => 'Penilaian Paket',
+            'keterangan' => 'Penilaian Paket',
         ]);
         Kriteria::create([
             'name' => 'Jumlah Destinasi',
-            'Keterangan' => 'Jumlah Destinasi',
+            'keterangan' => 'Jumlah Destinasi',
         ]);
         Kriteria::create([
             'name' => 'Durasi Paket Perjalanan',
-            'Keterangan' => 'Durasi Paket Perjalanan',
+            'keterangan' => 'Durasi Paket Perjalanan',
         ]);
 
         // User

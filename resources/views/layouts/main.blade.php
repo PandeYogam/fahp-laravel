@@ -51,6 +51,7 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+    @stack('css')
 </head>
 
 <body>
@@ -93,6 +94,6 @@
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
 
-
+@stack('js')
 </body>
 </html>

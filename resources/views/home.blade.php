@@ -25,10 +25,12 @@
     <section id="section-2" class="section-2">
       <div class="container-xxl row justify-content-center">
         <h1 class="display-5 mb-5 animated slideInDown text-center ">Berbagai Pariwisata</h1> 
-        <div class=" col-10 container align-self-center">
-          <a href="/posts?category={{ $categories[0]->slug}}">
+        <div class="row">
+          <div class=" col-10 container align-self-center">
             <div class="row g-4">
+              {{-- 1 --}}
               <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <a href="/posts?category={{ $categories[0]->slug}}">
                   <div class="service-item rounded pt-3">
                       <div class="p-4">
                           <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
@@ -36,52 +38,61 @@
                           <p>{{ $categories[0]->slug }}</p>
                       </div>
                   </div>
+                </a> 
               </div>
+              
+              {{-- 2 --}}
+              <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="4.1s">
+                <a href="/posts?category={{ $categories[1]->slug}}">
+                  <div class="service-item rounded pt-3">
+                      <div class="p-4">
+                          <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
+                          <h5>{{ $categories[1]->name }}</h5>
+                          <p>{{ $categories[1]->slug }}</p>
+                      </div>
+                  </div>
+                </a>
+              </div>
+
+              {{-- 3 --}}
+              <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                <a href="/posts?category={{ $categories[1]->slug}}">
+                  <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-palette text-primary mb-4"></i>
+                            <h5>{{ $categories[1]->name }}</h5>
+                            <p>{{ $categories[1]->slug }}</p>
+                        </div>
+                  </div>
+                </a>  
+              </div>
+
+              {{-- 4 --}}
+              <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                <a href="/posts?category={{ $categories[1]->slug}}">
+                  <div class="service-item rounded pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
+                            <h5>{{ $categories[2]->name }}</h5>
+                            <p>{{ $categories[2]->slug }}</p>
+                        </div>
+                  </div>
+                </a>  
+              </div> 
             </div>
-          </a>
-          <a href="/posts?category={{ $categories[1]->slug}}">
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="4.1s">
-                <div class="service-item rounded pt-3">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                        <h5>{{ $categories[1]->name }}</h5>
-                        <p>{{ $categories[1]->slug }}</p>
-                    </div>
-                </div>
-            </div>
-          </a>
-          <a href="/posts?category={{ $categories[1]->slug}}">
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item rounded pt-3">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-palette text-primary mb-4"></i>
-                        <h5>{{ $categories[1]->name }}</h5>
-                        <p>{{ $categories[1]->slug }}</p>
-                    </div>
-                </div>
-            </div>
-          </a>
-          <a href="/posts?category={{ $categories[1]->slug}}"> 
-            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item rounded pt-3">
-                    <div class="p-4">
-                        <i class="fa fa-3x fa-hotel text-primary mb-4"></i>
-                        <h5>{{ $categories[2]->name }}</h5>
-                        <p>{{ $categories[2]->slug }}</p>
-                    </div>
-                </div>
-            </div> 
-          </a>
+          </div>
         </div>
 
-        <div class="col-lg-3 col-sm-6 wow fadeInUp m-3" data-wow-delay="0.1s">
-          <a href="/posts">
-            <div class="service-item roundeds p-2 my-2 align-items-center">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              {{-- <i class="fa-solid fa-umbrella-beach"></i> --}}
-              <h5 class=" text-center m-0">Search More</h5>
-            </div>
-          </a>
+        <div class="row justify-content-center">
+          <div class="col-lg-3 col-sm-6 wow fadeInUp m-3" data-wow-delay="0.1s">
+            <a href="/posts">
+              <div class="service-item roundeds p-2 my-2 align-items-center">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                {{-- <i class="fa-solid fa-umbrella-beach"></i> --}}
+                <h5 class=" text-center m-0">Search More</h5>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </section>

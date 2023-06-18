@@ -9,7 +9,14 @@ class Coment extends Model
 {
     use HasFactory;
 
-    public function admin()
+    protected $guarded = ['id'];
+
+    public function children()
+    {
+        return $this->hasMany(Coment::class);
+    }
+
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
