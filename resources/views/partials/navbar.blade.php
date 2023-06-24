@@ -14,11 +14,11 @@
         <li class="nav-item">
           <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item"></li>
           <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">Destination</a>
         </li>
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle {{ Request::is('categories') ? 'active' : '' }}" data-bs-toggle="dropdown">Categories</a>
+          <a href="#" class="nav-link dropdown-toggle bg-transparent {{ Request::is('categories') ? 'active' : '' }}" data-bs-toggle="dropdown">Categories</a>
           <ul class="dropdown-menu">
             @foreach ($categories as $category)
               <li><a class="dropdown-item" href="/posts?category={{ $category->slug }}">{{ $category->name }}</a></li>
@@ -26,7 +26,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="/dss" class="nav-link">Suggestion</a>
+          <a href="/dss" class="nav-link {{ Request::is('dss') ? 'active' : '' }}" >Suggestion</a>
         </li>
       </ul>
       

@@ -10,6 +10,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DssController;
 
 // public
 
@@ -61,9 +62,14 @@ Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
+        "active" => 'category',
         'categories' => Category::all()
     ]);
 });
+
+Route::get('/dss', [DssController::class, 'index']);
+Route::get('/calculate', [DssController::class, 'calculate']);
+Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
