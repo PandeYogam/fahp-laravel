@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bobot;
-use App\Http\Requests\StoreBobotRequest;
-use App\Http\Requests\UpdateBobotRequest;
+use Illuminate\Http\Request;
 
-class BobotController extends Controller
+class SkorFuzzyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +29,10 @@ class BobotController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBobotRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBobotRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class BobotController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bobot  $bobot
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Bobot $bobot)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class BobotController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Bobot  $bobot
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bobot $bobot)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class BobotController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBobotRequest  $request
-     * @param  \App\Models\Bobot  $bobot
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBobotRequest $request, Bobot $bobot)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class BobotController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bobot  $bobot
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bobot $bobot)
+    public function destroy($id)
     {
         //
     }

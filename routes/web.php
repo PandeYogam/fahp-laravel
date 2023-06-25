@@ -68,8 +68,14 @@ Route::get('/categories', function () {
 });
 
 Route::get('/dss', [DssController::class, 'index']);
-Route::get('/calculate', [DssController::class, 'calculate']);
-Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);
+Route::prefix('dss')->group(function () {
+    Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);
+    Route::get('/calculate', [DssController::class, 'calculate']);
+    // Rute lainnya di dalam DssController
+});
+
+// Route::get('/calculate', [DssController::class, 'calculate']);
+// Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);
 
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -79,8 +85,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-
-
 // Dashboard
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -89,7 +93,7 @@ Route::get('/dashboard', function () {
 Route::get('/dashboard/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-// Route::post('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+Route::resource('/dashboard/package', DashboardPackageController::class)->middleware('auth');
 
 Route::middleware(['admin'])->group(function () {
     Route::resource('dashboard/categories', AdminCategoryController::class);

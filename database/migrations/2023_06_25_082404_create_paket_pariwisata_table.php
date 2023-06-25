@@ -13,19 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('paket_pariwisata', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id');
-            $table->foreignId('user_id');
             $table->string('title');
-            $table->text('excerpt');
-            $table->text('body');
             $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('budget');
+            $table->string('durasi');
+            $table->integer('rating');
+            $table->integer('jumlah_destinasi');
+            $table->string('popularitas');
+            $table->text('keterangan');
+            // ...
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -34,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('paket_pariwisata');
     }
 };

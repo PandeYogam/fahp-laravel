@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kriteria extends Model
+class PenilaianKriteria extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
-    public function subKriterias()
+    // PenilaianKriteria.php
+    public function paketPariwisata()
     {
-        return $this->hasMany(SubKriteria::class);
+        return $this->belongsTo(PaketPariwisata::class);
     }
 }

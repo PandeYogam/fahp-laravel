@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fuzzy;
-use App\Http\Requests\StoreFuzzyRequest;
-use App\Http\Requests\UpdateFuzzyRequest;
+use Illuminate\Http\Request;
 
-class FuzzyController extends Controller
+class PaketPariwisataController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +29,10 @@ class FuzzyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreFuzzyRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFuzzyRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class FuzzyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fuzzy  $fuzzy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Fuzzy $fuzzy)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class FuzzyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fuzzy  $fuzzy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fuzzy $fuzzy)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class FuzzyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateFuzzyRequest  $request
-     * @param  \App\Models\Fuzzy  $fuzzy
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFuzzyRequest $request, Fuzzy $fuzzy)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class FuzzyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fuzzy  $fuzzy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fuzzy $fuzzy)
+    public function destroy($id)
     {
         //
     }

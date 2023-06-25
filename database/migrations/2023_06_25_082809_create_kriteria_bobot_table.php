@@ -13,13 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kriterias', function (Blueprint $table) {
+        Schema::create('kriteria_bobot', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('keterangan')->nullable();
+            $table->string('nama');
+            $table->integer('bobot');
+            $table->text('keterangan');
+            // ...
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kriteria');
+        Schema::dropIfExists('kriteria_bobot');
     }
 };

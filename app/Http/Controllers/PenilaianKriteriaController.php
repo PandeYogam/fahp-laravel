@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SubKriteria;
-use App\Http\Requests\StoreSubKriteriaRequest;
-use App\Http\Requests\UpdateSubKriteriaRequest;
+use Illuminate\Http\Request;
 
-class SubKriteriaController extends Controller
+class PenilaianKriteriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +29,10 @@ class SubKriteriaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSubKriteriaRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSubKriteriaRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class SubKriteriaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SubKriteria  $subKriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SubKriteria $subKriteria)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class SubKriteriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SubKriteria  $subKriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SubKriteria $subKriteria)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class SubKriteriaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSubKriteriaRequest  $request
-     * @param  \App\Models\SubKriteria  $subKriteria
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSubKriteriaRequest $request, SubKriteria $subKriteria)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class SubKriteriaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SubKriteria  $subKriteria
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SubKriteria $subKriteria)
+    public function destroy($id)
     {
         //
     }

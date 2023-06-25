@@ -1,7 +1,7 @@
 <div class="position-relative p-0 bg-dark" >
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-1 py-lg-3ar mx-auto text-center">
     <a href="" class="navbar-brand d-flex align-items-center">
-      <img class="logo pe-2" src="css/logo.png" alt="">
+      <img class="logo pe-2" src="{{ asset('css/logo.png') }}" alt="">
       <h1 class="text-primary m-0">SISPAR</h1>
     </a>
 
@@ -15,7 +15,7 @@
           <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
         </li>
         <li class="nav-item"></li>
-          <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">Destination</a>
+          <a href="/posts" class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">Destination</a>
         </li>
         <li class="nav-item dropdown">
           <a href="#" class="nav-link dropdown-toggle bg-transparent {{ Request::is('categories') ? 'active' : '' }}" data-bs-toggle="dropdown">Categories</a>
@@ -26,7 +26,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="/dss" class="nav-link {{ Request::is('dss') ? 'active' : '' }}" >Suggestion</a>
+          <a href="/dss" class="nav-link {{ Request::is('dss*') ? 'active' : '' }}" >Suggestion</a>
         </li>
       </ul>
       

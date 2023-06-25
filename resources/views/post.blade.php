@@ -14,28 +14,30 @@
 @endpush
 
 @section('container')
-    <div class="container">
-        <div class="row justify-content-center mb-3">
-            <div class="col-8">
-                <h1 class="mb-3">{{ $post->title }}</h1>
-                
-                <h5>by. <a href="/posts?admin?={{$post->admin->username }}" class="text-decoration-none">{{$post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
-                
-                <img src="https://source.unsplash.com/1200x400?{{ $post->title }}" alt="{{ $post->title }}" class="img-fluid">
+<div class="container-xxl py-5 bg-dark hero-header mb-5">
+  <div class="container text-center my-5 pt-5 pb-4">
+    <div class="row justify-content-center mb-3">
+      <div class="col-8">
+        <h1 class="mb-3">{{ $post->title }}</h1>
+        
+        <h5>by. <a href="/posts?admin?={{$post->admin->username }}" class="text-decoration-none">{{$post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
+        
+        <img src="https://source.unsplash.com/1200x400?{{ $post->title }}" alt="{{ $post->title }}" class="img-fluid">
 
-                <article class="my-3 fs-5">
-                    {!! $post->body !!}
-                </article>
+        <article class="my-3 fs-5">
+          {!! $post->body !!}
+        </article>
 
-                <div>
-                  <h3>Comments Section </h3>
-                    <div>
-                      @livewire('post.comment', ['id' => $post->id]) 
-                    </div>
-                </div>
+        <div>
+          <h3>Comments Section </h3>
+            <div>
+              @livewire('post.comment', ['id' => $post->id]) 
             </div>
         </div>
+      </div>
     </div>
+  </div>
+</div>
 
     <script>
         const title = document.querySelector("#title");

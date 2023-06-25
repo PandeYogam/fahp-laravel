@@ -13,6 +13,12 @@
             My Posts
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/paket">
+            <span data-feather="package" class="align-text-bottom"></span>
+            My Package
+          </a>
+        </li>
       </ul>
 
       @can('admin')  

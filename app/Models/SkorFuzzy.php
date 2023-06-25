@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Fuzzy extends Model
+class SkorFuzzy extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
-
-    public function subKriteria()
+    // SkorFuzzy.php
+    public function paketPariwisata()
     {
-        return $this->belongsTo(SubKriteria::class);
+        return $this->belongsTo(PaketPariwisata::class);
     }
 }

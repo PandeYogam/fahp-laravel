@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Fahp;
-use App\Http\Requests\StoreFahpRequest;
-use App\Http\Requests\UpdateFahpRequest;
+use Illuminate\Http\Request;
 
-class FahpController extends Controller
+class KriteriaBobotController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +29,10 @@ class FahpController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreFahpRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFahpRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -42,10 +40,10 @@ class FahpController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Fahp  $fahp
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Fahp $fahp)
+    public function show($id)
     {
         //
     }
@@ -53,10 +51,10 @@ class FahpController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Fahp  $fahp
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fahp $fahp)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +62,11 @@ class FahpController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateFahpRequest  $request
-     * @param  \App\Models\Fahp  $fahp
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFahpRequest $request, Fahp $fahp)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +74,10 @@ class FahpController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Fahp  $fahp
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Fahp $fahp)
+    public function destroy($id)
     {
         //
     }
