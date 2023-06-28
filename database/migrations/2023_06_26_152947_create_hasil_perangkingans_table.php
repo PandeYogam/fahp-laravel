@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kriteria_bobot', function (Blueprint $table) {
+        Schema::create('hasil_perangkingan', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('bobot');
-            $table->text('keterangan');
-            // ...
+            $table->double('nilai_perangkingan');
+            // Tambahkan kolom lainnya jika diperlukan
+
+            $table->foreignId('paket_wisata_id');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kriteria_bobot');
+        Schema::dropIfExists('hasil_perangkingans');
     }
 };

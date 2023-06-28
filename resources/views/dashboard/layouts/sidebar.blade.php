@@ -14,7 +14,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/paket">
+          <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/package">
             <span data-feather="package" class="align-text-bottom"></span>
             My Package
           </a>

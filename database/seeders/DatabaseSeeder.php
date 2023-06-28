@@ -2,12 +2,16 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Category;
-use App\Models\User;
 use App\Models\Post;
-use App\Models\Kriteria;
-use App\Models\SubKriteria;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\HasilBobotVektor;
+use App\Models\HasilDss;
+use App\Models\HasilPerangkingan;
+use App\Models\KriteriaBobot;
+use App\Models\PaketWisata;
+use Illuminate\Database\Seeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,21 +38,46 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Kriteria
-        Kriteria::create([
-            'name' => 'Budget',
-            'keterangan' => 'Biaya yang diperkirakan',
+        KriteriaBobot::create([
+            'kriteria_1' => 5,
+            'kriteria_2' => 2,
+            'kriteria_3' => 8,
+            'kriteria_4' => 9,
+            'kriteria_5' => 4,
         ]);
-        Kriteria::create([
-            'name' => 'Rating',
-            'keterangan' => 'Penilaian Paket',
+
+        // HasilBobotVektor
+        HasilBobotVektor::create([
+            'kriteria_1' => 5,
+            'kriteria_2' => 2,
+            'kriteria_3' => 8,
+            'kriteria_4' => 9,
+            'kriteria_5' => 4,
         ]);
-        Kriteria::create([
-            'name' => 'Jumlah Destinasi',
-            'keterangan' => 'Jumlah Destinasi',
+
+        // HasilDss
+        HasilDss::create([
+            'user_id' => 1,
+            'kriteria_bobot_id' => 1,
+            'hasil_bobot_vektor_id' => 1,
+            'hasil_perangkingan_id' => 1,
         ]);
-        Kriteria::create([
-            'name' => 'Durasi Paket Perjalanan',
-            'keterangan' => 'Durasi Paket Perjalanan',
+
+        // 
+        HasilPerangkingan::create([
+            'paket_wisata_id' => 1,
+            'nilai_perangkingan' => 0.85,
+        ]);
+
+        // 
+        PaketWisata::create([
+            'nama' => 'Paket A',
+            'harga' => 300000,
+            'popularitas' => 8,
+            'rating' => 9,
+            'durasi' => '2 Hari',
+            'deskripsi' => 'Paket wisata A',
+            'jumlah_wisata_dikunjungi' => 5,
         ]);
 
         // User

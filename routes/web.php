@@ -1,16 +1,17 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 
 use App\Models\Category;
-use App\Models\Post;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DssController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\DssController;
+use App\Http\Controllers\DashboardPackageController;
 
 // public
 
@@ -87,12 +88,23 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 // Dashboard
 Route::get('/dashboard', function () {
-    return view('dashboard.index');
+    return view('dashboard.index', [
+        'posts' => Post::Where('user_id', auth()->user()->id)->get()
+    ]);
 })->middleware('auth');
+
+Route::get('/categories', function () {
+    return view('categories', [
+        'title' => 'Post Categories',
+        "active" => 'category',
+        'categories' => Category::all()
+    ]);
+});
 
 Route::get('/dashboard/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
+
 Route::resource('/dashboard/package', DashboardPackageController::class)->middleware('auth');
 
 Route::middleware(['admin'])->group(function () {

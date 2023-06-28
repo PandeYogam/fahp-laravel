@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 
-class DashboardPostController extends Controller
+class DashboardPackageController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -51,6 +51,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function hasildss()
+    {
+        return $this->hasMany(HasilDss::class);
+    }
+
     public function comments()
     {
         return $this->hasMany(Coment::class);
