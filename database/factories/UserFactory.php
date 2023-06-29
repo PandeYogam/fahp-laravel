@@ -17,12 +17,17 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $isPengelolaPaketWisata = random_int(0, 1);
+        $isPengelolaWisata = random_int(0, 1);
+
         return [
             'name' => fake()->name(),
             'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
-            // 'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'is_pengelola_paket_wisata' => $isPengelolaPaketWisata,
+            'is_pengelola_wisata' => $isPengelolaWisata,
+            // 'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
     }

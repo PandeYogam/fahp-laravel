@@ -7,18 +7,22 @@
             Dashboard
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
-            <span data-feather="file-text" class="align-text-bottom"></span>
-            My Posts
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/package">
-            <span data-feather="package" class="align-text-bottom"></span>
-            My Package
-          </a>
-        </li>
+        @can('pengelola_wisata')
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
+              <span data-feather="file-text" class="align-text-bottom"></span>
+              My Posts
+            </a>
+          </li>
+        @endcan
+        @can('pengelola_paket_wisata')
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/package">
+              <span data-feather="package" class="align-text-bottom"></span>
+              My Package
+            </a>
+          </li>
+        @endcan
       </ul>
 
       @can('admin')  

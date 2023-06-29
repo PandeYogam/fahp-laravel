@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
-            $table->string('role')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
             $table->boolean('is_admin')->default(false);
+            $table->boolean('is_pengelola_paket_wisata')->default(false);
+            $table->boolean('is_pengelola_wisata')->default(false);
+            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });

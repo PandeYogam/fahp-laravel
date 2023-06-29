@@ -93,9 +93,11 @@ class DatabaseSeeder extends Seeder
             'username' => 'pande',
             'email' => 'pandeyogam321@gmail.com',
             'password' => bcrypt('12345'),
-            'is_admin' => 1
+            'is_admin' => 1,
+            'is_pengelola_paket_wisata' => 1,
+            'is_pengelola_wisata' => 1,
         ]);
-        User::factory(3)->create();
+        User::factory(5)->create();
 
         // Category
         Category::create([

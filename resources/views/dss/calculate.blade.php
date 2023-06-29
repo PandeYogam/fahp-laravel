@@ -2,7 +2,6 @@
 
 @section('container')
 
-
 <div class=" bg-dark hero-background">
   <div style=" height: 60px"></div>
   <div class=" text-center ">
@@ -12,8 +11,9 @@
   </div>
 
   <form action="">
-    <div class="container text-center mb-3 mt-5">
+    <div class="container text-center mt-5">
       <div class="col-12 col-sm-12">
+        {{-- List Daftar Kriteria --}}
         <div class="table-responsive mb-1">
           <table class="table table-sm">
             <thead>
@@ -49,6 +49,7 @@
             </tbody>
           </table>
         </div>
+        {{-- List Daftar Alternatif --}}
         <div class="table-responsive mb-1">
           <table class="table table-sm">
             <thead>
@@ -228,6 +229,7 @@
             </tbody>
           </table>
         </div>
+        {{-- List Daftar Alternatif --}}
         <div class="table-responsive mb-1">
           <table class="table table-sm">
             <thead>
@@ -304,6 +306,7 @@
             </tbody>
           </table>
         </div>
+        {{-- Bobot Nilai Kriteria --}}
         <div class="table-responsive mb-1">
           <table class="table table-sm">
             <thead>
@@ -339,6 +342,7 @@
             </tbody>
           </table>
         </div>
+        {{-- Input Bobot Nilai Kriteria Untuk Masing Masing Alternatif --}}
         <div class="table-responsive mb-3">
           <table class="table table-sm">
             <thead>
@@ -1032,7 +1036,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary  px-3">Cek Hasil</button>
+      <button type="submit" class="btn btn-primary mb-3 px-3">Cek Hasil</button>
     </div>
   </form>
 

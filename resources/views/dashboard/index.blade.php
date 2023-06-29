@@ -5,9 +5,22 @@
     <h1 class="h2">Welcome back, {{ auth()->user()->name }}</h1>
 
   </div>
-  @foreach ( $posts as $post)  
-    @if ($loop->last)
-      <h5>Total Post : {{$loop->count}}</h5>
-    @endif
-  @endforeach
+  <h3>Profile</h3>
+
+  <h5>
+    <b>Nama</b>  : {{ auth()->user()->name }} <br>
+    <b>Email</b>  : {{ auth()->user()->email }} <br>
+    <b>Dibuat</b>  : {{ auth()->user()->created_at->format('d F Y') }} || {{ auth()->user()->created_at->diffForHumans() }}<br>
+    
+  </h5>
+
+  @can('admin', 'pengelola_paket_wisata','pengelola_wisata')  
+    <h3>Activity</h3>
+    @foreach ( $posts as $post)  
+      @if ($loop->last)
+        <h5>Total Post : {{$loop->count}}</h5>
+      @endif
+    @endforeach
+  @endcan
+
 @endsection

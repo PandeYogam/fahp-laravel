@@ -29,16 +29,18 @@ class RegisterController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
+        // Mengatur nilai 'is_pengelola_paket_wisata' dan 'is_pengelola_wisata' berdasarkan role yang dipilih
+        $roles = $request->input('role', []);
+
+        // Mengatur nilai 'is_pengelola_paket_wisata' dan 'is_pengelola_wisata' berdasarkan role yang dipilih
+        $validatedData['is_pengelola_paket_wisata'] = in_array('pengelola_paket_wisata', $roles) ? 1 : 0;
+        $validatedData['is_pengelola_wisata'] = in_array('pengelola_wisata', $roles) ? 1 : 0;
+
         User::create($validatedData);
 
         $request = session();
 
         $request->flash('success', 'Registration successfull! Please login');
-        // return redirect('/login')->with('success', 'Registration successfull! Please login');
-
-        // session()->flash('success', 'Register Success, Please Login');
-
-        // $request->session()->flash('status', 'Task was successful!');
 
         return redirect('/login');
     }

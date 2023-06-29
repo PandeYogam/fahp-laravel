@@ -33,5 +33,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('admin', function (User $user) {
             return $user->is_admin;
         });
+
+        Gate::define('pengelola_wisata', function (User $user) {
+            return $user->is_pengelola_paket_wisata;
+        });
+
+        Gate::define('pengelola_paket_wisata', function (User $user) {
+            return $user->is_pengelola_wisata;
+        });
     }
 }
