@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('paket_wisata', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('slug')->unique();
+            $table->foreignId('user_id');
             $table->unsignedInteger('harga');
             $table->integer('popularitas');
             $table->integer('rating');
             $table->string('durasi');
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->integer('jumlah_wisata_dikunjungi');
 
             // Kolom untuk menyimpan wisata yang dikunjungi

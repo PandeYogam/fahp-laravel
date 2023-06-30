@@ -62,7 +62,7 @@
         <trix-editor input="body"></trix-editor>
       </div>
 
-      <a href=""></a>
+      {{-- <a href=""></a> --}}
       <button type="submit" class="btn btn-primary">Create Post</button>
     </form>
   </div>

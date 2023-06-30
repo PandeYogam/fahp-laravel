@@ -71,13 +71,26 @@ class DatabaseSeeder extends Seeder
 
         // 
         PaketWisata::create([
-            'nama' => 'Paket A',
+            'nama' => 'Paket Uluwatu Exploration',
+            'slug' => 'paket-uluwatu-exploration',
+            'user_id' => 2,
             'harga' => 300000,
             'popularitas' => 8,
             'rating' => 9,
             'durasi' => '2 Hari',
             'deskripsi' => 'Paket wisata A',
             'jumlah_wisata_dikunjungi' => 5,
+        ]);
+        PaketWisata::create([
+            'nama' => 'Paket Tanjung Benoa Watersports',
+            'slug' => 'paket-tanjung-benoa-watersports',
+            'user_id' => 1,
+            'harga' => 450000,
+            'popularitas' => 9,
+            'rating' => 10,
+            'durasi' => '3 Hari',
+            'deskripsi' => 'Paket wisata B',
+            'jumlah_wisata_dikunjungi' => 3,
         ]);
 
         // User

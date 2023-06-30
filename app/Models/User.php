@@ -60,4 +60,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Coment::class);
     }
+    public function paketwisata()
+    {
+        return $this->hasMany(PaketWisata::class);
+    }
 }

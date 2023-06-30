@@ -17,7 +17,7 @@
         @endcan
         @can('pengelola_paket_wisata')
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/package">
+            <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/paketwisata">
               <span data-feather="package" class="align-text-bottom"></span>
               My Package
             </a>

@@ -102,10 +102,23 @@ Route::get('/categories', function () {
 });
 
 Route::get('/dashboard/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
+// Route::get('/dashboard/checkSlug', [DashboardPackageController::class, 'checkSlug'])->middleware('auth');
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
-Route::resource('/dashboard/package', DashboardPackageController::class)->middleware('auth');
+Route::resource('/dashboard/paketwisata', DashboardPackageController::class)->middleware('auth');
+Route::delete('/dashboard/paketwisata/{paketwisata}', [DashboardPackageController::class, 'destroy'])->name('dashboard.paketwisata.destroy');
+
+// Route::middleware(['auth'])->group(function () {
+//     Route::put('/dashboard/paketwisata/{paketwisata:slug}', [DashboardPackageController::class, 'update'])->name('dashboard.paketwisata.update');
+//     Route::get('/dashboard/paketwisata/edit/{paketwisata:slug}', [DashboardPackageController::class, 'edit'])->name('dashboard.paketwisata.edit');
+
+//     Route::resource('dashboard/paketwisata', DashboardPackageController::class);
+//     Route::get('/dashboard/paketwisata', [DashboardPackageController::class, 'index'])->name('dashboard.paketwisata.index');
+//     Route::get('/dashboard/paketwisata/{PaketWisata:slug}', [DashboardPackageController::class, 'show'])->name('dashboard.paketwisata.show');
+//     Route::delete('/dashboard/paketwisata/{PaketWisata:slug}', [DashboardPackageController::class, 'destroy'])->middleware('admin')->name('dashboard.paketwisata.destroy');
+// });
+// Route::get('/dashboard/paketwisata/{slug}/edit', [DashboardPackageController::class, 'edit'])->name('dashboard.paketwisata.edit');
 
 Route::middleware(['admin'])->group(function () {
     Route::resource('dashboard/categories', AdminCategoryController::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\PaketWisata;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\PaketPariwisata;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 
@@ -19,8 +19,8 @@ class DashboardPackageController extends Controller
      */
     public function index()
     {
-        return view('dashboard.paket.index', [
-            'package' => PaketPariwisata::Where('user_id', auth()->user()->id)->get()
+        return view('dashboard.paketwisata.index', [
+            'packages' => PaketWisata::Where('user_id', auth()->user()->id)->get()
         ]);
     }
 
@@ -31,9 +31,7 @@ class DashboardPackageController extends Controller
      */
     public function create()
     {
-        return view('dashboard.paket.create', [
-            // 'categories' => Category::all()
-        ]);
+        return view('dashboard.paketwisata.create');
     }
 
     /**
@@ -44,32 +42,30 @@ class DashboardPackageController extends Controller
      */
     public function store(Request $request)
     {
-        // ddd($request);
         // return $request->file('image')->store('post-image');
 
         $validatedData = $request->validate([
-            'title' => ['required', 'max:255'],
-            'slug' => ['required', 'unique:paketpariwisata'],
-            'image' => ['image', 'file', 'max:1024'],
-            'body' => ['required'],
-            'budget' => ['required'],
-            'rating' => ['required'],
-            'jumlah_destinasi' => ['required'],
+            'nama' => ['required', 'max:255'],
+            'slug' => ['required'],
+            'harga' => ['required'],
             'popularitas' => ['required'],
-            'keterangan' => []
-
+            'rating' => ['required'],
+            'durasi' => ['required'],
+            'jumlah_wisata_dikunjungi' => ['required']
 
         ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('paketpariwisata-image');
-        }
+        // if ($request->file('image')) {
+        //     $validatedData['image'] = $request->file('image')->store('paketpariwisata-image');
+        // }
+
 
         $validatedData['user_id'] = auth()->user()->id;
 
-        PaketPariwisata::create($validatedData);
+        // dd($validatedData);
+        PaketWisata::create($validatedData);
 
-        return redirect('dashboard/paketpariwisata')->with('success', 'New package has been added!');
+        return redirect('dashboard/paketwisata')->with('success', 'New package has been added!');
     }
 
     /**
@@ -78,12 +74,12 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(PaketPariwisata $paketpariwisata)
-    {
-        return view('dashboard.paketpariwisata.show', [
-            'paketpariwisata' => $paketpariwisata
-        ]);
-    }
+    // public function show(PaketWisata $paketpariwisata)
+    // {
+    //     // return view('dashboard.paketpariwisata.show', [
+    //     //     'paketpariwisata' => $paketpariwisata
+    //     // ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -91,12 +87,32 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(PaketPariwisata $paketpariwisata)
+    // public function edit(PaketWisata $paketwisata)
+    // {
+
+    //     return view('dashboard.paketwisata.edit', [
+    //         'paketwisata' => $paketwisata
+    //     ]);
+    // }
+
+    public function edit($slug)
     {
-        return view('dashboard.paketpariwisata.edit', [
-            'post' => $paketpariwisata,
+        $paketWisataData = PaketWisata::where('slug', $slug)->first();
+        // $paketWisataData = PaketWisata::find($paketwisata->id);
+        // dd($paketWisataData);
+        return view('dashboard.paketwisata.edit', [
+            'paketwisata' => $paketWisataData
         ]);
     }
+
+    // public function edit($slug)
+    // {
+    //     $paketWisata = PaketWisata::where('slug', $slug)->firstOrFail();
+    //     return view('dashboard.paketwisata.edit', [
+    //         'package' => $paketWisata
+    //     ]);
+    // }
+
 
     /**
      * Update the specified resource in storage.
@@ -105,35 +121,28 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaketPariwisata $paketpariwisata)
+    public function update(Request $request, PaketWisata $paketwisata)
     {
         $rules = [
-            'title' => ['required', 'max:255'],
-            'category_id' =>  ['required'],
-            'image' => ['image', 'file', 'max:1024'],
-            'body' => ['required']
+            'nama' => ['required', 'max:255'],
+            'slug' => ['required'],
+            'harga' => ['required'],
+            'popularitas' => ['required'],
+            'rating' => ['required'],
+            'durasi' => ['required'],
+            'jumlah_wisata_dikunjungi' => ['required']
         ];
 
-
-        if ($request->slug != $paketpariwisata->slug) {
-            $rules['slug'] = 'required|unique:posts';
+        if ($request->slug != $paketwisata->slug) {
+            $rules['slug'] = 'required|unique:paket_wisata';
         }
 
         $validatedData =  $request->validate($rules);
 
-        if ($request->file('image')) {
-            if ($request->oldImage) {
-                Storage::delete($request->oldImage);
-            }
-            $validatedData['image'] = $request->file('image')->store('paketpariwisata-image');
-        }
-
         $validatedData['user_id'] = auth()->user()->id;
-        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);
+        PaketWisata::where('id', $paketwisata->id)->update($validatedData);
 
-        PaketPariwisata::where('id', $paketpariwisata->id)->update($validatedData);
-
-        return redirect('dashboard/posts')->with('success', 'Post has been updated!');
+        return redirect('dashboard/paketwisata')->with('success', 'Post has been updated!');
     }
 
     /**
@@ -142,18 +151,23 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaketPariwisata $paketpariwisata)
+    public function destroy(PaketWisata $paketwisata)
     {
-        if ($paketpariwisata->image) {
-            Storage::delete($paketpariwisata->image);
-        }
-        PaketPariwisata::destroy($paketpariwisata->id);
-        return redirect('dashboard/posts')->with('success', 'Post has been deleted!');
+        $paketwisata->delete();
+        return redirect('dashboard/paketwisata')->with('success', 'Post has been deleted!');
     }
+
+    // public function destroy(PaketWisata $paketwisata)
+    // {
+    //     $paketwisata->delete();
+
+    //     return redirect()->route('dashboard.paketwisata.index')
+    //         ->with('success', 'Paket wisata berhasil dihapus!');
+    // }
 
     public function checkSlug(Request $request)
     {
-        $slug = SlugService::createSlug(PaketPariwisata::class, 'slug', $request->title);
+        $slug = SlugService::createSlug(PaketWisata::class, 'slug', $request->nama);
         return response()->json(['slug' => $slug]);
     }
 }

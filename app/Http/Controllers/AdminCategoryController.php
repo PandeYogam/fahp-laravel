@@ -21,8 +21,6 @@ class AdminCategoryController extends Controller
     public function index()
     {
         // $this->authorize('admin'); // ini gate
-
-
         return view('dashboard.categories.index', [
             'posts' => Post::Where('category_id')->get(),
             'categories' => Category::all()
