@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\HasilBobotVektor;
 use App\Models\KriteriaBobot;
+use App\Models\PaketWisata;
 use Illuminate\Support\Facades\Auth;
 
 class DssController extends Controller
 {
+
     public function index()
     {
+
         return view('dss.index', [
             'title' => 'Rekomendasi Paket Pariwisata',
             'active' => 'dss',
@@ -31,12 +35,15 @@ class DssController extends Controller
                 'kriteria_5' => ['required'],
             ]);
 
-            $validatedData['user_id'] = auth()->user()->id;
-
+            // $validatedData['user_id'] = auth()->user()->id;
+            // dd($validatedData);
             KriteriaBobot::create($validatedData);
         }
 
         $kriteriaBobot = KriteriaBobot::latest()->first();
+        // $this->idSesion = $kriteriaBobot->id;
+
+        // dd($this->idSesion);
         $kriteriaBobotArray = $kriteriaBobot->toArray();
 
         // TFN
@@ -93,6 +100,7 @@ class DssController extends Controller
 
         for ($i = 0; $i < $baris; $i++) {
             for ($k = 0; $k < 3; $k++) {
+                $totalMatriksPairwaise[$i][$k] = 0;
                 for ($j = 0; $j < $kolom; $j++) {
                     $totalMatriksPairwaise[$i][$k] += $matriksPairwaise[$i][$j][$k];
                 }
@@ -101,15 +109,17 @@ class DssController extends Controller
 
         $jumlahMatriksPairwaise = [];
         for ($i = 0; $i < 3; $i++) {
+            $jumlahMatriksPairwaise[$i] = 0;
             for ($j = 0; $j < $baris; $j++) {
-                $jumlahMatriksPairwaise[$j] += $totalMatriksPairwaise[$j][$i];
+                $jumlahMatriksPairwaise[$i] += $totalMatriksPairwaise[$j][$i];
             }
         }
+
 
         $sintesisNilaiKriteria = [];
         for ($i = 0; $i < $baris; $i++) {
             for ($j = 0; $j < 3; $j++) {
-                $sintesisNilaiKriteria[$i][$j] = $totalMatriksPairwaise[$i][$j] / $jumlahMatriksPairwaise[2 - $i];
+                $sintesisNilaiKriteria[$i][$j] = $totalMatriksPairwaise[$i][$j] / $jumlahMatriksPairwaise[2 - $j];
             }
         }
 
@@ -128,15 +138,16 @@ class DssController extends Controller
                 // kalau syarat 1 dan syarat 2 tidak benar
                 else {
                     $nilaiDerajat[$i][$j] =
-                        ($nilaiDerajat[$i][0] - $nilaiDerajat[$i][2]) /
-                        ($nilaiDerajat[$i][1] - $nilaiDerajat[$i][2]) -
-                        ($nilaiDerajat[$i][1] - $nilaiDerajat[$i][0]);
+                        ($sintesisNilaiKriteria[$i][0] - $sintesisNilaiKriteria[$i][2]) /
+                        ($sintesisNilaiKriteria[$i][1] - $sintesisNilaiKriteria[$i][2]) -
+                        ($sintesisNilaiKriteria[$i][1] - $sintesisNilaiKriteria[$i][0]);
                 }
             }
         }
 
         $nilaiVektor = [];
         for ($i = 0; $i < $baris; $i++) {
+            $nilaiVektor[$i] = 0;
             for ($j = 0; $j < $kolom; $j++) {
                 $nilaiVektor[$i] += $nilaiDerajat[$j][$i];
             }
@@ -149,24 +160,127 @@ class DssController extends Controller
             $nilaiVektorNormalisasi[$i] = $nilaiVektor[$i] / $totNilaiVektor;
         }
 
-        return redirect('dashboard/posts');
+        // dd($nilaiVektorNormalisasi);
+        $data = [
+            'kriteria_1' => $nilaiVektorNormalisasi[0],
+            'kriteria_2' => $nilaiVektorNormalisasi[1],
+            'kriteria_3' => $nilaiVektorNormalisasi[2],
+            'kriteria_4' => $nilaiVektorNormalisasi[3],
+            'kriteria_5' => $nilaiVektorNormalisasi[4]
+        ];
+
+        // dd($data);
+
+        HasilBobotVektor::create($data);
+
+        return redirect('/dss');
     }
 
     public function calculate()
     {
+        $paketwisata = PaketWisata::all();
+        $hasilBobotVektor = HasilBobotVektor::latest()->first();
+
+        $paketwisataArray = $paketwisata->toArray();
+        $hasilBobotVektorArray = $hasilBobotVektor->toArray();
+
+        $totalpaketwisata = $paketwisata->count();
+
+        $hasilRanking = [];
+
+        foreach ($paketwisataArray as $paket) {
+            $id = $paket['id'];
+            $hargaBobot = $paket['harga_bobot'];
+            $popularitasBobot = $paket['popularitas_bobot'];
+            $ratingBobot = $paket['rating_bobot'];
+            $durasiBobot = $paket['durasi_bobot'];
+            $jumlahWisataBobot = $paket['jumlah_wisata_bobot'];
+
+            // Kalikan setiap atribut paket dengan bobot dari hasilBobotVektor
+            $hargaBobot *= $hasilBobotVektorArray['kriteria_1'];
+            $popularitasBobot *= $hasilBobotVektorArray['kriteria_2'];
+            $ratingBobot *= $hasilBobotVektorArray['kriteria_3'];
+            $durasiBobot *= $hasilBobotVektorArray['kriteria_4'];
+            $jumlahWisataBobot *= $hasilBobotVektorArray['kriteria_5'];
+
+            // Simpan hasil perhitungan dalam array 2 dimensi
+            $hasilRanking[] = [
+                'id' => $id,
+                'hasil' => $hargaBobot + $popularitasBobot + $ratingBobot + $durasiBobot + $jumlahWisataBobot,
+            ];
+        }
+
+        usort($hasilRanking, function ($a, $b) {
+            return $b['hasil'] <=> $a['hasil'];
+        });
+
+        // foreach ($hasilRanking as $hasil) {
+        //     $id = $hasil['id'];
+        //     $hasilPerankingan = $hasil['hasil'];
+        // }
+
+        // dd($hasilRanking);
+
         return view('dss.calculate', [
             'title' => 'Rekomendasi Paket Pariwisata',
             'active' => 'dss',
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'hasilRanking' => $hasilRanking,
+            'hasilBobotVektorArray' => $hasilBobotVektorArray,
         ]);
     }
 
     public function rekomendasi()
     {
+        $paketwisata = PaketWisata::all();
+        $hasilBobotVektor = HasilBobotVektor::latest()->first();
+
+        $paketwisataArray = $paketwisata->toArray();
+        $hasilBobotVektorArray = $hasilBobotVektor->toArray();
+
+        $totalpaketwisata = $paketwisata->count();
+
+        $hasilRanking = [];
+
+        foreach ($paketwisataArray as $paket) {
+            $id = $paket['id'];
+            $hargaBobot = $paket['harga_bobot'];
+            $popularitasBobot = $paket['popularitas_bobot'];
+            $ratingBobot = $paket['rating_bobot'];
+            $durasiBobot = $paket['durasi_bobot'];
+            $jumlahWisataBobot = $paket['jumlah_wisata_bobot'];
+
+            // Kalikan setiap atribut paket dengan bobot dari hasilBobotVektor
+            $hargaBobot *= $hasilBobotVektorArray['kriteria_1'];
+            $popularitasBobot *= $hasilBobotVektorArray['kriteria_2'];
+            $ratingBobot *= $hasilBobotVektorArray['kriteria_3'];
+            $durasiBobot *= $hasilBobotVektorArray['kriteria_4'];
+            $jumlahWisataBobot *= $hasilBobotVektorArray['kriteria_5'];
+
+            // Simpan hasil perhitungan dalam array 2 dimensi
+            $hasilRanking[] = [
+                'id' => $id,
+                'hasil' => $hargaBobot + $popularitasBobot + $ratingBobot + $durasiBobot + $jumlahWisataBobot,
+            ];
+        }
+
+        usort($hasilRanking, function ($a, $b) {
+            return $b['hasil'] <=> $a['hasil'];
+        });
+
+        // foreach ($hasilRanking as $hasil) {
+        //     $id = $hasil['id'];
+        //     $hasilPerankingan = $hasil['hasil'];
+        // }
+
+        // dd($hasilRanking);
+
         return view('dss.rekomendasi', [
             'title' => 'Rekomendasi Paket Pariwisata',
             'active' => 'dss',
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'paketwisata' => PaketWisata::all(),
+            'hasilRanking' => $hasilRanking
         ]);
     }
 }

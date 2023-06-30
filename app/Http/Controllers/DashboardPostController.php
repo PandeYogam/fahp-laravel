@@ -88,7 +88,7 @@ class DashboardPostController extends Controller
      */
     public function edit(Post $post)
     {
-        dd($post);
+        // dd($post);
 
         return view('dashboard.posts.edit', [
             'post' => $post,

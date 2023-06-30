@@ -6,11 +6,11 @@
             <div class="col-lg-8">
                 <h1 class="mb-3">{{ $post->title }}</h1>
                 
-                <a href="/dashboard/posts" class="btn bg-success text-white"> 
+                <a href="/dashboard/posts" class="btn bg-success"> 
                     <span data-feather="arrow-left" class="align-text-bottom"></span> 
                     Back
                 </a>
-                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn bg-warning text-white"> 
+                <a href="/dashboard/posts/{{ $post->slug }}/edit" class="btn bg-warning"> 
                     <span data-feather="edit" class="align-text-bottom"></span> 
                     Edit
                 </a>
@@ -18,7 +18,7 @@
                 <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
                     @method('delete')
                     @csrf
-                    <button class="btn bg-danger border-0 text-white" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span>Hapus</button>
+                    <button class="btn bg-danger border-0" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span>Hapus</button>
                 </form>
 
                 @if ($post->image)

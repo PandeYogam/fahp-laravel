@@ -45,6 +45,14 @@
             </a>
           </li>
         </ul>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/subkriteria*') ? 'active' : '' }}" href="/dashboard/subkriteria">
+              <span data-feather="anchor" class="align-text-bottom"></span>
+              Bobot alternatif
+            </a>
+          </li>
+        </ul>
       @endcan
     </div>
   </nav>

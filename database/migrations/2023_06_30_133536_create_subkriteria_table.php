@@ -13,17 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hasil_bobot_vektor', function (Blueprint $table) {
+        Schema::create('subkriteria', function (Blueprint $table) {
             $table->id();
-            $table->decimal('kriteria_1', 18, 14);
-            $table->decimal('kriteria_2', 18, 14);
-            $table->decimal('kriteria_3', 18, 14);
-            $table->decimal('kriteria_4', 18, 14);
-            $table->decimal('kriteria_5', 18, 14);
+            $table->string('nama');
+            $table->decimal('rentang_min', 10, 1);
+            $table->decimal('rentang_max', 10, 1);
+            $table->integer('bobot');
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hasil_bobot_vektors');
+        Schema::dropIfExists('subkriteria');
     }
 };

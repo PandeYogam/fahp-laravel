@@ -11,45 +11,40 @@
     <p class="text-white">Selamat datang di Badung</p>
   </div>
 
-  <form action="">
-    <div class=" bg-secondary container text-center mb-3 mt-5">
-      <div class="row align-items-center mb-3">
-        <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
-          <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control" id="budget">
-        </div>
-        <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
-          <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control" id="budget">
-        </div>
-        <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
-          <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control" id="budget">
-        </div>
-        <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
-          <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control" id="budget">
-        </div>
-        <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
-          <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control" id="budget">
-        </div>
-      </div>
+  <table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Hasil Ranking</th>
+            <th>Nama</th>
+            <th>Harga</th>
+            <th>Popularitas</th>
+            <th>Rating</th>
+            <th>Durasi</th>
+            <th>Jumlah Wisata Dikunjungi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($hasilRanking as $ranking)
+            @php
+                $paketWisata = \App\Models\PaketWisata::find($ranking['id']);
+            @endphp
+            <tr>
+                <td>{{ $ranking['id'] }}</td>
+                <td>{{ $ranking['hasil'] }}</td>
+                <td>{{ $paketWisata->nama }}</td>
+                <td>{{ $paketWisata->harga }}</td>
+                <td>{{ $paketWisata->popularitas }}</td>
+                <td>{{ $paketWisata->rating }}</td>
+                <td>{{ $paketWisata->durasi }}</td>
+                <td>{{ $paketWisata->jumlah_wisata_dikunjungi }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+    </table>
+ 
 
-      <button type="submit" class="btn btn-primary mt-5 px-3">Submit</button>
-    </div>
-  </form>
 
-  <div class=" bg-danger container text-center mt-5">
-    <div class="row align-items-center mb-3">
-      <div class=" col">
-        <button type="submit" class="btn btn-primary px-3">Perhitungan</button>
-      </div>
-      <div class=" col">
-        <button type="submit" class="btn btn-primary  px-3">Cek Hasil</button>
-      </div>
-    </div>
 
-  </div>
 </div>
 @endsection

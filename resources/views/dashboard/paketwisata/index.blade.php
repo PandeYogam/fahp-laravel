@@ -93,18 +93,19 @@
 
               <a href="/dashboard/paketwisata/{{ $package->slug }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
 
-              <form action="{{ route('dashboard.paketwisata.destroy', $package->slug) }}" method="post" class="d-inline">
-              {{-- <form action="/dashboard/paketwisata/{{ $package->slug }}" method="post" class="d-inline"> --}}
-                @method('delete')
-                @csrf
-                <button class="badge bg-danger border-0" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span></button>
-              </form>
-
-              {{-- <form action="/dashboard/posts/{{ $post->slug }}" method="post" class="d-inline">
+              {{-- <form action="" method="post" class="d-inline">
                 @method('delete')
                 @csrf
                 <button class="badge bg-danger border-0" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span></button>
               </form> --}}
+
+              <form action="{{ route('dashboard.paketwisata.destroy', $package->id) }}" method="POST" class="d-inline">
+                @csrf
+                @method('DELETE')
+                {{-- <button type="submit">Hapus</button> --}}
+                <button class="badge bg-danger border-0" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span></button>
+              </form>
+              
             </td>
           </tr>
         @endforeach

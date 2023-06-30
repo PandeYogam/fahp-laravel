@@ -11,6 +11,7 @@
     <b>Nama</b>  : {{ auth()->user()->name }} <br>
     <b>Email</b>  : {{ auth()->user()->email }} <br>
     <b>Dibuat</b>  : {{ auth()->user()->created_at->format('d F Y') }} || {{ auth()->user()->created_at->diffForHumans() }}<br>
+    <b>Role</b>  : <br>
     
   </h5>
 

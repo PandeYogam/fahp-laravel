@@ -11,6 +11,15 @@ class KriteriaBobot extends Model
 
     protected $table = 'kriteria_bobot';
 
+    protected $fillable = [
+        'kriteria_1',
+        'kriteria_2',
+        'kriteria_3',
+        'kriteria_4',
+        'kriteria_5',
+        // 'user_id',
+    ];
+
     public function hasildss()
     {
         return $this->belongsTo(HasilDss::class, 'hasil_dss_id');

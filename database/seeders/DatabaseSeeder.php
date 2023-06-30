@@ -5,12 +5,13 @@ namespace Database\Seeders;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
-use App\Models\HasilBobotVektor;
 use App\Models\HasilDss;
-use App\Models\HasilPerangkingan;
-use App\Models\KriteriaBobot;
 use App\Models\PaketWisata;
+use App\Models\Subkriteria;
+use App\Models\KriteriaBobot;
 use Illuminate\Database\Seeder;
+use App\Models\HasilBobotVektor;
+use App\Models\HasilPerangkingan;
 
 
 class DatabaseSeeder extends Seeder
@@ -38,16 +39,21 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Kriteria
-        KriteriaBobot::create([
-            'kriteria_1' => 5,
-            'kriteria_2' => 2,
-            'kriteria_3' => 8,
-            'kriteria_4' => 9,
-            'kriteria_5' => 4,
+        Subkriteria::create([
+            'nama' => 'budget',
+            'rentang_min' => 0,
+            'rentang_max' => 500000,
+            'bobot' => 3,
+        ]);
+        Subkriteria::create([
+            'nama' => 'budget',
+            'rentang_min' => 500000,
+            'rentang_max' => 1000000,
+            'bobot' => 6,
         ]);
 
-        // HasilBobotVektor
-        HasilBobotVektor::create([
+        // Kriteria
+        KriteriaBobot::create([
             'kriteria_1' => 5,
             'kriteria_2' => 2,
             'kriteria_3' => 8,
@@ -80,6 +86,12 @@ class DatabaseSeeder extends Seeder
             'durasi' => '2 Hari',
             'deskripsi' => 'Paket wisata A',
             'jumlah_wisata_dikunjungi' => 5,
+
+            'harga_bobot' => 1,
+            'popularitas_bobot' => 5,
+            'rating_bobot' => 8,
+            'durasi_bobot' => 2,
+            'jumlah_wisata_bobot' => 7,
         ]);
         PaketWisata::create([
             'nama' => 'Paket Tanjung Benoa Watersports',
@@ -91,6 +103,12 @@ class DatabaseSeeder extends Seeder
             'durasi' => '3 Hari',
             'deskripsi' => 'Paket wisata B',
             'jumlah_wisata_dikunjungi' => 3,
+
+            'harga_bobot' => 2,
+            'popularitas_bobot' => 4,
+            'rating_bobot' => 5,
+            'durasi_bobot' => 9,
+            'jumlah_wisata_bobot' => 4,
         ]);
 
         // User

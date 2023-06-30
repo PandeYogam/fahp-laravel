@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardPackageController;
+use App\Http\Controllers\DashboardSubkriteriaController;
 
 // public
 
@@ -69,6 +70,7 @@ Route::get('/categories', function () {
 });
 
 Route::get('/dss', [DssController::class, 'index']);
+Route::post('/dss', [DssController::class, 'store']);
 Route::prefix('dss')->group(function () {
     Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);
     Route::get('/calculate', [DssController::class, 'calculate']);
@@ -106,19 +108,13 @@ Route::get('/dashboard/checkSlug', [DashboardPostController::class, 'checkSlug']
 
 Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
 
-Route::resource('/dashboard/paketwisata', DashboardPackageController::class)->middleware('auth');
+Route::resource('/dashboard/paketwisata', DashboardPackageController::class)
+    ->middleware('auth')
+    ->only(['index', 'create', 'store', 'edit', 'update', 'show']);
+
 Route::delete('/dashboard/paketwisata/{paketwisata}', [DashboardPackageController::class, 'destroy'])->name('dashboard.paketwisata.destroy');
 
-// Route::middleware(['auth'])->group(function () {
-//     Route::put('/dashboard/paketwisata/{paketwisata:slug}', [DashboardPackageController::class, 'update'])->name('dashboard.paketwisata.update');
-//     Route::get('/dashboard/paketwisata/edit/{paketwisata:slug}', [DashboardPackageController::class, 'edit'])->name('dashboard.paketwisata.edit');
-
-//     Route::resource('dashboard/paketwisata', DashboardPackageController::class);
-//     Route::get('/dashboard/paketwisata', [DashboardPackageController::class, 'index'])->name('dashboard.paketwisata.index');
-//     Route::get('/dashboard/paketwisata/{PaketWisata:slug}', [DashboardPackageController::class, 'show'])->name('dashboard.paketwisata.show');
-//     Route::delete('/dashboard/paketwisata/{PaketWisata:slug}', [DashboardPackageController::class, 'destroy'])->middleware('admin')->name('dashboard.paketwisata.destroy');
-// });
-// Route::get('/dashboard/paketwisata/{slug}/edit', [DashboardPackageController::class, 'edit'])->name('dashboard.paketwisata.edit');
+Route::resource('/dashboard/subkriteria', DashboardSubkriteriaController::class)->middleware('auth');
 
 Route::middleware(['admin'])->group(function () {
     Route::resource('dashboard/categories', AdminCategoryController::class);

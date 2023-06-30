@@ -151,10 +151,16 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+    // public function destroy(PaketWisata $paketwisata)
+    // {
+    //     $paketwisata->delete();
+    //     return redirect('dashboard/paketwisata')->with('success', 'Post has been deleted!');
+    // }
+
     public function destroy(PaketWisata $paketwisata)
     {
         $paketwisata->delete();
-        return redirect('dashboard/paketwisata')->with('success', 'Post has been deleted!');
+        return redirect('dashboard/paketwisata')->with('success', 'Package has been deleted!');
     }
 
     // public function destroy(PaketWisata $paketwisata)
