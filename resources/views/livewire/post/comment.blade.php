@@ -1,5 +1,5 @@
 <div>
-  <h5 class=" mb-3">{{ $total_comments }} comments</h5>
+  <h5 class=" mb-3 text-white">{{ $total_comments }} comments</h5>
   @auth  
     <form wire:submit.prevent="store">
       <div class="mb-3"> 
@@ -31,7 +31,7 @@
   @endguest
 
   @foreach ($comments as $item)
-  <div class=" mb-3" id="comment-{{ $item->id }}">
+  <div class=" mb-3 " id="comment-{{ $item->id }}">
     <div class="d-flex align-items-start">
         {{-- commentParent --}}
         <img src="https://cdn.icon-icons.com/icons2/1369/PNG/512/-account-circle_89831.png" alt="" class=" img-fluid rounded-circle me-2 pt-2" width="40">
@@ -67,10 +67,10 @@
                 </button>
               @endif
 
-              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="selectReply({{ $item->id }})">Balas</button>
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-light" wire:click="selectReply({{ $item->id }})">Balas</button>
               @if ($item->user->id == Auth::user()->id)
-              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="selectEdit({{ $item->id }})">Edit</button>
-              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-dark" wire:click="delete({{ $item->id }})">Hapus</button>
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-light" wire:click="selectEdit({{ $item->id }})">Edit</button>
+              <button type="button" class="btn btn-link pe-0 py-0 text-decoration-none text-light" wire:click="delete({{ $item->id }})">Hapus</button>
               @endif
             @endauth
           </div>
@@ -135,7 +135,7 @@
                   ({{ $item2->totalLikes() }})
                 </button>
               @else
-                <button wire:click="like({{ $item2->id }})" class="btn btn-sm btn-dark">
+                <button wire:click="like({{ $item2->id }})" class="btn btn-sm btn-light">
                   <i class="bi bi-heart-fill"></i>
                   ({{ $item2->totalLikes() }})
                 </button>

@@ -58,9 +58,6 @@
   <div class="table-responsive mb-1 mt-3 text-center">
     <table class="table table-sm">
       <thead>
-        {{-- <tr>
-          <th colspan="9" class="text-center border-0 bg-secondary text-light">List Daftar Alternatif</th>
-        </tr> --}}
         <tr>
           <th width="3%" class="text-center border-right bg-light text-secondary">No</th>
           <th class="text-left bg-light text-secondary">Nama Alternatif</th>

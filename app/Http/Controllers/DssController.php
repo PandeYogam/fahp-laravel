@@ -214,16 +214,10 @@ class DssController extends Controller
             return $b['hasil'] <=> $a['hasil'];
         });
 
-        // foreach ($hasilRanking as $hasil) {
-        //     $id = $hasil['id'];
-        //     $hasilPerankingan = $hasil['hasil'];
-        // }
-
-        // dd($hasilRanking);
-
         return view('dss.calculate', [
             'title' => 'Rekomendasi Paket Pariwisata',
             'active' => 'dss',
+            'bobot' => KriteriaBobot::latest()->first(),
             'categories' => Category::all(),
             'hasilRanking' => $hasilRanking,
             'hasilBobotVektorArray' => $hasilBobotVektorArray,
@@ -280,7 +274,8 @@ class DssController extends Controller
             'active' => 'dss',
             'categories' => Category::all(),
             'paketwisata' => PaketWisata::all(),
-            'hasilRanking' => $hasilRanking
+            'hasilRanking' => $hasilRanking,
+            'hasilBobotVektorArray' => $hasilBobotVektorArray,
         ]);
     }
 }
