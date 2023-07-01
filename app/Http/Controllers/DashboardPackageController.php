@@ -52,17 +52,11 @@ class DashboardPackageController extends Controller
             'rating' => ['required'],
             'durasi' => ['required'],
             'jumlah_wisata_dikunjungi' => ['required']
-
         ]);
 
-        // if ($request->file('image')) {
-        //     $validatedData['image'] = $request->file('image')->store('paketpariwisata-image');
-        // }
-
+        
 
         $validatedData['user_id'] = auth()->user()->id;
-
-        // dd($validatedData);
         PaketWisata::create($validatedData);
 
         return redirect('dashboard/paketwisata')->with('success', 'New package has been added!');

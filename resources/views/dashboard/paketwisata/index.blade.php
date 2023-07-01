@@ -17,42 +17,38 @@
     @endif
   @endforeach
   
-  <a href="/dashboard/paketwisata/create" class="btn btn-primary my-1">
-    Create Paket
-  </a>
+  <button href="/dashboard/paketwisata/create" type="button" class="btn btn-primary my-1 me-1">Create Paket</button>
 
-  {{-- <div class="table-responsive col-lg-8">
-    <table class="table table-striped table-sm">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nama Paket Wisata</th>
-          <th scope="col">Category</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($paketWisataCollection  as $package)  
-          <tr>
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $package->nama }}</td>
-            <td>{{ $package->category->name }}</td>
-            <td>
-              <a href="/dashboard/posts/{{ $paketWisataCollection ->slug }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    Upload Excel
+  </button>
 
-              <a href="/dashboard/posts/{{ $paketWisataCollection ->slug }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Upload Paket Wisata</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="#" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+          Atribut yang dibutuhkan : Budget ...
+          <div class="form-group">
+            <input type="file" name="file" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Upload</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
-              <form action="/dashboard/posts/{{ $paketWisataCollection ->slug }}" method="post" class="d-inline">
-                @method('delete')
-                @csrf
-                <button class="badge bg-danger border-0" onclick="return confirm('Hapus Postingan ?')"><span data-feather="x-circle" class="align-text-bottom"></span></button>
-              </form>
-            </td>
-          </tr>
-        @endforeach
-      </tbody>
-    </table>
-  </div> --}}
 
   {{-- List Daftar Alternatif --}}
   <div class="table-responsive mb-1 mt-3 text-center">
