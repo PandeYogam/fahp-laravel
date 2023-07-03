@@ -7,7 +7,7 @@
   <div class="container">
   
     <div class="row justify-content-center">
-      <h1 class="display-3 text-white mb-3 animated slideInDown m-2 text-center">Registration Form</h1>
+      <h1 class="display-3 text-white mb-4 animated slideInDown m-2 text-center">Registration Form</h1>
       <div class="col-lg-5">
         <main class="form-registration">
   

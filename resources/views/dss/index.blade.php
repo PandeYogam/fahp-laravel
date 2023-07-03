@@ -29,7 +29,7 @@
         </div>
         
         <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
+          <h5 class=" text-white animated">Popularitas</h5>
           <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('kriteria_2') is-invalid @enderror" id="kriteria_2" name="kriteria_2">
           @error('kriteria_2')
             <div class="invalid-feedback">
@@ -39,7 +39,7 @@
         </div>
         
         <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
+          <h5 class=" text-white animated">Rating</h5>
           <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('kriteria_3') is-invalid @enderror" id="kriteria_3" name="kriteria_3">
           @error('kriteria_3')
             <div class="invalid-feedback">
@@ -49,7 +49,7 @@
         </div>
         
         <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
+          <h5 class=" text-white animated">Durasi</h5>
           <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('kriteria_4') is-invalid @enderror" id="kriteria_4" name="kriteria_4">
           @error('kriteria_4')
             <div class="invalid-feedback">
@@ -60,7 +60,7 @@
 
         
         <div class=" col">
-          <h5 class=" text-white animated">Budget</h5>
+          <h5 class=" text-white animated">Jumlah</h5>
           <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('kriteria_5') is-invalid @enderror" id="kriteria_5" name="kriteria_5">
           @error('kriteria_5')
             <div class="invalid-feedback">

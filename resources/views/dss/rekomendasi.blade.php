@@ -2,8 +2,7 @@
 
 @section('container')
 
-
-<div class="fullDiv bg-dark hero-header">
+<div class="bg-dark hero-background" style="height: 100vh">
   <div style=" height: 60px"></div>
   <div class=" text-center ">
     <h1 class="display-3 text-white animated mt-5">Hasil Rekomendasi Paket Pariwisata</h1> 
@@ -29,7 +28,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($hasilRanking as $ranking)
+            @foreach (array_slice($hasilRanking, 0, 5) as $ranking)
               @php
                 $paketWisata = \App\Models\PaketWisata::find($ranking['id']);
                 $hargaBobot = $paketWisata->harga_bobot * $hasilBobotVektorArray['kriteria_1'];
