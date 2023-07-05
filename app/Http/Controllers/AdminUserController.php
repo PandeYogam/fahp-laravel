@@ -27,7 +27,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.users.create');
     }
 
     /**
@@ -60,7 +60,7 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('dashboard.users.edit', []);
     }
 
     /**

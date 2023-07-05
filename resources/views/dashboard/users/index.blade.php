@@ -13,7 +13,7 @@
 
   <h5>Total User : {{$users->count()}}</h5>
   
-  <a href="/dashboard/categories/create" class="btn btn-primary my-1">
+  <a href="/dashboard/users/create" class="btn btn-primary my-1">
     Create a new user
   </a>
 

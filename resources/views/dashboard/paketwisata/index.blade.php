@@ -17,8 +17,10 @@
     @endif
   @endforeach
   
-  <button href="/dashboard/paketwisata/create" type="button" class="btn btn-primary my-1 me-1">Create Paket</button>
-
+  <a href="/dashboard/paketwisata/create" class="btn btn-primary my-1 me-1">
+    Create Post
+  </a>
+  
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Upload Excel

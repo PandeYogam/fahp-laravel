@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('paket_wisata', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id');
+            $table->foreignId('user_id')->nullable();
 
             $table->string('nama');
             $table->string('slug')->unique();

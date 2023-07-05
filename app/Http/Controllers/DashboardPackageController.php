@@ -54,7 +54,7 @@ class DashboardPackageController extends Controller
             'jumlah_wisata_dikunjungi' => ['required']
         ]);
 
-        
+
 
         $validatedData['user_id'] = auth()->user()->id;
         PaketWisata::create($validatedData);
@@ -81,32 +81,14 @@ class DashboardPackageController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    // public function edit(PaketWisata $paketwisata)
-    // {
-
-    //     return view('dashboard.paketwisata.edit', [
-    //         'paketwisata' => $paketwisata
-    //     ]);
-    // }
 
     public function edit($slug)
     {
         $paketWisataData = PaketWisata::where('slug', $slug)->first();
-        // $paketWisataData = PaketWisata::find($paketwisata->id);
-        // dd($paketWisataData);
         return view('dashboard.paketwisata.edit', [
             'paketwisata' => $paketWisataData
         ]);
     }
-
-    // public function edit($slug)
-    // {
-    //     $paketWisata = PaketWisata::where('slug', $slug)->firstOrFail();
-    //     return view('dashboard.paketwisata.edit', [
-    //         'package' => $paketWisata
-    //     ]);
-    // }
-
 
     /**
      * Update the specified resource in storage.

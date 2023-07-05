@@ -12,13 +12,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="/" class="nav-link {{ Request::is('/') ? 'active' : '' }}">Home</a>
+          <a href="/" class="nav-link {{ url()->current() === url('/') ? 'active' : '' }}">Home</a>
         </li>
-        <li class="nav-item"></li>
-          <a href="/posts" class="nav-link {{ Request::is('posts*') ? 'active' : '' }}">Destination</a>
+        <li class="nav-item">
+            <a href="/posts" class="nav-link {{ request()->is('posts*') ? 'active' : '' }}">Destination</a>
         </li>
+      
         <li class="nav-item dropdown">
-          <a href="#" class="nav-link dropdown-toggle bg-transparent {{ Request::is('categories') ? 'active' : '' }}" data-bs-toggle="dropdown">Categories</a>
+          <a href="#" class="nav-link dropdown-toggle bg-transparent {{ request()->is('categories*') ? 'active' : '' }}" data-bs-toggle="dropdown">Categories</a>
           <ul class="dropdown-menu">
             @foreach ($categories as $category)
               <li><a class="dropdown-item" href="/posts?category={{ $category->slug }}">{{ $category->name }}</a></li>
@@ -26,7 +27,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="/dss" class="nav-link {{ Request::is('dss*') ? 'active' : '' }}" >Suggestion</a>
+          <a href="/dss" class="nav-link {{ request()->is('dss*') ? 'active' : '' }}" >Suggestion</a>
         </li>
       </ul>
       
@@ -50,7 +51,7 @@
         </li>
         @else
         <li class="nav-item">
-          <a href="/login" class="btn btn-primary py-2 px-4 {{ Request::is('login') ? 'active' : '' }}"> <i class="bi bi-box-arrow-in-right"></i> Login</a>
+          <a href="/login" class="btn btn-primary py-2 px-4"> <i class="bi bi-box-arrow-in-right"></i> Login</a>
         </li>
         @endauth
       </ul>

@@ -22,7 +22,7 @@
       
       <h5 class="text-white">by. <a href="/posts?admin?={{$post->admin->username }}" class="text-decoration-none">{{$post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
       
-      <img src="https://source.unsplash.com/1200x400?{{ $post->title }}" alt="{{ $post->title }}" class="img-fluid">
+      <img src="{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid">
 
       <article class="my-3 fs-5">
         {!! $post->body !!}

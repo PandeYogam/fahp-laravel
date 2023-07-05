@@ -17,8 +17,8 @@
     @endif
   @endforeach
   
-  <a href="/dashboard/paketwisata/create" class="btn btn-primary my-1">
-    Create bobotalternatif
+  <a href="/dashboard/subkriteria/create" class="btn btn-primary my-1">
+    Create bobot alternatif
   </a>
 
   <div class="table-responsive col-lg-8">

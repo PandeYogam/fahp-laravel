@@ -36,44 +36,40 @@
     </div>
   </div>
 
-  <div class="container text-center text-white">
-    <div class="row justify-content-start">
-      <div class="table-responsive mb-1 mt-3 text-center">
-        <table class="table table-sm table-striped">
-          <thead>
-          </thead>
-          <tbody>
+  <div class="container text-center text-white justify-content-start">
+    <div class="table-responsive mb-1 mt-3 text-center">
+      <table class="table">
+        <thead>
+          <!-- Isi header tabel jika ada -->
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center bg-light text-secondary border border-left-0"></td>
+            @for ($k = 0; $k < 5; $k++)
+              <th style="width: 16%" class="text-center bg-light text-secondary border border-white">C{{ $k+1 }}</th>
+            @endfor
+          </tr>
+          @for ($i = 0; $i < count($perbandingankriteria); $i++)
             <tr>
-              <td class="text-center bg-light text-secondary border border-left-0"></td>
-              @for ($k = 0; $k < 5; $k++)
-                <th style="width: 16%" class="text-center bg-light text-secondary border border-white">C{{ $k+1 }}</th>
+              <th style="width: 16%" class="bold text-center bg-light text-secondary border border-left-0">C{{ $i+1 }}</th>
+              @for ($j = 0; $j < count($perbandingankriteria[$i]); $j++)
+                <td class="text-white text-center border border-left-0">{{ $perbandingankriteria[$i][$j] }}</td>
               @endfor
             </tr>
-              @for ($i = 0; $i < count($perbandingankriteria); $i++)
-              <tr class="table-dark table align-middle ">
-                <th style="width: 16%" class=" bold text-center bg-light text-secondary border border-left-0">C{{ $i+1 }}</th>
-                  @for ($j = 0; $j < count($perbandingankriteria[$i]); $j++)
-                    <td class=" text-white text-center border border-left-0">{{ $perbandingankriteria[$i][$j] }}</td>
-                  @endfor
-              </tr>
-            @endfor
-          </tbody>
-        </table>
-      </div>
+          @endfor
+        </tbody>
+      </table>
     </div>
   </div>
 
-  <div class="container text-center text-white">
-    <div class="row justify-content-start">
-      <div class="table-responsive mb-1 mt-3 text-center">
+  <div class="container mb-1 mt-3 text-center text-white justify-content-start" style="height: 300px; overflow-y: auto;">
+      <div class="table-responsive text-center">
         <table class="table table-sm table-dark table-striped align-middle">
           <thead>
             <tr class="table-dark table align-middle">
               <th width="3%" class="text-center bg-light text-secondary">No</th>
               <th class=" bg-light text-secondary">Nama Alternatif</th>
-              @can('admin')
-                <th class=" bg-light text-secondary">Harga Bobot</th>
-              @endcan
+              <th class=" bg-light text-secondary">Harga Bobot</th>
               <th class=" bg-light text-secondary">Popularitas Bobot</th>
               <th class=" bg-light text-secondary">Rating Bobot</th>
               <th class=" bg-light text-secondary">Durasi Wisata</th>
@@ -81,7 +77,7 @@
               <th class=" bg-light text-secondary">Hasil Ranking</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             @foreach ($hasilRanking as $ranking)
               @php
                 $paketWisata = \App\Models\PaketWisata::find($ranking['id']);
@@ -107,7 +103,6 @@
           </tbody>
         </table>
       </div>
-    </div>
   </div>
   
   <div class="container text-center text-white">

@@ -2,14 +2,14 @@
     <div class="position-sticky pt-3 sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
+          <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" aria-current="page" href="/dashboard">
             <span data-feather="home" class="align-text-bottom"></span>
             Dashboard
           </a>
         </li>
         @can('pengelola_wisata')
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
+            <a class="nav-link {{ request()->is('dashboard/postsdashboard/paketwisata**') ? 'active' : '' }}" href="/dashboard/posts">
               <span data-feather="file-text" class="align-text-bottom"></span>
               My Posts
             </a>
@@ -17,7 +17,7 @@
         @endcan
         @can('pengelola_paket_wisata')
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/paketwisata*') ? 'active' : '' }}" href="/dashboard/paketwisata">
+            <a class="nav-link{{ request()->is('dashboard/paketwisata*') ? 'active' : '' }} " href="/dashboard/paketwisata">
               <span data-feather="package" class="align-text-bottom"></span>
               My Package
             </a>
@@ -31,7 +31,7 @@
         </h6>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/users*') ? 'active' : '' }}" href="/dashboard/users">
+            <a class="nav-link {{ request()->is('dashboard/dashboard/users*') ? 'active' : '' }} " href="/dashboard/users">
               <span data-feather="user" class="align-text-bottom"></span>
               Admin Registered
             </a>
@@ -39,7 +39,7 @@
         </ul>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" href="/dashboard/categories">
+            <a class="nav-link {{ request()->is('dashboard/dashboard/categories*') ? 'active' : '' }} " href="/dashboard/categories">
               <span data-feather="grid" class="align-text-bottom"></span>
               Post Categories
             </a>
@@ -47,7 +47,7 @@
         </ul>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/subkriteria*') ? 'active' : '' }}" href="/dashboard/subkriteria">
+            <a class="nav-link{{ request()->is('dashboard/subkriteria*') ? 'active' : '' }}" href="/dashboard/subkriteria">
               <span data-feather="anchor" class="align-text-bottom"></span>
               Bobot alternatif
             </a>

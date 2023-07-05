@@ -8,10 +8,15 @@ use App\Models\Category;
 use App\Models\HasilDss;
 use App\Models\PaketWisata;
 use App\Models\Subkriteria;
+use Illuminate\Support\Str;
 use App\Models\KriteriaBobot;
-use Illuminate\Database\Seeder;
 use App\Models\HasilBobotVektor;
 use App\Models\HasilPerangkingan;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Seeder;
+use Intervention\Image\Facades\Image;
+
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -107,6 +112,7 @@ class DatabaseSeeder extends Seeder
         paketwisata::create(
             [
                 'nama' => 'Paket Legian Shopping',
+                'user_id' => 2,
                 'slug' => 'paket-legian-shopping',
                 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 8, 'harga' => 300000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
             ]
@@ -114,7 +120,9 @@ class DatabaseSeeder extends Seeder
 
         paketwisata::create(
             [
-                'nama' => 'Paket Tanah Lot-Bedugul', 'slug' => 'paket-tanah-lot-bedugul', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 20, 'rating' => 9, 'harga' => 850000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
+                'nama' => 'Paket Tanah Lot-Bedugul',
+                'user_id' => 2,
+                'slug' => 'paket-tanah-lot-bedugul', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 20, 'rating' => 9, 'harga' => 850000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
             ]
         );
 
@@ -285,7 +293,140 @@ class DatabaseSeeder extends Seeder
             'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
         ]);
 
+        // if(){
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Air Terjun Nungnung',
+        //         'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
+        //         'slug' => Str::slug('Air Terjun Nungnung'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Alas Pala Sangeh',
+        //         'body' => 'Alas Pala Sangeh adalah hutan kera yang terkenal dengan populasi kera yang besar dan pura yang terletak di dalam hutan.',
+        //         'slug' => Str::slug('Alas Pala Sangeh'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Bali Elephant Camp',
+        //         'body' => 'Bali Elephant Camp adalah tempat di mana Anda dapat menikmati pengalaman menunggangi gajah dan berinteraksi dengan gajah-gajah tersebut.',
+        //         'slug' => Str::slug('Bali Elephant Camp'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Bali Swing',
+        //         'body' => 'Bali Swing adalah taman hiburan yang terkenal dengan ayunan gantung yang besar dan menawarkan pemandangan alam yang spektakuler.',
+        //         'slug' => Str::slug('Bali Swing'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Bumi Perkemahan Blahkiuh',
+        //         'body' => 'Bumi Perkemahan Blahkiuh adalah tempat perkemahan di tengah alam dengan pemandangan hutan dan sungai yang indah.',
+        //         'slug' => Str::slug('Bumi Perkemahan Blahkiuh'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Desa Budaya Kertalangu',
+        //         'body' => 'Desa Budaya Kertalangu adalah kompleks budaya yang menampilkan pertunjukan seni tradisional Bali dan kerajinan tangan.',
+        //         'slug' => Str::slug('Desa Budaya Kertalangu'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Garuda Wisnu Kencana (GWK)',
+        //         'body' => 'Garuda Wisnu Kencana (GWK) adalah kompleks taman budaya dengan patung Dewa Wisnu yang megah dan berbagai acara seni dan budaya.',
+        //         'slug' => Str::slug('Garuda Wisnu Kencana (GWK)'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Healing Tanah Hyang',
+        //         'body' => 'Healing Tanah Hyang adalah tempat spiritual dan pusat penyembuhan yang menawarkan terapi energi dan praktik holistik.',
+        //         'slug' => Str::slug('Healing Tanah Hyang'),
+        //     ]);
+
+        //     Post::create([
+        //         'category_id' => rand(1, 4),
+        //         'user_id' => RAND(1, 4),
+        //         'title' => 'Kawasan Jembatan Tukad Bangkung',
+        //         'body' => 'Kawasan Jembatan Tukad Bangkung adalah area sekitar jembatan gantung yang indah dan menawarkan pemandangan sungai yang spektakuler.',
+        //         'slug' => Str::slug('Kawasan Jembatan Tukad Bangkung'),
+        //     ]);
+
+        //     $data = [
+        //         [
+        //             'title' => 'Air Terjun Nungnung',
+        //             'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
+        //         ],
+        //         [
+        //             'title' => 'Alas Pala Sangeh',
+        //             'body' => 'Alas Pala Sangeh adalah hutan kera yang terkenal dengan populasi kera yang besar dan pura yang terletak di dalam hutan.',
+        //         ],
+        //         [
+        //             'title' => 'Bali Elephant Camp',
+        //             'body' => 'Bali Elephant Camp adalah tempat di mana Anda dapat menikmati pengalaman menunggangi gajah dan berinteraksi dengan gajah-gajah tersebut.',
+        //         ],
+        //         [
+        //             'title' => 'Bali Swing',
+        //             'body' => 'Bali Swing adalah taman hiburan yang terkenal dengan ayunan gantung yang besar dan menawarkan pemandangan alam yang spektakuler.',
+        //         ],
+        //     ];
+        // }
+
+        $data = [
+            [
+                'title' => 'Air Terjun Nungnung',
+                'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
+            ],
+            // Tambahkan data lainnya...
+        ];
+
+        foreach ($data as $post) {
+            $slug = Str::slug($post['title']);
+            $judul = ($post['title']);
+            $imagePath = "/post-image/{$judul}.jpg";
+
+            // Simpan gambar ke storage
+            Storage::copy("public/storage/post-image/{$judul}.jpg", "public/{$imagePath}");
+
+            Post::create([
+                'category_id' => rand(1, 4),
+                'user_id' => 1,
+                'title' => $post['title'],
+                'body' => $post['body'],
+                'excerpt' => Str::words($post['body'], 200),
+                'slug' => $slug,
+                'image' => $imagePath,
+            ]);
+        }
+
+
         // Post
-        Post::factory(20)->create();
+        // Post::factory(20)->create();
+    }
+
+    private function convertToJpeg($file)
+    {
+        // Menggunakan package intervention/image untuk konversi format
+        $image = Image::make($file);
+
+        // Mengonversi ke format JPEG dengan kualitas 90
+        $image->encode('jpg', 90);
+
+        // Mengembalikan konten file yang telah diubah formatnya
+        return $image->getEncoded();
     }
 }
