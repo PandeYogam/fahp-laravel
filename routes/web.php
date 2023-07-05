@@ -4,11 +4,13 @@ use App\Models\Post;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DssController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\PaketWisataController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardPackageController;
@@ -16,37 +18,9 @@ use App\Http\Controllers\DashboardSubkriteriaController;
 
 // public
 
-Route::get('/', function () {
-    return view('home', [
-        "title" => "home",
-        'categories' => Category::all(),
-        "active" => 'index',
-        "total_posts" => Post::latest(),
-        "posts_beach" => Post::latest()->filter(''),
-        'categories' => Category::all(),
-    ]);
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/', function () {
-    $category1 = Category::find(1); // Ambil record kategori dengan id 1
-    $posts1 = Post::where('category_id', $category1->id)->latest()->get();
-
-    $category2 = Category::find(2); // Ambil record kategori dengan id 1
-    $posts2 = Post::where('category_id', $category2->id)->latest()->get();
-
-    $category3 = Category::find(3); // Ambil record kategori dengan id 1
-    $posts3 = Post::where('category_id', $category3->id)->latest()->get();
-
-    return view('home', [
-        "title" => "home",
-        'categories' => Category::all(),
-        "active" => 'index',
-        "total_posts" => Post::latest(),
-        "post_1" => $posts1,
-        "post_2" => $posts2,
-        "post_3" => $posts3
-    ]);
-});
+Route::resource('/paketwisata', PaketWisataController::class);
 
 Route::get('/about', function () {
     return view('about', [

@@ -272,126 +272,384 @@ class DatabaseSeeder extends Seeder
         User::factory(3)->create();
 
         // Category
-        Category::create([
-            'name' => 'Seni Cipta',
-            'slug' => 'seni-cipta',
-            'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!'
-        ]);
-        Category::create([
-            'name' => 'Hotel',
-            'slug' => 'hotel',
-            'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        ]);
-        Category::create([
-            'name' => 'Pantai',
-            'slug' => 'pantai',
-            'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        ]);
-        Category::create([
-            'name' => 'Makanan & Minuman',
-            'slug' => 'makanan-minuman',
-            'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        ]);
+        // Category::create([
+        //     'name' => 'Pantai',
+        //     'slug' => 'seni-cipta',
+        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!'
+        // ]);
 
-        // if(){
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Air Terjun Nungnung',
-        //         'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
-        //         'slug' => Str::slug('Air Terjun Nungnung'),
-        //     ]);
+        $categories = [
+            [
+                'name' => 'Relaksasi Alam',
+                'body' => 'Nikmati keindahan alam yang menenangkan di destinasi-relaksasi alam terbaik di Badung',
+            ],
+            [
+                'name' => 'Rekreasi Flora & Fauna',
+                'body' => 'Jelajahi kekayaan flora dan fauna di tempat rekreasi yang penuh petualangan di Badung',
+            ],
+            [
+                'name' => 'Taman Rekreasi dan Hiburan',
+                'body' => 'Temukan keseruan dan hiburan yang tak terlupakan di taman rekreasi terpopuler di Badung',
+            ],
+            [
+                'name' => 'Budaya dan Sejarah',
+                'body' => 'Telusuri keunikan budaya dan sejarah yang kaya di destinasi budaya dan sejarah di Badung',
+            ],
+            [
+                'name' => 'Pantai',
+                'body' => 'Rasakan keindahan pantai-pantai terbaik yang menakjubkan di Badung',
+            ],
+            [
+                'name' => 'Petualangan dan Ekspedisi',
+                'body' => 'Temukan petualangan dan ekspedisi seru di destinasi petualangan dan ekspedisi terbaik di Badung',
+            ],
+        ];
 
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Alas Pala Sangeh',
-        //         'body' => 'Alas Pala Sangeh adalah hutan kera yang terkenal dengan populasi kera yang besar dan pura yang terletak di dalam hutan.',
-        //         'slug' => Str::slug('Alas Pala Sangeh'),
-        //     ]);
+        foreach ($categories as $categoryData) {
+            $categoryData['slug'] = Str::slug($categoryData['name']);
 
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Bali Elephant Camp',
-        //         'body' => 'Bali Elephant Camp adalah tempat di mana Anda dapat menikmati pengalaman menunggangi gajah dan berinteraksi dengan gajah-gajah tersebut.',
-        //         'slug' => Str::slug('Bali Elephant Camp'),
-        //     ]);
+            Category::create($categoryData);
+        }
 
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Bali Swing',
-        //         'body' => 'Bali Swing adalah taman hiburan yang terkenal dengan ayunan gantung yang besar dan menawarkan pemandangan alam yang spektakuler.',
-        //         'slug' => Str::slug('Bali Swing'),
-        //     ]);
+        // Category::create([
+        //     'name' => 'Relaksasi Alam',
+        //     'slug' => 'hotel',
+        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
+        // ]);
+        // Category::create([
+        //     'name' => 'Pantai',
+        //     'slug' => 'pantai',
+        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
+        // ]);
+        // Category::create([
+        //     'name' => 'Makanan & Minuman',
+        //     'slug' => 'makanan-minuman',
+        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
+        // ]);
 
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Bumi Perkemahan Blahkiuh',
-        //         'body' => 'Bumi Perkemahan Blahkiuh adalah tempat perkemahan di tengah alam dengan pemandangan hutan dan sungai yang indah.',
-        //         'slug' => Str::slug('Bumi Perkemahan Blahkiuh'),
-        //     ]);
-
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Desa Budaya Kertalangu',
-        //         'body' => 'Desa Budaya Kertalangu adalah kompleks budaya yang menampilkan pertunjukan seni tradisional Bali dan kerajinan tangan.',
-        //         'slug' => Str::slug('Desa Budaya Kertalangu'),
-        //     ]);
-
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Garuda Wisnu Kencana (GWK)',
-        //         'body' => 'Garuda Wisnu Kencana (GWK) adalah kompleks taman budaya dengan patung Dewa Wisnu yang megah dan berbagai acara seni dan budaya.',
-        //         'slug' => Str::slug('Garuda Wisnu Kencana (GWK)'),
-        //     ]);
-
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Healing Tanah Hyang',
-        //         'body' => 'Healing Tanah Hyang adalah tempat spiritual dan pusat penyembuhan yang menawarkan terapi energi dan praktik holistik.',
-        //         'slug' => Str::slug('Healing Tanah Hyang'),
-        //     ]);
-
-        //     Post::create([
-        //         'category_id' => rand(1, 4),
-        //         'user_id' => RAND(1, 4),
-        //         'title' => 'Kawasan Jembatan Tukad Bangkung',
-        //         'body' => 'Kawasan Jembatan Tukad Bangkung adalah area sekitar jembatan gantung yang indah dan menawarkan pemandangan sungai yang spektakuler.',
-        //         'slug' => Str::slug('Kawasan Jembatan Tukad Bangkung'),
-        //     ]);
-
-        //     $data = [
-        //         [
-        //             'title' => 'Air Terjun Nungnung',
-        //             'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
-        //         ],
-        //         [
-        //             'title' => 'Alas Pala Sangeh',
-        //             'body' => 'Alas Pala Sangeh adalah hutan kera yang terkenal dengan populasi kera yang besar dan pura yang terletak di dalam hutan.',
-        //         ],
-        //         [
-        //             'title' => 'Bali Elephant Camp',
-        //             'body' => 'Bali Elephant Camp adalah tempat di mana Anda dapat menikmati pengalaman menunggangi gajah dan berinteraksi dengan gajah-gajah tersebut.',
-        //         ],
-        //         [
-        //             'title' => 'Bali Swing',
-        //             'body' => 'Bali Swing adalah taman hiburan yang terkenal dengan ayunan gantung yang besar dan menawarkan pemandangan alam yang spektakuler.',
-        //         ],
-        //     ];
-        // }
 
         $data = [
             [
                 'title' => 'Air Terjun Nungnung',
                 'body' => 'Air Terjun Nungnung adalah air terjun yang tinggi dengan pemandangan alam yang indah dan trek menantang untuk mencapai lokasinya.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Air Terjun',
+                'Lokasi Umum' => 'Plaga, Badung',
+                'Lokasi Detail' => 'Desa Plaga',
+                'Jam Operasional' => '07.00-18.00',
             ],
-            // Tambahkan data lainnya...
+            [
+                'title' => 'Alas Pala Sangeh',
+                'body' => 'Alas Pala Sangeh adalah hutan kera yang terkenal dengan populasi kera yang besar dan pura yang terletak di dalam hutan.',
+                'Kategori Umum' => 2,
+                'Kategori Detail' => 'Hutan Kera',
+                'Lokasi Umum' => 'Sangeh, Badung',
+                'Lokasi Detail' => 'Jalan Raya Sangeh',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Bali Elephant Camp',
+                'body' => 'Bali Elephant Camp adalah tempat di mana Anda dapat menikmati pengalaman menunggangi gajah dan berinteraksi dengan gajah-gajah tersebut.',
+                'Kategori Umum' => 2,
+                'Kategori Detail' => 'Interaksi Hewan',
+                'Lokasi Umum' => 'Carangsari, Badung',
+                'Lokasi Detail' => 'Jalan Raya Singapadu',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Bali Swing',
+                'body' => 'Bali Swing adalah taman hiburan yang terkenal dengan ayunan gantung yang besar dan menawarkan pemandangan alam yang spektakuler.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Taman Hiburan',
+                'Lokasi Umum' => 'Bongkasa, Badung',
+                'Lokasi Detail' => 'Jalan Raya Bongkasa',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Bumi Perkemahan Blahkiuh',
+                'body' => 'Bumi Perkemahan Blahkiuh adalah tempat perkemahan di tengah alam dengan pemandangan hutan dan sungai yang indah.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Perkemahan',
+                'Lokasi Umum' => 'Plaga, Badung',
+                'Lokasi Detail' => 'Desa Plaga',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Garuda Wisnu Kencana (GWK)',
+                'body' => 'Garuda Wisnu Kencana (GWK) adalah kompleks taman budaya dengan patung Dewa Wisnu yang megah dan berbagai acara seni dan budaya.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Taman Budaya',
+                'Lokasi Umum' => 'Ungasan, Badung',
+                'Lokasi Detail' => 'Jalan Raya Uluwatu',
+                'Jam Operasional' => '08.00-22.00',
+            ],
+
+            [
+                'title' => 'Kawasan Jembatan Tukad Bangkung',
+                'body' => 'Kawasan Jembatan Tukad Bangkung adalah area sekitar jembatan gantung yang indah dan menawarkan pemandangan sungai yang spektakuler.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Jembatan',
+                'Lokasi Umum' => 'Baha, Badung',
+                'Lokasi Detail' => 'Jalan Raya Kuta-Badung',
+                'Jam Operasional' => '24 Jam',
+            ],
+
+            [
+                'title' => 'Kawasan Luar Pura Puncak Tedung',
+                'body' => 'Kawasan Luar Pura Puncak Tedung adalah area sekitar Pura Puncak Tedung yang menawarkan pemandangan alam yang menakjubkan.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Mangupura, Badung',
+                'Lokasi Detail' => 'Jalan Raya Kapal',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+
+            [
+                'title' => 'Kawasan Luar Pura Taman Ayun',
+                'body' => 'Kawasan Luar Pura Taman Ayun adalah area sekitar Pura Taman Ayun yang menawarkan pemandangan dan kegiatan keagamaan yang khas Bali.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Mengwi, Badung',
+                'Lokasi Detail' => 'Jalan Raya Mengwi',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Kawasan Luar Pura Uluwatu',
+                'body' => 'Kawasan Luar Pura Uluwatu adalah area di sekitar Pura Uluwatu yang menawarkan pemandangan spektakuler dan kegiatan budaya Bali.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Kawasan Pura',
+                'Lokasi Umum' => 'Uluwatu, Badung',
+                'Lokasi Detail' => 'Jalan Uluwatu, Pecatu',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Kawasan Pura Kereban Langit',
+                'body' => 'Kawasan Pura Kereban Langit adalah area sekitar Pura Kereban Langit yang menawarkan pemandangan alam yang indah dan kegiatan keagamaan.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Mengwi, Badung',
+                'Lokasi Detail' => 'Jalan Raya Mengwi',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Museum Bali',
+                'body' => 'Museum Bali adalah museum seni dan budaya yang menampilkan koleksi seni dan artefak sejarah Bali.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Museum',
+                'Lokasi Umum' => 'Denpasar, Badung',
+                'Lokasi Detail' => 'Jalan Mayor Wisnu',
+                'Jam Operasional' => '08.00-16.00',
+            ],
+            [
+                'title' => 'Pancoran Solas Taman Mumbul',
+                'body' => 'Pancoran Solas Taman Mumbul adalah sumber mata air alami yang diatur dalam taman indah dengan kolam renang.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Sumber Mata Air',
+                'Lokasi Umum' => 'Carangsari, Badung',
+                'Lokasi Detail' => 'Jalan Raya Batubulan',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Pantai Batu Pageh',
+                'body' => 'Pantai Batu Pageh adalah pantai yang tenang dengan batu-batu besar di sekitarnya, ideal untuk bersantai dan menikmati pemandangan laut.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Batu Pageh',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Berawa',
+                'body' => 'Pantai Berawa adalah pantai yang terkenal dengan ombak yang bagus untuk berselancar dan klub pantai yang populer.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Canggu, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Berawa',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Canggu',
+                'body' => 'Pantai Canggu adalah pantai yang terkenal dengan ombak yang bagus untuk berselancar dan kafe-kafe yang trendi di sekitarnya.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Canggu, Badung',
+                'Lokasi Detail' => 'Jalan Batu Bolong',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Geger Sawangan',
+                'body' => 'Pantai Geger Sawangan adalah pantai yang terkenal dengan pasir putih yang lembut dan air laut yang jernih.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Sawangan, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Geger Sawangan',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Jimbaran',
+                'body' => 'Pantai Jimbaran adalah pantai yang terkenal dengan pemandangan matahari terbenam yang spektakuler dan restoran seafood yang lezat.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Jimbaran, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Jimbaran',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Kedonganan',
+                'body' => 'Pantai Kedonganan adalah pantai yang terkenal dengan restoran-restoran seafood tepi pantai dan pemandangan matahari terbenam yang indah.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Kedonganan, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Kedonganan',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Kuta',
+                'body' => 'Pantai Kuta adalah pantai yang terkenal dengan kehidupan malam yang sibuk, pusat perbelanjaan, dan ombak yang cocok untuk berselancar.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Kuta, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Kuta',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Labuan Sait',
+                'body' => 'Pantai Labuan Sait adalah pantai dengan ombak yang bagus untuk berselancar dan pemandangan tebing yang dramatis.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Labuan Sait',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Legian',
+                'body' => 'Pantai Legian adalah pantai yang terkenal dengan ombak yang bagus untuk berselancar dan suasana pantai yang hidup.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Legian, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Legian',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Melasti',
+                'body' => 'Pantai Melasti adalah pantai yang terkenal dengan upacara Melasti yang diadakan di sini setiap tahunnya.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Kutuh, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Melasti',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Nusa Dua',
+                'body' => 'Pantai Nusa Dua adalah pantai yang terkenal dengan pasir putih yang lembut dan terletak di kompleks resor Nusa Dua.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Nusa Dua, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Nusa Dua',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Nyang - Nyang',
+                'body' => 'Pantai Nyang-Nyang adalah pantai yang jarang dikunjungi dengan pemandangan yang indah dan ombak yang cocok untuk berselancar.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Nyang-Nyang',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Padang - Padang',
+                'body' => 'Pantai Padang-Padang adalah pantai yang terkenal dengan ombak yang bagus untuk berselancar dan pasir putih yang indah.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Labuan Sait',
+                'Jam Operasional' => '08.00-20.00',
+            ],
+            [
+                'title' => 'Pantai Pandawa',
+                'body' => 'Pantai Pandawa adalah pantai yang terkenal dengan pasir putih dan tebing-tebing kapur yang indah.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Kutuh, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Pandawa',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Petitenget',
+                'body' => 'Pantai Petitenget adalah pantai yang terkenal dengan restoran-restoran dan klub pantai yang trendi.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Seminyak, Badung',
+                'Lokasi Detail' => 'Jalan Petitenget',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Samuh',
+                'body' => 'Pantai Samuh adalah pantai yang jarang dikunjungi dengan ombak yang tenang dan pasir putih yang indah.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Samuh',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Seseh',
+                'body' => 'Pantai Seseh adalah pantai yang tenang dengan pasir hitam dan ombak yang cocok untuk berselancar.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Seseh, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Seseh',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Suluban',
+                'body' => 'Pantai Suluban adalah pantai tersembunyi dengan akses melalui jalan setapak di antara tebing.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Suluban',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Tanjung Benoa',
+                'body' => 'Pantai Tanjung Benoa adalah pantai yang terkenal dengan kegiatan air seperti jet ski, banana boat, dan snorkeling.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Tanjung Benoa, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Tanjung Benoa',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Tegal Wangi',
+                'body' => 'Pantai Tegal Wangi adalah pantai yang terkenal dengan pemandangan matahari terbenam yang spektakuler dan batu-batu karang yang unik.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Jimbaran, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Tegal Wangi',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Thomas',
+                'body' => 'Pantai Thomas adalah pantai yang jarang dikunjungi dengan ombak yang bagus untuk berselancar dan pemandangan alam yang indah.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Pecatu, Badung',
+                'Lokasi Detail' => 'Jalan Pantai Thomas',
+                'Jam Operasional' => '24 Jam',
+            ],
+            ['title' => 'Paralayang Gunung Payung',    'body' => 'Paralayang Gunung Payung adalah tempat untuk melakukan olahraga paralayang dengan pemandangan pantai yang indah.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Paralayang',    'Lokasi Umum' => 'Kutuh, Badung',    'Lokasi Detail' => 'Jalan Gunung Payung',    'Jam Operasional' => '09.00-18.00',],
+            ['title' => 'Pelestarian Penyu Deluang Sari',    'body' => 'Pelestarian Penyu Deluang Sari adalah tempat konservasi penyu yang berdedikasi untuk melindungi spesies penyu yang terancam punah.',    'Kategori Umum' => 2,    'Kategori Detail' => 'Pelestarian Alam',    'Lokasi Umum' => 'Serangan, Badung',    'Lokasi Detail' => 'Jalan Pura Penataran Agung',    'Jam Operasional' => '08.00-18.00',],
+            ['title' => 'Penglukatan Air Panas Pinikit',    'body' => 'Penglukatan Air Panas Pinikit adalah sumber air panas alami di lereng Gunung Batukaru yang terkenal dengan efek penyembuhan.',    'Kategori Umum' => 1,    'Kategori Detail' => 'Air Panas',    'Lokasi Umum' => 'Belok/Sidan, Badung',    'Lokasi Detail' => 'Jalan Raya Penebel-Sidan',    'Jam Operasional' => '08.00-17.00',],
+            ['title' => 'Pura Sada Kapal',    'body' => 'Pura Sada Kapal adalah pura yang terletak di atas tebing dengan pemandangan laut yang indah.',    'Kategori Umum' => 4,    'Kategori Detail' => 'Pura',    'Lokasi Umum' => 'Tibubeneng, Badung',    'Lokasi Detail' => 'Jalan Pantai Batu Mejan',    'Jam Operasional' => '08.00-17.00',],
+            ['title' => 'Royal Sporthorse Bali',    'body' => 'Royal Sporthorse Bali adalah pusat berkuda yang menawarkan pelatihan berkuda, trek menunggangi kuda, dan acara berkuda.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Berkuda',    'Lokasi Umum' => 'Kerobokan, Badung',    'Lokasi Detail' => 'Jalan Babakan Madang',    'Jam Operasional' => '09.00-17.00',],
+            ['title' => 'Taman Ayun',    'body' => 'Taman Ayun adalah taman dan pura yang terkenal dengan arsitektur Bali yang indah dan taman yang luas.',    'Kategori Umum' => 4,    'Kategori Detail' => 'Taman dan Pura',    'Lokasi Umum' => 'Mengwi, Badung',    'Lokasi Detail' => 'Jalan Raya Mengwi',    'Jam Operasional' => '08.00-18.00',],
+            ['title' => 'Taman Bunga Belok',    'body' => 'Taman Bunga Belok/Sidan adalah taman bunga yang indah dengan berbagai macam jenis bunga yang berwarna-warni.',    'Kategori Umum' => 3,    'Kategori Detail' => 'Taman Bunga',    'Lokasi Umum' => 'Sidan, Badung',    'Lokasi Detail' => 'Jalan Raya Penebel-Sidan',    'Jam Operasional' => '08.00-17.00',],
+            ['title' => 'Taman Rekreasi Hutan Bakau',    'body' => 'Taman Rekreasi Hutan Bakau Tanjung Benoa adalah taman rekreasi yang memperkenalkan pengunjung pada ekosistem hutan bakau.',    'Kategori Umum' => 3,    'Kategori Detail' => 'Taman Rekreasi',    'Lokasi Umum' => 'Tanjung Benoa, Badung',    'Lokasi Detail' => 'Jalan Tukad Pakerisan',    'Jam Operasional' => '08.00-17.00',],
+            ['title' => 'Tanah Wuk',    'body' => 'Tanah Wuk adalah hamparan sawah yang indah dengan pemandangan persawahan yang hijau dan kegiatan pertanian tradisional.',    'Kategori Umum' => 2,    'Kategori Detail' => 'Pertanian',    'Lokasi Umum' => 'Kerambitan, Badung',    'Lokasi Detail' => 'Jalan Raya Kerambitan',    'Jam Operasional' => '24 Jam',],
+            ['title' => 'Via Ferrata Malini Agro Park',    'body' => 'Via Ferrata Malini Agro Park adalah taman petualangan dengan rute hiking dan pemandangan pegunungan yang menakjubkan.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Petualangan Alam',    'Lokasi Umum' => 'Petang, Badung',    'Lokasi Detail' => 'Jalan Subak Malini',    'Jam Operasional' => '09.00-17.00',],
+            ['title' => 'Water Blow Peninsula Nusa Dua',    'body' => 'Water Blow Peninsula Nusa Dua adalah atraksi alam yang menakjubkan di mana ombak laut menghantam tebing dan menciptakan semburan air.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Atraksi Alam',    'Lokasi Umum' => 'Nusa Dua, Badung',    'Lokasi Detail' => 'Jalan Pantai Nusa Dua',    'Jam Operasional' => '06.00-19.00',],
+            ['title' => 'Wisata Agro Plaga',    'body' => 'Wisata Agro Plaga adalah tempat wisata pertanian di pegunungan dengan pemandangan sawah dan kebun-kebun sayuran.',    'Kategori Umum' => 2,    'Kategori Detail' => 'Pertanian',    'Lokasi Umum' => 'Plaga, Badung',    'Lokasi Detail' => 'Desa Plaga',    'Jam Operasional' => '08.00-17.00',],
         ];
 
         foreach ($data as $post) {
@@ -403,30 +661,18 @@ class DatabaseSeeder extends Seeder
             Storage::copy("public/storage/post-image/{$judul}.jpg", "public/{$imagePath}");
 
             Post::create([
-                'category_id' => rand(1, 4),
+                'category_id' => $post['Kategori Umum'],
                 'user_id' => 1,
                 'title' => $post['title'],
                 'body' => $post['body'],
                 'excerpt' => Str::words($post['body'], 200),
                 'slug' => $slug,
                 'image' => $imagePath,
+                'category_detail' => $post['Kategori Detail'],
+                'lokasi' => $post['Lokasi Umum'],
+                'lokasi_detail' => $post['Lokasi Detail'],
+                'jam' => $post['Jam Operasional'],
             ]);
         }
-
-
-        // Post
-        // Post::factory(20)->create();
-    }
-
-    private function convertToJpeg($file)
-    {
-        // Menggunakan package intervention/image untuk konversi format
-        $image = Image::make($file);
-
-        // Mengonversi ke format JPEG dengan kualitas 90
-        $image->encode('jpg', 90);
-
-        // Mengembalikan konten file yang telah diubah formatnya
-        return $image->getEncoded();
     }
 }

@@ -7,15 +7,7 @@
       <h1 class="display-3 text-white mb-3 animated slideInDown">{{ $title }}</h1> 
       
       <h5 class=" p-0 m-0 text-light">Total Post : {{$total_posts_count}}</h5>
-      
-      {{-- <nav aria-label="breadcrumb">
-          <ol class="breadcrumb justify-content-center text-uppercase">
-              <li class="breadcrumb-item {{ Request::is('/') ? 'text-white active' : '' }}"><a href="/home">Home</a></li>
-              <li class="breadcrumb-item {{ Request::is('/posts') ? 'text-white active' : '' }}"><a href="/posts">Destionation</a></li>
-              <li class="breadcrumb-item {{ Request::is('/package') ? 'text-white active' : '' }}"><a href="/package">Package</a></li>
-              <li class="breadcrumb-item {{ Request::is('/dss') ? 'text-white active' : '' }}"><a href="/dss">Suggestion</a></li>
-          </ol>
-      </nav> --}}
+
       <div class="row justify-content-center mt-5">
         <div class="col-md-6">
           <form action="/posts">
@@ -40,6 +32,7 @@
       <div class="card mb-3">
         <div class="fs-6 position-absolute px-3 py-2" style="background-color: rgba(0,0,0,0.4)">
           <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-white text-decoration-none">{{ $posts[0]->category->name }}</a></div>
+
         @if ($posts[0]->image)
           <div style="max-height: 350px; overflow:hidden" >
             <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->title }}" class="img-fluid mt-3">
@@ -47,6 +40,7 @@
         @else
           <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->title }}" class="card-img-top" alt="{{ $posts[0]->title }}">
         @endif
+
         <div class="card-body">
           <h3 class="card-title">
             <a href="/posts/{{ $posts[0]->slug }}" class="text-decoration-none text-dark">
@@ -65,7 +59,7 @@
           <a name="" id="" class="btn btn-primary text-decoration-none" href="/posts/{{ $posts[0]->slug }}" role="button">Read More</a>
         </div>
       </div>
-    
+  
   
     <div class="row">
       @foreach ($posts->skip(1) as $post)
@@ -73,7 +67,15 @@
           <div class="card">
             <div class="fs-6 position-absolute px-3 py-2" style="background-color: rgba(0,0,0,0.4)">
               <a href="/posts?category={{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->name }}</a></div>
-            <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">
+            
+              @if ($post->image)
+                <div style="max-height: 350px; overflow:hidden" >
+                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid mt-3">
+                </div>
+              @else
+                <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">
+              @endif
+              
             
             <div class="card-body d-flex flex-column justify-content-between">
               <div class="mb-3">

@@ -2,7 +2,7 @@
 
 @section('container')
 
-<div class="bg-dark hero-background" style="height: 100vh">
+<div class="bg-dark hero-pantai" style="height: 100vh">
   <div style=" height: 60px"></div>
   <div class=" text-center ">
     <h1 class="display-3 text-white animated mt-5">Hasil Rekomendasi Paket Pariwisata</h1> 
@@ -13,14 +13,12 @@
   <div class="container text-center text-white">
     <div class="row justify-content-start">
       <div class="table-responsive mb-1 mt-3 text-center">
-        <table class="table table-sm">
+        <table class="table table-sm table-dark table-striped">
           <thead>
-            <tr>
-              <th width="3%" class="text-center bord bg-light">Ranking</th>
+            <tr table-dark table>
+              <th width="3%" class="text-center bg-light text-secondary">Ranking</th>
               <th class="text-left bg-light text-secondary">Nama Paket</th>
-              @can('admin')
-                <th class="text-left bg-light text-secondary">Harga</th>
-              @endcan
+              <th class="text-left bg-light text-secondary">Harga</th>
               <th class="text-left bg-light text-secondary">Popularitas</th>
               <th class="text-left bg-light text-secondary">Rating</th>
               <th class="text-left bg-light text-secondary">Durasi</th>

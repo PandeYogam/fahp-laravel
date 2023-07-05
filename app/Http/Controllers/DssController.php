@@ -8,6 +8,7 @@ use App\Models\HasilBobotVektor;
 use App\Models\KriteriaBobot;
 use App\Models\PaketWisata;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class DssController extends Controller
 {
@@ -168,7 +169,8 @@ class DssController extends Controller
 
         HasilBobotVektor::create($data);
 
-        return redirect('/dss');
+        Session::flash('success', 'Bobot telah tersimpan');
+        return redirect('/dss')->with('success', 'Bobot telah tersimpan');
     }
 
     public function calculate()

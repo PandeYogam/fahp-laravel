@@ -8,7 +8,7 @@
   <div class=" text-center ">
     <h1 class="display-3 text-white animated mt-5">{{ $title }}</h1> 
     <h4 class="text-white">Temukan paket pariwisata yang sesuai dengan preferensi Anda! </h4>
-    <p class="text-white">Silakan berikan penilaian prioritas Anda untuk setiap kriteria berikut dengan rentang nilai 1 hingga 10 <br>nilai yang lebih tinggi menunjukkan tingkat kepentingan yang lebih tinggi</p>
+    <p class="text-white">Silakan berikan penilaian prioritas Anda untuk setiap kriteria berikut dengan rentang nilai 1 hingga 9 <br>nilai yang lebih tinggi menunjukkan tingkat kepentingan yang lebih tinggi</p>
   </div>
 
   <form action="/dss" method="post" class="mb-5" enctype="multipart/form-data">
@@ -71,21 +71,33 @@
         
       </div>
 
-      <button type="submit" class="btn btn-primary mt-5 px-3">Submit</button>
+      <button type="submit" id="submitBtn" class="btn btn-primary mt-5 px-3">Submit</button>
     </div>
   </form>
 
   <div class=" container text-center mt-5">
     <div class="row align-items-center mb-3">
       <div class=" col">
-        <a href="/dss/calculate" class="btn btn-primary px-3">Perhitungan</a>
+        <a href="/dss/calculate" id="perhitunganBtn" class="btn btn-primary px-3" disabled>Perhitungan</a>
       </div>
       <div class=" col">
-        <a href="/dss/rekomendasi" class="btn btn-primary px-3">cek hasil</a>
+        <a href="/dss/rekomendasi" id="cekHasilBtn" class="btn btn-primary px-3" disabled>cek hasil</a>
       </div>
     </div>
-
   </div>
 
 </div>
+
+<script>
+  // Mengatur status disabled awal pada tombol "Perhitungan" dan "Cek Hasil"
+  document.getElementById("perhitunganBtn").disabled = true;
+  document.getElementById("cekHasilBtn").disabled = true;
+
+  // Mengecek apakah tombol "Submit" telah ditekan
+  document.getElementById("submitBtn").addEventListener("click", function() {
+    // Mengaktifkan tombol "Perhitungan" dan "Cek Hasil"
+    document.getElementById("perhitunganBtn").disabled = false;
+    document.getElementById("cekHasilBtn").disabled = false;
+  });
+</script>
 @endsection

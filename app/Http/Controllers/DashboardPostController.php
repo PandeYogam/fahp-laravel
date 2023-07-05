@@ -55,8 +55,13 @@ class DashboardPostController extends Controller
             'body' => ['required']
         ]);
 
+        $title = $request->title;
+
         if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('post-image');
+            // $extension = $request->file('image')->getClientOriginalExtension();
+            $filename = $title . '.jpg';
+            $path = $request->file('image')->storeAs('post-image', $filename);
+            $validatedData['image'] = $path;
         }
 
         $validatedData['user_id'] = auth()->user()->id;

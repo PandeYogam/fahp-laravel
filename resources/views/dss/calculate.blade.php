@@ -113,9 +113,7 @@
             <tr class="table-dark table">
               <th width="5%" class="bg-light text-secondary px-2">Ranking</th>
               <th class="bg-light text-secondary">Nama Paket</th>
-              @can('admin')
-                <th class="bg-light text-secondary">Harga</th>
-              @endcan
+              <th class="bg-light text-secondary">Harga</th>
               <th class="bg-light text-secondary">Popularitas</th>
               <th class="bg-light text-secondary">Rating</th>
               <th class="bg-light text-secondary">Durasi</th>

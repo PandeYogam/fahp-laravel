@@ -20,6 +20,10 @@ return new class extends Migration
             $table->string('title');
             $table->text('excerpt')->nullable();
             $table->text('body');
+            $table->text('category_detail')->nullable();
+            $table->text('lokasi')->nullable();
+            $table->text('lokasi_Detail')->nullable();
+            $table->text('jam')->nullable();
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();

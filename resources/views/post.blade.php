@@ -22,7 +22,13 @@
       
       <h5 class="text-white">by. <a href="/posts?admin?={{$post->admin->username }}" class="text-decoration-none">{{$post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
       
-      <img src="{{ $post->image }}" alt="{{ $post->title }}" class="img-fluid">
+      @if ($post->image)
+        <div style="max-height: 350px; overflow:hidden" >
+          <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid mt-3">
+        </div>
+      @else
+        <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">
+      @endif
 
       <article class="my-3 fs-5">
         {!! $post->body !!}
