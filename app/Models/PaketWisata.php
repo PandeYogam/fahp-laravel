@@ -22,4 +22,9 @@ class PaketWisata extends Model
     {
         return $this->belongsTo(HasilPerangkingan::class, 'hasil_perangkingan_id');
     }
+
+    public function fotos()
+    {
+        return $this->hasMany(FotoWisata::class);
+    }
 }

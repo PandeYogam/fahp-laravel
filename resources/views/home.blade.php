@@ -90,7 +90,7 @@
               <div class="service-item roundeds p-2 my-2 align-items-center">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 {{-- <i class="fa-solid fa-umbrella-beach"></i> --}}
-                <h5 class=" text-center m-0">Search More</h5>
+                <h5 class=" text-center m-0 bg-body-tertiary rounded">Search More</h5>
               </div>
             </a>
           </div>

@@ -2,36 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\User;
 use App\Models\Category;
 use App\Models\PaketWisata;
+use App\Models\Post;
+use Illuminate\Http\Request;
 
 class PaketWisataController extends Controller
 {
     public function index()
     {
-        $paketwisata = PaketWisata::all();
-        // dd($paketwisata);
-        return view('paketwisatas', [
-            "title" => "Paket Wisata",
+        $paketWisata = PaketWisata::all();
+        $wisata = Post::all();
+
+        // dd($paketWisata);
+        return view('paketwisata.index', [
             "active" => 'paketwisata',
-            'paketwisata' => PaketWisata::all(),
+            "paketWisata" => $paketWisata,
+            "posts" => $wisata,
             'categories' => Category::all()
         ]);
     }
 
-    public function show(PaketWisata $paketwisata)
+    public function show($slug)
     {
+        $paketWisata = PaketWisata::where('slug', $slug)->firstOrFail();
 
-        dd($paketwisata);
-
-        return view('paketwisata/1', [
-            "title" => "Single Paket",
+        $post = Post::latest()->first();;
+        return view('paketwisata.show', [
             "active" => 'paketwisata',
-
-            'paketwisata' => $paketwisata,
+            "paketWisata" => $paketWisata,
+            "post" => $post,
             'categories' => Category::all()
         ]);
     }

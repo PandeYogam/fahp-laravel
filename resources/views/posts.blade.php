@@ -35,7 +35,7 @@
 
         @if ($posts[0]->image)
           <div style="max-height: 350px; overflow:hidden" >
-            <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->title }}" class="img-fluid mt-3">
+            <img src="{{ asset('storage/' . $posts[0]->image) }}" alt="{{ $posts[0]->title }}" class="card-img-top">
           </div>
         @else
           <img src="https://source.unsplash.com/1200x400?{{ $posts[0]->title }}" class="card-img-top" alt="{{ $posts[0]->title }}">
@@ -70,7 +70,7 @@
             
               @if ($post->image)
                 <div style="max-height: 350px; overflow:hidden" >
-                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid mt-3">
+                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" width="100%" height="225">
                 </div>
               @else
                 <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">

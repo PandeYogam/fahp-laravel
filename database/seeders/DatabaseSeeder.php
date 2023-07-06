@@ -59,42 +59,38 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        PaketWisata::create([
-            'nama' => 'Paket Uluwatu Exploration',
-            'slug' => 'paket-uluwatu-exploration',
-            'harga' => 300000,
-            'popularitas' => 8,
-            'rating' => 9,
-            'durasi' => 2,
-            'deskripsi' => 'Paket wisata A',
-            'jumlah_wisata_dikunjungi' => 5,
+        $paketwisata = [
+            [
+                'nama' => 'Paket Uluwatu Exploration',
+                'slug' => 'paket-uluwatu-exploration',
+                'harga' => 300000,
+                'popularitas' => 8,
+                'rating' => 9,
+                'durasi' => 2,
+                'deskripsi' => 'Paket wisata A',
+                'jumlah_wisata_dikunjungi' => 5,
 
-            'harga_bobot' => 1,
-            'popularitas_bobot' => 5,
-            'rating_bobot' => 8,
-            'durasi_bobot' => 2,
-            'jumlah_wisata_bobot' => 7,
-        ]);
+                'harga_bobot' => 1,
+                'popularitas_bobot' => 5,
+                'rating_bobot' => 8,
+                'durasi_bobot' => 2,
+                'jumlah_wisata_bobot' => 7,
+            ],
 
-        PaketWisata::create([
-
-            'nama' => 'Paket Tanjung Benoa Watersports',
-            'slug' => 'paket-tanjung-benoa-watersports',
-            'durasi' => 0.5,
-            'jumlah_wisata_dikunjungi' => 1,
-            'popularitas' => 15,
-            'rating' => 7,
-            'harga' => 500000,
-            'harga_bobot' => 6,
-            'popularitas_bobot' => 6,
-            'rating_bobot' => 3,
-            'durasi_bobot' => 6,
-            'jumlah_wisata_bobot' => 9
-
-        ]);
-
-
-        paketwisata::create(
+            [
+                'nama' => 'Paket Tanjung Benoa Watersports',
+                'slug' => 'paket-tanjung-benoa-watersports',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 1,
+                'popularitas' => 15,
+                'rating' => 7,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 3,
+                'durasi_bobot' => 6,
+                'jumlah_wisata_bobot' => 9
+            ],
             [
                 'nama' => 'Paket Jimbaran Sunset Dinner',
                 'slug' => 'paket-jimbaran-sunset-dinner',
@@ -106,141 +102,119 @@ class DatabaseSeeder extends Seeder
                 'harga_bobot' => 3,
                 'popularitas_bobot' => 9,
                 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Legian Shopping',
                 'user_id' => 2,
                 'slug' => 'paket-legian-shopping',
                 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 8, 'harga' => 300000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Tanah Lot-Bedugul',
                 'user_id' => 2,
                 'slug' => 'paket-tanah-lot-bedugul', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 20, 'rating' => 9, 'harga' => 850000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Kintamani-Besakih', 'slug' => 'paket-kintamani-besakih', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Canggu-Tanah Lot', 'slug' => 'paket-canggu-tanah-lot', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 10, 'rating' => 7, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Uluwatu-Pandawa', 'slug' => 'paket-uluwatu-pandawa', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 12, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Mengwi-Jatiluwih', 'slug' => 'paket-mengwi-jatiluwih', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 8, 'rating' => 9, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Nusa Penida-Crystal Bay', 'slug' => 'paket-nusa-penida-crystal-bay', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 5, 'rating' => 9, 'harga' => 1300000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Seminyak-Ubud', 'slug' => 'paket-seminyak-ubud', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 7, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Bedugul-Lovina', 'slug' => 'paket-bedugul-lovina', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 4, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Kuta-Nusa Penida', 'slug' => 'paket-kuta-nusa-penida', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 3, 'rating' => 8, 'harga' => 1000000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Badung Round Trip', 'slug' => 'paket-badung-round-trip', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 4, 'popularitas' => 2, 'rating' => 9, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Explore Badung', 'slug' => 'paket-explore-badung', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 5, 'popularitas' => 1, 'rating' => 8, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Kuta-Canggu', 'slug' => 'paket-kuta-canggu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 45, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Ubud-Tegalalang', 'slug' => 'paket-ubud-tegalalang', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Nusa Dua-Uluwatu', 'slug' => 'paket-nusa-dua-uluwatu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 25, 'rating' => 7, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Jimbaran-Seminyak', 'slug' => 'paket-jimbaran-seminyak', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Ubud Artistic Journey', 'slug' => 'paket-ubud-artistic-journey', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 40, 'rating' => 9, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Nusa Dua Waterblow', 'slug' => 'paket-nusa-dua-waterblow', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Seminyak Nightlife', 'slug' => 'paket-seminyak-nightlife', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 50, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Bedugul Nature Escape', 'slug' => 'paket-bedugul-nature-escape', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Nusa Penida Adventure', 'slug' => 'paket-nusa-penida-adventure', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 10, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
-            ]
-        );
+            ],
 
-        paketwisata::create(
+
             [
                 'nama' => 'Paket Kuta Beach Experience',
                 'slug' => 'paket-kuta-beach-experience',
@@ -249,7 +223,9 @@ class DatabaseSeeder extends Seeder
                 'popularitas' => 20, 'rating' => 9,
                 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
             ]
-        );
+        ];
+
+
 
         User::create([
             'name' => 'Sandhika Galih',
@@ -270,13 +246,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory(3)->create();
-
-        // Category
-        // Category::create([
-        //     'name' => 'Pantai',
-        //     'slug' => 'seni-cipta',
-        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!'
-        // ]);
 
         $categories = [
             [
@@ -303,29 +272,21 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Petualangan dan Ekspedisi',
                 'body' => 'Temukan petualangan dan ekspedisi seru di destinasi petualangan dan ekspedisi terbaik di Badung',
             ],
+            [
+                'name' => 'Kuliner',
+                'body' => 'Coba berbagai menu baru dan menggiurkan yang ada di Badung',
+            ],
         ];
 
-        foreach ($categories as $categoryData) {
-            $categoryData['slug'] = Str::slug($categoryData['name']);
+        foreach ($categories as $data) {
+            $data['slug'] = Str::slug($data['name']);
 
-            Category::create($categoryData);
+            Category::create([
+                'name' => $data['name'],
+                'slug' => $data['slug'],
+                'body' => $data['body']
+            ]);
         }
-
-        // Category::create([
-        //     'name' => 'Relaksasi Alam',
-        //     'slug' => 'hotel',
-        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        // ]);
-        // Category::create([
-        //     'name' => 'Pantai',
-        //     'slug' => 'pantai',
-        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        // ]);
-        // Category::create([
-        //     'name' => 'Makanan & Minuman',
-        //     'slug' => 'makanan-minuman',
-        //     'body' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quod, optio!',
-        // ]);
 
 
         $data = [

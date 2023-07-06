@@ -78,10 +78,12 @@
   <div class=" container text-center mt-5">
     <div class="row align-items-center mb-3">
       <div class=" col">
-        <a href="/dss/calculate" id="perhitunganBtn" class="btn btn-primary px-3" disabled>Perhitungan</a>
+        <button href="/dss/calculate" id="perhitunganBtn" class="btn btn-primary px-3 disabled" disabled>
+          Perhitungan
+        </button>
       </div>
       <div class=" col">
-        <a href="/dss/rekomendasi" id="cekHasilBtn" class="btn btn-primary px-3" disabled>cek hasil</a>
+        <button href="/dss/rekomendasi" id="cekHasilBtn" class="btn btn-secondary px-3 disabled">cek hasil</button>
       </div>
     </div>
   </div>
@@ -100,4 +102,5 @@
     document.getElementById("cekHasilBtn").disabled = false;
   });
 </script>
+
 @endsection

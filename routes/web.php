@@ -15,12 +15,13 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\DashboardPostController;
 use App\Http\Controllers\DashboardPackageController;
 use App\Http\Controllers\DashboardSubkriteriaController;
+use App\Models\PaketWisata;
 
 // public
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::resource('/paketwisata', PaketWisataController::class);
+
 
 Route::get('/about', function () {
     return view('about', [
@@ -50,6 +51,10 @@ Route::prefix('dss')->group(function () {
     Route::get('/calculate', [DssController::class, 'calculate']);
     // Rute lainnya di dalam DssController
 });
+
+Route::get('/paketwisata', [PaketWisataController::class, 'index']);
+Route::get('/paketwisata/{slug}', [PaketWisataController::class, 'show']);
+
 
 // Route::get('/calculate', [DssController::class, 'calculate']);
 // Route::get('/rekomendasi', [DssController::class, 'rekomendasi']);

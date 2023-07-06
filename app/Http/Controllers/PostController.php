@@ -28,6 +28,9 @@ class PostController extends Controller
         $totalPosts = Post::filter(request(['search', 'admin', 'category']))->paginate(7);
         $totalPostsCount = $totalPosts->total();
 
+        $category = Category::all();
+        dd($category);
+
         return view('posts', [
             "title" => "All Posts " . $title,
             "active" => 'posts',
@@ -39,8 +42,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-
-        dd($post);
+        // dd($post);
         return view('post', [
             "title" => "Single Post",
             "active" => 'posts',

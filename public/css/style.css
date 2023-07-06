@@ -219,7 +219,7 @@ main > section {
 /*** Hero Header ***/
 .hero-header {
     background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
-        url(../img/bg-pantai.jpg);
+        url(../img/bg-hero.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: auto;
@@ -234,11 +234,8 @@ main > section {
 }
 
 .hero-background {
-    background: linear-gradient(
-            rgba(140, 145, 157, 0.9),
-            rgba(174, 176, 182, 0.9)
-        ),
-        url(../img/bg-pantai.jpg);
+    background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
+        url(../img/bg-hero.jpg);
     background-position: center center;
     background-repeat: repeat;
     background-size: auto;
@@ -304,7 +301,6 @@ main > section {
 .service-item * {
     transition: 0.5s;
 }
-
 
 .service-item:hover * {
     color: var(--light) !important;

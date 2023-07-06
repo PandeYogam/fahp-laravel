@@ -37,13 +37,15 @@
                 $hasilPerhitungan = $hargaBobot + $popularitasBobot + $ratingBobot + $durasiBobot + $jumlahWisataBobot;
               @endphp
               <tr>
+                
                 <td class="text-center border border-left-0">{{ $loop->iteration }}</td>
-                <td class=" px-2 text-center border border-left-0">{{ $paketWisata->nama }}</td>
+                <td class=" px-2 text-center border border-left-0 text-white"><a href="/paketwisata/{{ $paketWisata->slug }}">{{ $paketWisata->nama }}</a></td>
                 <td class=" px-2 text-center border border-left-0">{{ $paketWisata->harga }}</td>
                 <td class=" px-2 text-center border border-left-0">{{ $paketWisata->popularitas }}</td>
                 <td class=" px-2 text-center border border-left-0">{{ $paketWisata->rating }}</td>
                 <td class=" px-2 text-center border border-left-0">{{ $paketWisata->durasi }}</td>
                 <td class=" px-2 text-center border border-left-0">{{ $paketWisata->jumlah_wisata_dikunjungi }}</td>
+                
               </tr>
             @endforeach
           </tbody>
