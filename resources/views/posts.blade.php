@@ -49,7 +49,7 @@
           </h3>
           <p>by. 
             <small class="text-body-secondary">
-              <a href="/posts?admin={{ $posts[0]->admin->username }}" class="text-decoration-none">{{ $posts[0]->admin->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->name }}</a>
+              <a href="/posts?admin={{ $posts[0]->admin }}" class="text-decoration-none">{{ $posts[0]->admin->name }}</a> in <a href="/posts?category={{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->name }}</a>
               {{ $posts[0]->created_at->diffForHumans() }}
             </small>
           </p>
@@ -81,11 +81,12 @@
               <div class="mb-3">
                 <h5 class=" mb-0"><a href="/posts/{{ $post->slug }}" class="text-decoration-none">{{ $post->title }}</a></h5>
                 <small class="mt-0">
-                  <p class="mb-0">100 Likes | {{ $post->comments_count ?? 0 }} comments</p>
+                  <p class="mb-0">{{ $post->comments_count ?? 0 }} comments</p>
                 </small>
 
                 <small>
-                  by. <a href="/posts?admin={{ $post->admin->username }}" class="text-decoration-none">{{ $post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
+                  by. <a href="/posts?admin={{ $post->admin['username'] }}" class="text-decoration-none">{{ $post->admin['name'] }}</a>
+                  in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a>
                 </small>
   
                 <p class="card-text">{{ $post->excerpt }}</p>

@@ -5,7 +5,7 @@
     <h1 class="h2">Create A New Package</h1>
   </div>
 
-  <div class="col-lg-8">
+  <div class="col-lg-10">
     <form action="/dashboard/paketwisata" method="post" class="mb-5" enctype="multipart/form-data">
       @csrf
       <div class="mb-3">
@@ -28,9 +28,43 @@
         @enderror
       </div>
 
+      <div class="row">
+        <div class="col-md-4">
+            @foreach ($wisata->take($wisata->count() / 3) as $item)
+            <div class="ms-2 form-check">
+                <input class="form-check-input disable" type="checkbox" value="{{ $item->id }}" id="checkboxPengujung" name="role[]">
+                <label class="form-check-label ps-0 px-3" for="checkboxPengujung">
+                    {{ $item->title }}
+                </label>
+            </div>
+            @endforeach
+        </div>
+        <div class="col-md-4">
+            @foreach ($wisata->slice($wisata->count() / 3, $wisata->count() / 3) as $item)
+            <div class="ms-2 form-check">
+                <input class="form-check-input disable" type="checkbox" value="{{ $item->id }}" id="checkboxPengujung" name="role[]">
+                <label class="form-check-label ps-0 px-3" for="checkboxPengujung">
+                    {{ $item->title }}
+                </label>
+            </div>
+            @endforeach
+        </div>
+        <div class="col-md-4">
+            @foreach ($wisata->slice($wisata->count() / 3 * 2) as $item)
+            <div class="ms-2 form-check">
+                <input class="form-check-input disable" type="checkbox" value="{{ $item->id }}" id="checkboxPengujung" name="role[]">
+                <label class="form-check-label ps-0 px-3" for="checkboxPengujung">
+                    {{ $item->title }}
+                </label>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    
+    
       <div class="mb-3">
         <label for="harga" class="form-label">harga</label>
-        <input type="number" step="50000" pattern="\d+" min="0" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" required ="{{ old('harga') }}">
+        <input type="number" step="" pattern="\d+" min="0" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" required ="{{ old('harga') }}">
         @error('harga')
           <div class="invalid-feedback">
             {{ $message }}
@@ -68,7 +102,7 @@
         @enderror
       </div>
 
-      <div class="mb-3">
+      {{-- <div class="mb-3">
         <label for="jumlah_wisata_dikunjungi" class="form-label">jumlahwisata</label>
         <input type="number" step="1" pattern="\d+" min="0"  class="form-control @error('jumlah_wisata_dikunjungi') is-invalid @enderror" id="jumlah_wisata_dikunjungi" name="jumlah_wisata_dikunjungi" required ="{{ old('jumlah_wisata_dikunjungi') }}">
         @error('jumlah_wisata_dikunjungi')
@@ -76,7 +110,7 @@
             {{ $message }}
           </div>
         @enderror
-      </div>
+      </div> --}}
 
       {{-- <a href=""></a> --}}
       <button type="submit" class="btn btn-primary">Create Package</button>

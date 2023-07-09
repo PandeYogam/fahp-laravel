@@ -27,6 +27,9 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a href="/paketwisata" class="nav-link {{ request()->is('paketwisata*') ? 'active' : '' }}" >paketwisata</a>
+        </li>
+        <li class="nav-item">
           <a href="/dss" class="nav-link {{ request()->is('dss*') ? 'active' : '' }}" >Suggestion</a>
         </li>
       </ul>

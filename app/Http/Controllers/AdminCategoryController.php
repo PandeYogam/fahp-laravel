@@ -135,6 +135,7 @@ class AdminCategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('dashboard.categories')->with('success', 'Post has been deleted!');
+
+        return redirect()->route('dashboard.categories.index')->with('success', 'Post has been deleted!');
     }
 }

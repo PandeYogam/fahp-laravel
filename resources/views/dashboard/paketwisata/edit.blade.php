@@ -6,9 +6,9 @@
 </div>
 
 <div class="col-lg-8">
-  <form action="/dashboard/paketwisata/{{ $paketwisata->slug }}" method="POST" class="mb-5" enctype="multipart/form-data">
+  <form action="/dashboard/paketwisata/{{ $paketwisata->slug }}" method="post" class="mb-5" enctype="multipart/form-data">
     @csrf
-    @method('PUT')
+    @method('put')
 
     <div class="mb-3">
       <label for="nama" class="form-label">Nama</label>
@@ -42,7 +42,7 @@
     
     <div class="mb-3">
       <label for="popularitas" class="form-label">Popularitas</label>
-      <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('popularitas') is-invalid @enderror" id="popularitas" name="popularitas" required value="{{ old('popularitas', $paketwisata->popularitas) }}">
+      <input type="number" step="1" pattern="\d+" min="0" class="form-control @error('popularitas') is-invalid @enderror" id="popularitas" name="popularitas" required value="{{ old('popularitas', $paketwisata->popularitas) }}">
       @error('popularitas')
         <div class="invalid-feedback">
           {{ $message }}
@@ -62,7 +62,7 @@
     
     <div class="mb-3">
       <label for="durasi" class="form-label">durasi</label>
-      <input type="number" step="1" pattern="\d+" min="0" class="form-control @error('durasi') is-invalid @enderror" id="durasi" name="durasi" required value="{{ old('durasi', $paketwisata->durasi) }}">
+      <input type="number" min="0" class="form-control @error('durasi') is-invalid @enderror" id="durasi" name="durasi" required value="{{ old('durasi', $paketwisata->durasi) }}">
       @error('durasi')
         <div class="invalid-feedback">
           {{ $message }}

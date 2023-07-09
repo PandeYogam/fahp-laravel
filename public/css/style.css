@@ -13,6 +13,62 @@ main > section {
     scroll-snap-stop: always;
 } */
 
+.collapse-content {
+    display: none;
+}
+
+.carousel-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-item img {
+    object-fit: contain;
+    height: 300px; /* Ubah ukuran tinggi gambar sesuai kebutuhan */
+    margin: 0 auto;
+}
+
+.navbar-nav .dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
+
+.alert-floating {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    padding: 10px;
+    margin-top: 50;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.alert-text {
+    margin-right: 10px;
+}
+
+.alert-close {
+    cursor: pointer;
+}
+
 .form-signin .form-floating:focus-within {
     z-index: 2;
 }
@@ -220,26 +276,74 @@ main > section {
 .hero-header {
     background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
         url(../img/bg-hero.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-position: top center;
+    background-repeat: repeat-y;
     background-size: auto;
 }
 
 .hero-pantai {
     background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
         url(../img/bg-pantai.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-position: top center;
+    background-repeat: repeat-y;
     background-size: auto;
 }
 
 .hero-background {
-    background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9)),
+    position: relative;
+    background: linear-gradient(rgba(15, 23, 43, 0.7), rgba(15, 23, 43, 0.7)),
         url(../img/bg-hero.jpg);
-    background-position: center center;
-    background-repeat: repeat;
-    background-size: auto;
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    overflow: hidden;
 }
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+    z-index: -1;
+}
+
+/* .hero-background {
+    position: relative;
+    background: linear-gradient(rgba(15, 23, 43, 0.9), rgba(15, 23, 43, 0.9));
+    overflow: hidden;
+}
+
+.hero-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../img/bg-hero.jpg);
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    animation: fadeBackground 10s infinite;
+}
+
+@keyframes fadeBackground {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+} */
 
 /* .hero-header img {
     animation: imgRotate 50s linear infinite;

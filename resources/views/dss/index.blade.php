@@ -5,6 +5,16 @@
 
 <div class="fullDiv bg-dark hero-header">
   <div style=" height: 60px"></div>
+
+  @if (session()->has('success'))
+    <div class="alert-floating">
+      <div class="alert-text">
+        {{ session('success') }}
+      </div>
+      <div class="alert-close" onclick="closeAlert(this)">x</div>
+    </div>
+  @endif
+
   <div class=" text-center ">
     <h1 class="display-3 text-white animated mt-5">{{ $title }}</h1> 
     <h4 class="text-white">Temukan paket pariwisata yang sesuai dengan preferensi Anda! </h4>
@@ -75,22 +85,24 @@
     </div>
   </form>
 
-  <div class=" container text-center mt-5">
+  <div class="container text-center mt-5">
     <div class="row align-items-center mb-3">
-      <div class=" col">
-        <button href="/dss/calculate" id="perhitunganBtn" class="btn btn-primary px-3 disabled" disabled>
-          Perhitungan
+      <div class="col">
+        <button id="perhitunganBtn" class="btn btn-secondary px-3" disabled>
+          <a href="/dss/calculate" class="text-white text-decoration-none">Perhitungan</a>
         </button>
       </div>
-      <div class=" col">
-        <button href="/dss/rekomendasi" id="cekHasilBtn" class="btn btn-secondary px-3 disabled">cek hasil</button>
+      <div class="col">
+        <button id="cekHasilBtn" class="btn btn-secondary px-3" disabled>
+          <a href="/dss/rekomendasi" class="text-white text-decoration-none">Cek Hasil</a>
+        </button>
       </div>
     </div>
   </div>
 
 </div>
 
-<script>
+{{-- <script>
   // Mengatur status disabled awal pada tombol "Perhitungan" dan "Cek Hasil"
   document.getElementById("perhitunganBtn").disabled = true;
   document.getElementById("cekHasilBtn").disabled = true;
@@ -101,6 +113,37 @@
     document.getElementById("perhitunganBtn").disabled = false;
     document.getElementById("cekHasilBtn").disabled = false;
   });
+</script> --}}
+
+<script>
+  // Fungsi untuk menutup alert
+  function closeAlert(element) {
+    element.parentNode.remove();
+  }
+</script>
+
+<script>
+  // Mendapatkan referensi ke elemen tombol
+  const perhitunganBtn = document.getElementById('perhitunganBtn');
+  const cekHasilBtn = document.getElementById('cekHasilBtn');
+
+  // Menonaktifkan tombol secara default
+  perhitunganBtn.disabled = true;
+  cekHasilBtn.disabled = true;
+
+  // Cek session success
+  const sessionSuccess = "{{ session('success') }}"; // Ganti dengan cara sesuai dengan framework atau platform Anda
+
+  // Mengaktifkan tombol jika session success
+  if (sessionSuccess) {
+    perhitunganBtn.disabled = false;
+    cekHasilBtn.disabled = false;
+
+    perhitunganBtn.classList.remove('btn-secondary');
+    perhitunganBtn.classList.add('btn-primary');
+    cekHasilBtn.classList.remove('btn-secondary');
+    cekHasilBtn.classList.add('btn-primary')
+  }
 </script>
 
 @endsection

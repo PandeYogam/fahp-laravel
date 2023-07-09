@@ -4,7 +4,7 @@
 <main>
     <!-- Hero Header -->
     <section id="section-1">
-      <div div class=" container-xxl py-5 bg-dark hero-header mb-5 ">
+      <div div class=" container-xxl py-5 bg-dark hero-background mb-5 ">
         <div class="container my-5 py-5">
           <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
@@ -12,9 +12,39 @@
                 <p class="text-white animated slideInLeft mb-4 pb-2">Dapatkan pengalaman tak terlupakan di Badung dengan mengunjungi tempat-tempat menarik dan menyeluruh dari pusat informasi pariwisata kami</p>
                 <a href="/posts" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Telusuri</a>
             </div>
-            <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                <img class="img-fluid" src="img/bg-hero.jpg" alt="">
+            
+            <div class="col-lg-6 text-center text-lg-start">
+              {{-- @php
+                $randomPost = $total_posts->random();
+              @endphp
+              <img class="img-fluid" src="{{ asset('storage/' . $randomPost->image) }}" alt="" width="500"> --}}
+
+              <div id="carouselExampleAutoplaying" class="carousel slide">
+                <div class="carousel-inner">
+                  @php
+                    $randomPosts = $total_posts->random(10);
+                  @endphp
+                  @foreach ($randomPosts as $index => $randomPost)
+                    <div class="carousel-item{{ $index === 0 ? ' active' : '' }}">
+                      <img src="{{ asset('storage/' . $randomPost->image) }}" class="d-block mx-auto" alt="...">
+                      <div class="carousel-caption p-0 m-0" style="">
+                        <h5 class=" text-white p-0 m-0">{{ $randomPost->title }}</h5>
+                        {{-- <p>{{ $randomPost->excerpt }}</p> --}}
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
             </div>
+            {{-- {{ $randomPost }} --}}
           </div>
         </div>  
       </div>
@@ -101,7 +131,7 @@
 
     <!-- Menu Start -->
     <section id="section-3">
-      <div class="container-xxl bg-dark hero-header text-white">
+      <div class="container-xxl bg-dark hero-background text-white">
         <div class="container d-flex flex-column">
             {{-- Judul --}}
             <div class="text-center wow fadeInUp mt-5 " data-wow-delay="0.1s">
@@ -125,7 +155,7 @@
                             {{-- <i class="fa fa-coffee fa-2x text-primary"></i> --}}
                             <div class="px-3">
                                 <small class="text-white">Special</small>
-                                <h6 class="mt-n1 mb-0 text-white" >Hotel</h6>
+                                <h6 class="mt-n1 mb-0 text-white" >Arts</h6>
                             </div>
                         </a>
                     </li>
@@ -134,7 +164,7 @@
                             {{-- <i class="fa fa-utensils fa-2x text-primary"></i> --}}
                             <div class="px-3">
                                 <small class="text-white">Lovely</small>
-                                <h6 class="mt-n1 mb-0 text-white">Food</h6>
+                                <h6 class="mt-n1 mb-0 text-white">Nature</h6>
                             </div>
                         </a>
                     </li>
@@ -164,7 +194,7 @@
                                               <span class="text-primary">-></span>
                                             </a>
                                         </h5>
-                                        <small class="fst-italic">{{ $post->slug }}</small>
+                                        <small class="fst-italic">{{ $post->body }}</small>
                                     </div>
                                 </div>
                               </div>
@@ -194,7 +224,7 @@
                                             <span class="text-primary">-></span>
                                           </a>
                                       </h5>
-                                      <small class="fst-italic">{{ $post->slug }}</small>
+                                      <small class="fst-italic">{{ $post->body }}</small>
                                   </div>
                               </div>
                             </div>
@@ -224,7 +254,7 @@
                                             <span class="text-primary">-></span>
                                           </a>
                                       </h5>
-                                      <small class="fst-italic">{{ $post->slug }}</small>
+                                      <small class="fst-italic">{{ $post->body }}</small>
                                   </div>
                               </div>
                             </div>
@@ -254,5 +284,49 @@
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+
 </main>
+
+<script>
+  // Mendapatkan elemen karusel
+  var carousel = document.getElementById('carouselExample');
+
+  // Mengacak tampilan gambar saat karusel diload
+  window.addEventListener('load', function() {
+    shuffleCarouselItems();
+  });
+
+  // Mengacak tampilan gambar saat tombol "Next" ditekan
+  carousel.addEventListener('click', function(event) {
+    if (event.target.classList.contains('carousel-control-next')) {
+      shuffleCarouselItems();
+    }
+  });
+
+  // Mengacak urutan elemen dalam karusel
+  function shuffleCarouselItems() {
+    var carouselItems = carousel.querySelectorAll('.carousel-item');
+    var randomIndexes = getRandomIndexes(carouselItems.length);
+    for (var i = 0; i < carouselItems.length; i++) {
+      carouselItems[i].classList.remove('active');
+      carouselItems[i].style.order = randomIndexes[i];
+    }
+    carouselItems[0].classList.add('active');
+  }
+
+  // Menghasilkan array indeks acak
+  function getRandomIndexes(length) {
+    var indexes = [];
+    for (var i = 0; i < length; i++) {
+      indexes.push(i);
+    }
+    for (var i = length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      [indexes[i], indexes[j]] = [indexes[j], indexes[i]];
+    }
+    return indexes;
+  }
+</script>
 @endsection

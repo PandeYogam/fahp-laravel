@@ -19,6 +19,49 @@
       </div>
 
       <div class="mb-3">
+        <label for="username" class="form-label">username</label>
+        <input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" required autofocus value="{{ old('username') }}">
+        @error('username')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">email</label>
+        <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required autofocus value="{{ old('email') }}">
+        @error('email')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="Role" class="form-label">Role</label>
+        <div class="d-flex">
+          <div class="form-check">
+              <input class="form-check-input disable" type="checkbox" value="pengujung" id="checkboxPengujung" name="role[]" >
+              <label class="form-check-label pe-2" for="checkboxPengujung">
+                  Pengujung
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="pengelola_paket_wisata" id="checkboxPengelolaPaketWisata" name="role[]" >
+              <label class="form-check-label pe-2" for="checkboxPengelolaPaketWisata">
+                  Pengelola Pariwisata
+              </label>
+          </div>
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="pengelola_wisata" id="checkboxPengelolaWisata" name="role[]" >
+              <label class="form-check-label pe-2" for="checkboxPengelolaWisata">
+                  Pengelola Wisata
+              </label>
+          </div>
+        </div>
+      </div>
+      {{-- <div class="mb-3">
         <label for="slug" class="form-label">Slug</label>
         <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
         @error('slug')
@@ -26,52 +69,12 @@
             {{ $message }}
           </div>
         @enderror
-      </div>
+      </div> --}}
 
       <div class="mb-3">
-        <label for="harga" class="form-label">harga</label>
-        <input type="number" step="50000" pattern="\d+" min="0" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" required ="{{ old('harga') }}">
-        @error('harga')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-      
-      <div class="mb-3">
-        <label for="popularitas" class="form-label">Popularitas</label>
-        <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('popularitas') is-invalid @enderror" id="popularitas" name="popularitas" required ="{{ old('popularitas') }}">
-        @error('popularitas')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-
-      <div class="mb-3">
-        <label for="rating" class="form-label">rating</label>
-        <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating" required ="{{ old('rating') }}">
-        @error('rating')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-      
-      <div class="mb-3">
-        <label for="durasi" class="form-label">durasi</label>
-        <input type="number" step="1" pattern="\d+" min="0" class="form-control @error('durasi') is-invalid @enderror" id="durasi" name="durasi" required ="{{ old('durasi') }}">
-        @error('durasi')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-        @enderror
-      </div>
-
-      <div class="mb-3">
-        <label for="jumlah_wisata_dikunjungi" class="form-label">jumlahwisata</label>
-        <input type="number" step="1" pattern="\d+" min="0"  class="form-control @error('jumlah_wisata_dikunjungi') is-invalid @enderror" id="jumlah_wisata_dikunjungi" name="jumlah_wisata_dikunjungi" required ="{{ old('jumlah_wisata_dikunjungi') }}">
-        @error('jumlah_wisata_dikunjungi')
+        <label for="password" class="form-label">password</label>
+        <input type="text" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required autofocus value="{{ old('password') }}">
+        @error('password')
           <div class="invalid-feedback">
             {{ $message }}
           </div>
@@ -79,7 +82,7 @@
       </div>
 
       {{-- <a href=""></a> --}}
-      <button type="submit" class="btn btn-primary">Create Package</button>
+      <button type="submit" class="btn btn-primary">Create user</button>
     </form>
   </div>
 
@@ -107,5 +110,41 @@
     //   }
     // }
   </script>
+
+<script>
+  // Mendapatkan referensi ke elemen tombol
+  const checkboxPengelolaPaketWisata = document.getElementById('checkboxPengelolaPaketWisata');
+  const checkboxPengujung = document.getElementById('checkboxPengujung');
+  const checkboxPengelolaWisata = document.getElementById('checkboxPengelolaWisata');
+
+  // Menonaktifkan tombol secara default
+  checkboxPengujung.disabled = false;
+  checkboxPengelolaPaketWisata.disabled = false;
+  checkboxPengelolaWisata.disabled = false;
+
+  function updateCheckboxStatus() {
+      if (checkboxPengelolaPaketWisata.checked || checkboxPengelolaWisata.checked) {
+        checkboxPengujung.disabled = true;
+      } else {
+        checkboxPengujung.disabled = false;
+      }
+
+      if (checkboxPengujung.checked) {
+        checkboxPengelolaPaketWisata.disabled = true;
+        checkboxPengelolaWisata.disabled = true;
+      } else {
+        checkboxPengelolaPaketWisata.disabled = false;
+        checkboxPengelolaWisata.disabled = false;
+      }
+    }
+
+    checkboxPengujung.addEventListener('change', updateCheckboxStatus);
+    checkboxPengelolaPaketWisata.addEventListener('change', updateCheckboxStatus);
+    checkboxPengelolaWisata.addEventListener('change', updateCheckboxStatus);
+
+    // Panggil fungsi untuk menginisialisasi status checkbox saat halaman dimuat
+    updateCheckboxStatus();
+
+</script>
 
 @endsection

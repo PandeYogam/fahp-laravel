@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Post;
 use App\Models\Category;
-use App\Models\HasilBobotVektor;
-use App\Models\KriteriaBobot;
 use App\Models\PaketWisata;
+use Illuminate\Http\Request;
+use App\Models\KriteriaBobot;
+use App\Models\HasilBobotVektor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +20,8 @@ class DssController extends Controller
         return view('dss.index', [
             'title' => 'Rekomendasi Paket Pariwisata',
             'active' => 'dss',
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            "total_posts" => Post::all(),
         ]);
     }
 

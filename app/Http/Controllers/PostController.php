@@ -29,7 +29,7 @@ class PostController extends Controller
         $totalPostsCount = $totalPosts->total();
 
         $category = Category::all();
-        dd($category);
+        // dd($category);
 
         return view('posts', [
             "title" => "All Posts " . $title,

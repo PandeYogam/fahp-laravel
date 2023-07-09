@@ -38,7 +38,12 @@ class Post extends Model
         );
     }
 
-    
+    public function paketWisatas()
+    {
+        return $this->belongsToMany(PaketWisata::class, 'paketwisata_pariwisata', 'post_id', 'paketwisata_id');
+    }
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -19,8 +19,16 @@ class DashboardPostController extends Controller
      */
     public function index()
     {
+
+        if (auth()->user()->is_admin == 1) {
+            $post = Post::all();
+        } else {
+            $post = Post::Where('user_id', auth()->user()->id)->get();
+        }
+
         return view('dashboard.posts.index', [
-            'posts' => Post::Where('user_id', auth()->user()->id)->get()
+            'posts' => $post,
+            
         ]);
     }
 

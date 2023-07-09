@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 use App\Models\KriteriaBobot;
 use App\Models\HasilBobotVektor;
 use App\Models\HasilPerangkingan;
+use App\Models\Paketwisata_pariwisata;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Seeder;
 use Intervention\Image\Facades\Image;
@@ -28,27 +29,144 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // Kriteria
-        Subkriteria::create([
-            'nama' => 'budget',
-            'rentang_min' => 0,
-            'rentang_max' => 500000,
-            'bobot' => 3,
-        ]);
-        Subkriteria::create([
-            'nama' => 'budget',
-            'rentang_min' => 500000,
-            'rentang_max' => 1000000,
-            'bobot' => 6,
-        ]);
+        $subkriterias = [
+            // BUDGET
+            [
+                'kriteria' => 'harga',
+                'rentang_min' => 0,
+                'rentang_max' => 300000,
+                'bobot' => 7,
+            ],
+            [
+                'kriteria' => 'harga',
+                'rentang_min' => 300001,
+                'rentang_max' => 500000,
+                'bobot' => 9,
+            ],
+            [
+                'kriteria' => 'harga',
+                'rentang_min' => 500001,
+                'rentang_max' => 800000,
+                'bobot' => 5,
+            ],
+            [
+                'kriteria' => 'harga',
+                'rentang_min' => 800001,
+                'rentang_max' => 2000000,
+                'bobot' => 3,
+            ],
+            # RATING
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 1,
+                'rentang_max' => 3,
+                'bobot' => 5,
+            ],
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 4,
+                'rentang_max' => 6,
+                'bobot' => 7,
+            ],
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 7,
+                'rentang_max' => 10,
+                'bobot' => 9,
+            ],
+            // DURASI
+            [
+                'kriteria' => 'durasi',
+                'rentang_min' => 0.5,
+                'rentang_max' => 1,
+                'bobot' => 4,
+            ],
+            [
+                'kriteria' => 'durasi',
+                'rentang_min' => 1.5,
+                'rentang_max' => 3,
+                'bobot' => 8,
+            ],
+            [
+                'kriteria' => 'durasi',
+                'rentang_min' => 4,
+                'rentang_max' => 7,
+                'bobot' => 6,
+            ],
+            // POPULARITAS
+            [
+                'kriteria' => 'popularitas',
+                'rentang_min' => 1,
+                'rentang_max' => 10,
+                'bobot' => 4,
+            ],
+            [
+                'kriteria' => 'popularitas',
+                'rentang_min' => 11,
+                'rentang_max' => 25,
+                'bobot' => 6,
+            ],
+            [
+                'kriteria' => 'popularitas',
+                'rentang_min' => 26,
+                'rentang_max' => 35,
+                'bobot' => 8,
+            ],
+            [
+                'kriteria' => 'popularitas',
+                'rentang_min' => 50,
+                'rentang_max' => 100,
+                'bobot' => 9,
+            ],
+            // RATING
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 1,
+                'rentang_max' => 3,
+                'bobot' => 5,
+            ],
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 4,
+                'rentang_max' => 6,
+                'bobot' => 7,
+            ],
+            [
+                'kriteria' => 'rating',
+                'rentang_min' => 7,
+                'rentang_max' => 10,
+                'bobot' => 9,
+            ],
+            // Jumlah Wisata
+            [
+                'kriteria' => 'jumlah_wisata_dikunjungi',
+                'rentang_min' => 1,
+                'rentang_max' => 2,
+                'bobot' => 5,
+            ],
+            [
+                'kriteria' => 'jumlah_wisata_dikunjungi',
+                'rentang_min' => 3,
+                'rentang_max' => 5,
+                'bobot' => 7,
+            ],
+            [
+                'kriteria' => 'jumlah_wisata_dikunjungi',
+                'rentang_min' => 7,
+                'rentang_max' => 10,
+                'bobot' => 9,
+            ],
+        ];
 
-        // Kriteria
-        KriteriaBobot::create([
-            'kriteria_1' => 5,
-            'kriteria_2' => 2,
-            'kriteria_3' => 8,
-            'kriteria_4' => 9,
-            'kriteria_5' => 4,
-        ]);
+        foreach ($subkriterias as $sub) {
+
+            Subkriteria::create([
+                'nama' => $sub['kriteria'],
+                'rentang_min' => $sub['rentang_min'],
+                'rentang_max' => $sub['rentang_max'],
+                'bobot' => $sub['bobot'],
+            ]);
+        }
 
         // HasilDss
         HasilDss::create([
@@ -59,41 +177,212 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        // $paketwisata = [
+        //     [
+        //         'nama' => 'Paket Uluwatu Exploration',
+        //         'slug' => 'paket-uluwatu-exploration',
+        //         'harga' => 300000,
+        //         'popularitas' => 8,
+        //         'rating' => 9,
+        //         'durasi' => 2,
+        //         'deskripsi' => 'Paket wisata A',
+        //         'jumlah_wisata_dikunjungi' => 5,
+
+        //         'harga_bobot' => 1,
+        //         'popularitas_bobot' => 5,
+        //         'rating_bobot' => 8,
+        //         'durasi_bobot' => 2,
+        //         'jumlah_wisata_bobot' => 7,
+        //     ],
+
+        //     [
+        //         'nama' => 'Paket Tanjung Benoa Watersports',
+        //         'slug' => 'paket-tanjung-benoa-watersports',
+        //         'durasi' => 0.5,
+        //         'jumlah_wisata_dikunjungi' => 1,
+        //         'popularitas' => 15,
+        //         'rating' => 7,
+        //         'harga' => 500000,
+        //         'harga_bobot' => 6,
+        //         'popularitas_bobot' => 6,
+        //         'rating_bobot' => 3,
+        //         'durasi_bobot' => 6,
+        //         'jumlah_wisata_bobot' => 9
+        //     ],
+        //     [
+        //         'nama' => 'Paket Jimbaran Sunset Dinner',
+        //         'slug' => 'paket-jimbaran-sunset-dinner',
+        //         'durasi' => 0.5,
+        //         'jumlah_wisata_dikunjungi' => 2,
+        //         'popularitas' => 25,
+        //         'rating' => 9,
+        //         'harga' => 400000,
+        //         'harga_bobot' => 3,
+        //         'popularitas_bobot' => 9,
+        //         'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Legian Shopping',
+        //         'user_id' => 2,
+        //         'slug' => 'paket-legian-shopping',
+        //         'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 8, 'harga' => 300000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Tanah Lot-Bedugul',
+        //         'user_id' => 2,
+        //         'slug' => 'paket-tanah-lot-bedugul', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 20, 'rating' => 9, 'harga' => 850000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Kintamani-Besakih', 'slug' => 'paket-kintamani-besakih', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Canggu-Tanah Lot', 'slug' => 'paket-canggu-tanah-lot', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 10, 'rating' => 7, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Uluwatu-Pandawa', 'slug' => 'paket-uluwatu-pandawa', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 12, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Mengwi-Jatiluwih', 'slug' => 'paket-mengwi-jatiluwih', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 8, 'rating' => 9, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Nusa Penida-Crystal Bay', 'slug' => 'paket-nusa-penida-crystal-bay', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 5, 'rating' => 9, 'harga' => 1300000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Seminyak-Ubud', 'slug' => 'paket-seminyak-ubud', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 7, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Bedugul-Lovina', 'slug' => 'paket-bedugul-lovina', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 4, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Kuta-Nusa Penida', 'slug' => 'paket-kuta-nusa-penida', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 3, 'rating' => 8, 'harga' => 1000000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Badung Round Trip', 'slug' => 'paket-badung-round-trip', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 4, 'popularitas' => 2, 'rating' => 9, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Explore Badung', 'slug' => 'paket-explore-badung', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 5, 'popularitas' => 1, 'rating' => 8, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Kuta-Canggu', 'slug' => 'paket-kuta-canggu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 45, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Ubud-Tegalalang', 'slug' => 'paket-ubud-tegalalang', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Nusa Dua-Uluwatu', 'slug' => 'paket-nusa-dua-uluwatu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 25, 'rating' => 7, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Jimbaran-Seminyak', 'slug' => 'paket-jimbaran-seminyak', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Ubud Artistic Journey', 'slug' => 'paket-ubud-artistic-journey', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 40, 'rating' => 9, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Nusa Dua Waterblow', 'slug' => 'paket-nusa-dua-waterblow', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Seminyak Nightlife', 'slug' => 'paket-seminyak-nightlife', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 50, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Bedugul Nature Escape', 'slug' => 'paket-bedugul-nature-escape', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Nusa Penida Adventure', 'slug' => 'paket-nusa-penida-adventure', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 10, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
+        //     ],
+
+
+        //     [
+        //         'nama' => 'Paket Kuta Beach Experience',
+        //         'slug' => 'paket-kuta-beach-experience',
+        //         'durasi' => 0.5,
+        //         'jumlah_wisata_dikunjungi' => 2,
+        //         'popularitas' => 20, 'rating' => 9,
+        //         'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+        //     ]
+        // ];
+
         $paketwisata = [
             [
                 'nama' => 'Paket Uluwatu Exploration',
                 'slug' => 'paket-uluwatu-exploration',
-                'harga' => 300000,
-                'popularitas' => 8,
-                'rating' => 9,
-                'durasi' => 2,
-                'deskripsi' => 'Paket wisata A',
-                'jumlah_wisata_dikunjungi' => 5,
-
-                'harga_bobot' => 1,
-                'popularitas_bobot' => 5,
-                'rating_bobot' => 8,
-                'durasi_bobot' => 2,
-                'jumlah_wisata_bobot' => 7,
+                'deskripsi' => 'Nikmati perjalanan menjelajahi Uluwatu, kunjungi Pura Uluwatu, saksikan pertunjukan kecak, dan nikmati pemandangan laut.',
+                'pariwisata_yang_dikunjungi' => 'Pura Luhur Uluwatu, Pantai Suluban',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 20,
+                'rating' => 8,
+                'harga' => 600000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp600.000,00',
             ],
-
             [
                 'nama' => 'Paket Tanjung Benoa Watersports',
                 'slug' => 'paket-tanjung-benoa-watersports',
+                'deskripsi' => 'Rasakan keseruan aktivitas air di Tanjung Benoa, seperti jet ski, parasailing, banana boat, dan snorkeling.',
+                'pariwisata_yang_dikunjungi' => 'Watersports di Tanjung Benoa',
                 'durasi' => 0.5,
                 'jumlah_wisata_dikunjungi' => 1,
                 'popularitas' => 15,
                 'rating' => 7,
                 'harga' => 500000,
                 'harga_bobot' => 6,
-                'popularitas_bobot' => 6,
-                'rating_bobot' => 3,
+                'popularitas_bobot' => 3,
+                'rating_bobot' => 6,
                 'durasi_bobot' => 6,
-                'jumlah_wisata_bobot' => 9
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp500.000,00',
             ],
             [
                 'nama' => 'Paket Jimbaran Sunset Dinner',
                 'slug' => 'paket-jimbaran-sunset-dinner',
+                'deskripsi' => 'Nikmati makan malam romantis dengan pemandangan sunset yang memukau di Jimbaran sambil menikmati hidangan seafood lezat.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Jimbaran, Makan Malam Sunset',
                 'durasi' => 0.5,
                 'jumlah_wisata_dikunjungi' => 2,
                 'popularitas' => 25,
@@ -101,138 +390,458 @@ class DatabaseSeeder extends Seeder
                 'harga' => 400000,
                 'harga_bobot' => 3,
                 'popularitas_bobot' => 9,
-                'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp400.000,00',
             ],
-
-
             [
                 'nama' => 'Paket Legian Shopping',
-                'user_id' => 2,
                 'slug' => 'paket-legian-shopping',
-                'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 8, 'harga' => 300000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ],
-
-
-            [
-                'nama' => 'Paket Tanah Lot-Bedugul',
-                'user_id' => 2,
-                'slug' => 'paket-tanah-lot-bedugul', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 20, 'rating' => 9, 'harga' => 850000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ],
-
-
-            [
-                'nama' => 'Paket Kintamani-Besakih', 'slug' => 'paket-kintamani-besakih', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
-            ],
-
-
-            [
-                'nama' => 'Paket Canggu-Tanah Lot', 'slug' => 'paket-canggu-tanah-lot', 'durasi' => 1, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 10, 'rating' => 7, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 6
-            ],
-
-
-            [
-                'nama' => 'Paket Uluwatu-Pandawa', 'slug' => 'paket-uluwatu-pandawa', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 12, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Mengwi-Jatiluwih', 'slug' => 'paket-mengwi-jatiluwih', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 8, 'rating' => 9, 'harga' => 600000, 'harga_bobot' => 6, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Nusa Penida-Crystal Bay', 'slug' => 'paket-nusa-penida-crystal-bay', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 5, 'rating' => 9, 'harga' => 1300000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Seminyak-Ubud', 'slug' => 'paket-seminyak-ubud', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 7, 'rating' => 8, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Bedugul-Lovina', 'slug' => 'paket-bedugul-lovina', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 4, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Kuta-Nusa Penida', 'slug' => 'paket-kuta-nusa-penida', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 3, 'rating' => 8, 'harga' => 1000000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Badung Round Trip', 'slug' => 'paket-badung-round-trip', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 4, 'popularitas' => 2, 'rating' => 9, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Explore Badung', 'slug' => 'paket-explore-badung', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 5, 'popularitas' => 1, 'rating' => 8, 'harga' => 450000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 6
-            ],
-
-
-            [
-                'nama' => 'Paket Kuta-Canggu', 'slug' => 'paket-kuta-canggu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 45, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Ubud-Tegalalang', 'slug' => 'paket-ubud-tegalalang', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 30, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Nusa Dua-Uluwatu', 'slug' => 'paket-nusa-dua-uluwatu', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 25, 'rating' => 7, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Jimbaran-Seminyak', 'slug' => 'paket-jimbaran-seminyak', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Ubud Artistic Journey', 'slug' => 'paket-ubud-artistic-journey', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 40, 'rating' => 9, 'harga' => 700000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Nusa Dua Waterblow', 'slug' => 'paket-nusa-dua-waterblow', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 35, 'rating' => 8, 'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Seminyak Nightlife', 'slug' => 'paket-seminyak-nightlife', 'durasi' => 0.5, 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 50, 'rating' => 9, 'harga' => 500000, 'harga_bobot' => 6, 'popularitas_bobot' => 6, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ],
-
-
-            [
-                'nama' => 'Paket Bedugul Nature Escape', 'slug' => 'paket-bedugul-nature-escape', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 2, 'popularitas' => 15, 'rating' => 8, 'harga' => 900000, 'harga_bobot' => 9, 'popularitas_bobot' => 9, 'rating_bobot' => 6, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Nusa Penida Adventure', 'slug' => 'paket-nusa-penida-adventure', 'durasi' => '1', 'jumlah_wisata_dikunjungi' => 3, 'popularitas' => 10, 'rating' => 7, 'harga' => 1200000, 'harga_bobot' => 9, 'popularitas_bobot' => 6, 'rating_bobot' => 3, 'durasi_bobot' => 6, 'jumlah_wisata_bobot' => 3
-            ],
-
-
-            [
-                'nama' => 'Paket Kuta Beach Experience',
-                'slug' => 'paket-kuta-beach-experience',
+                'deskripsi' => 'Jelajahi pusat perbelanjaan di Legian dan temukan beragam toko fashion, aksesori, dan suvenir khas Bali.',
+                'pariwisata_yang_dikunjungi' => 'Jalan Legian, Beachwalk Mall',
                 'durasi' => 0.5,
                 'jumlah_wisata_dikunjungi' => 2,
-                'popularitas' => 20, 'rating' => 9,
-                'harga' => 400000, 'harga_bobot' => 3, 'popularitas_bobot' => 9, 'rating_bobot' => 9, 'durasi_bobot' => 9, 'jumlah_wisata_bobot' => 9
-            ]
+                'popularitas' => 30,
+                'rating' => 8,
+                'harga' => 300000,
+                'harga_bobot' => 3,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp300.000,00',
+            ],
+            [
+                'nama' => 'Paket Canggu-Tanah Lot',
+                'slug' => 'paket-canggu-tanah-lot',
+                'deskripsi' => 'Gabungan antara kunjungan ke Pantai Canggu yang populer dan Pura Tanah Lot yang ikonik di tepi laut.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Canggu, Pura Tanah Lot',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 10,
+                'rating' => 7,
+                'harga' => 600000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp600.000,00',
+            ],
+            [
+                'nama' => 'Paket Uluwatu-Pandawa',
+                'slug' => 'paket-uluwatu-pandawa',
+                'deskripsi' => 'Nikmati perjalanan dari Uluwatu ke Pantai Pandawa, menikmati pemandangan tebing dan pantai yang memukau di sepanjang jalan.',
+                'pariwisata_yang_dikunjungi' => 'Pura Luhur Uluwatu, Pantai Pandawa',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 12,
+                'rating' => 8,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Mengwi-Jatiluwih',
+                'slug' => 'paket-mengwi-jatiluwih',
+                'deskripsi' => 'Kunjungi Pura Taman Ayun di Mengwi dan nikmati pemandangan indah serta sawah terasering di Jatiluwih.',
+                'pariwisata_yang_dikunjungi' => 'Pura Taman Ayun, Jatiluwih Rice Terrace',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 8,
+                'rating' => 9,
+                'harga' => 600000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp600.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Penida-Crystal Bay',
+                'slug' => 'paket-nusa-penida-crystal-bay',
+                'deskripsi' => 'Jelajahi keindahan Pulau Nusa Penida, kunjungi Crystal Bay, snorkeling di spot terbaik, dan rasakan pesona alamnya.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kelingking, Crystal Bay, Broken Beach',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 3,
+                'popularitas' => 5,
+                'rating' => 9,
+                'harga' => 1300000,
+                'harga_bobot' => 9,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp1.300.000,00',
+            ],
+            [
+                'nama' => 'Paket Kuta-Nusa Penida',
+                'slug' => 'paket-kuta-nusa-penida',
+                'deskripsi' => 'Menggabungkan wisata di Kuta dengan petualangan ke Nusa Penida, menikmati pantai-pantai eksotis dan aktivitas air.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kuta, Pantai Atuh, Pulau Seribu',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 3,
+                'popularitas' => 3,
+                'rating' => 8,
+                'harga' => 1000000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp1.000.000,00',
+            ],
+            [
+                'nama' => 'Paket Explore Badung',
+                'slug' => 'paket-explore-badung',
+                'deskripsi' => 'Menjelajahi berbagai tempat menarik di Badung, termasuk pantai, pura, dan tempat wisata lainnya yang terkenal.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kuta, Pantai Sanur, Pura Besakih, Pantai Nusa Dua, Pantai Uluwatu',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 5,
+                'popularitas' => 1,
+                'rating' => 8,
+                'harga' => 450000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp450.000,00',
+            ],
+            [
+                'nama' => 'Paket Kuta-Canggu',
+                'slug' => 'paket-kuta-canggu',
+                'deskripsi' => 'Kombinasi perjalanan dari Kuta ke Canggu, mengunjungi pantai-pantai, kafe trendi, dan menikmati suasana yang santai.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kuta, Pantai Canggu, Pantai Berawa',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 3,
+                'popularitas' => 45,
+                'rating' => 8,
+                'harga' => 400000,
+                'harga_bobot' => 3,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp400.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Dua-Uluwatu',
+                'slug' => 'paket-nusa-dua-uluwatu',
+                'deskripsi' => 'Menggabungkan keindahan Nusa Dua dengan Uluwatu, mengunjungi pantai-pantai, Pura Uluwatu, dan menikmati sunset spektakuler.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Nusa Dua, Pura Luhur Uluwatu',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 25,
+                'rating' => 7,
+                'harga' => 700000,
+                'harga_bobot' => 9,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp700.000,00',
+            ],
+            [
+                'nama' => 'Paket Jimbaran-Seminyak',
+                'slug' => 'paket-jimbaran-seminyak',
+                'deskripsi' => 'Menikmati perjalanan dari Jimbaran ke Seminyak, mengunjungi pantai, restoran, bar, dan berbelanja di Seminyak Square.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Jimbaran, Pantai Seminyak',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 35,
+                'rating' => 8,
+                'harga' => 700000,
+                'harga_bobot' => 9,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp700.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Dua Waterblow',
+                'slug' => 'paket-nusa-dua-waterblow',
+                'deskripsi' => 'Mengunjungi WaterBlow di Nusa Dua, mengamati fenomena alam unik saat ombak besar memancar melalui celah tebing.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Nusa Dua, WaterBlow',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 35,
+                'rating' => 8,
+                'harga' => 400000,
+                'harga_bobot' => 3,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp400.000,00',
+            ],
+            [
+                'nama' => 'Paket Seminyak Nightlife',
+                'slug' => 'paket-seminyak-nightlife',
+                'deskripsi' => 'Menikmati kehidupan malam Seminyak, menjelajahi bar dan klub malam yang populer serta suasana hiburan yang seru.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Seminyak, Bar dan Klub',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 50,
+                'rating' => 9,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Canggu Surf Adventure',
+                'slug' => 'paket-canggu-surf-adventure',
+                'deskripsi' => 'Petualangan berselancar di pantai-pantai terbaik di Canggu, mengikuti kelas surfing dan menikmati waktu di tepi pantai.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Canggu, Belajar Surfing',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 10,
+                'rating' => 7,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 3,
+                'durasi_bobot' => 6,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Penida Explorer',
+                'slug' => 'paket-nusa-penida-explorer',
+                'deskripsi' => 'Petualangan eksplorasi penuh di Pulau Nusa Penida, meliputi pantai-pantai indah, gua-gua, dan panorama alam yang luar biasa.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kelingking, Angel\'s Billabong, Broken Beach',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 3,
+                'popularitas' => 8,
+                'rating' => 9,
+                'harga' => 1200000,
+                'harga_bobot' => 9,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp1.200.000,00',
+            ],
+            [
+                'nama' => 'Paket Tanah Lot-Uluwatu',
+                'slug' => 'paket-tanah-lot-uluwatu',
+                'deskripsi' => 'Mengunjungi Pura Tanah Lot dan Pura Uluwatu yang terkenal, serta menikmati pemandangan sunset yang menakjubkan.',
+                'pariwisata_yang_dikunjungi' => 'Pura Tanah Lot, Pura Luhur Uluwatu',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 6,
+                'rating' => 8,
+                'harga' => 900000,
+                'harga_bobot' => 9,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 3,
+                'durasi_bobot' => 6,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp900.000,00',
+            ],
+            [
+                'nama' => 'Paket Badung Nature Expedition',
+                'slug' => 'paket-badung-nature-expedition',
+                'deskripsi' => 'Petualangan eksplorasi alam di Badung, menjelajahi pemandangan alam, air terjun, dan trekking di hutan tropis.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kuta, Pantai Balangan, Pantai Green Bowl, Pura Luhur Uluwatu',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 4,
+                'popularitas' => 1,
+                'rating' => 8,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Kuta Beach Getaway',
+                'slug' => 'paket-kuta-ber-getaway',
+                'deskripsi' => 'Liburan santai di pantai-pantai indah di sekitar Kuta, bersantai, berenang, dan menikmati kehidupan pantai.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kuta, Waterbom Bali',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 12,
+                'rating' => 8,
+                'harga' => 550000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp550.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Penida Island Hopping',
+                'slug' => 'paket-nusa-penida-island-hopping',
+                'deskripsi' => 'Menikmati hopping dari satu pulau ke pulau lain di Nusa Penida, mengunjungi pantai-pantai cantik dan lokasi snorkeling.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Kelingking, Pulau Penida',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 3,
+                'popularitas' => 15,
+                'rating' => 8,
+                'harga' => 650000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 9,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp650.000,00',
+            ],
+            [
+                'nama' => 'Paket Tanah Lot Sunset Tour',
+                'slug' => 'paket-tanah-lot-sunset-tour',
+                'deskripsi' => 'Mengunjungi Pura Tanah Lot untuk menikmati pemandangan matahari terbenam yang spektakuler.',
+                'pariwisata_yang_dikunjungi' => 'Pura Tanah Lot, Taman Ayun',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 18,
+                'rating' => 7,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 3,
+                'durasi_bobot' => 6,
+                'jumlah_wisata_bobot' => 9,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Seminyak Shopping Spree',
+                'slug' => 'paket-seminyak-shopping-spree',
+                'deskripsi' => 'Berbelanja di pusat perbelanjaan terkenal di Seminyak, menemukan produk fashion, aksesori, dan kerajinan Bali.',
+                'pariwisata_yang_dikunjungi' => 'Jalan Oberoi, Seminyak Square',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 1,
+                'popularitas' => 10,
+                'rating' => 7,
+                'harga' => 400000,
+                'harga_bobot' => 3,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 3,
+                'durasi_bobot' => 6,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp400.000,00',
+            ],
+            [
+                'nama' => 'Paket Jimbaran Seafood Dinner',
+                'slug' => 'paket-jimbaran-seafood-dinner',
+                'deskripsi' => 'Makan malam lezat dengan hidangan seafood segar di restoran terkenal di Jimbaran.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Jimbaran, Makan Malam Seafood',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 1,
+                'popularitas' => 14,
+                'rating' => 8,
+                'harga' => 450000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp450.000,00',
+            ],
+            [
+                'nama' => 'Paket Canggu Beach Experience',
+                'slug' => 'paket-canggu-beach-experience',
+                'deskripsi' => 'Pengalaman pantai yang seru di Canggu, berselancar, berjemur, dan menikmati aktivitas pantai lainnya.',
+                'pariwisata_yang_dikunjungi' => 'Pantai Batu Bolong, Finn\'s Beach Club',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 1,
+                'popularitas' => 13,
+                'rating' => 8,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp500.000,00',
+            ],
+            [
+                'nama' => 'Paket Nusa Dua Watersport Adventure',
+                'slug' => 'paket-nusa-dua-watersport-adventure',
+                'deskripsi' => 'Petualangan seru di Nusa Dua dengan berbagai aktivitas air seperti jet ski, flyboarding, snorkeling, dan diving.',
+                'pariwisata_yang_dikunjungi' => 'Watersports di Nusa Dua',
+                'durasi' => 0.5,
+                'jumlah_wisata_dikunjungi' => 1,
+                'popularitas' => 16,
+                'rating' => 7,
+                'harga' => 450000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 6,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 6,
+                'terbilang' => 'Rp450.000',
+            ],
+            [
+                'nama' => 'Paket Mengwi Temple Tour',
+                'slug' => 'paket-mengwi-temple-tour',
+                'deskripsi' => 'Mengunjungi Pura Taman Ayun dan Pura Mengwi yang terkenal di Mengwi, menggali keindahan arsitektur dan budaya tradisional Bali.',
+                'pariwisata_yang_dikunjungi' => 'Pura Taman Ayun, Pura Mengwi',
+                'durasi' => 1,
+                'jumlah_wisata_dikunjungi' => 2,
+                'popularitas' => 10,
+                'rating' => 7,
+                'harga' => 500000,
+                'harga_bobot' => 6,
+                'popularitas_bobot' => 9,
+                'rating_bobot' => 6,
+                'durasi_bobot' => 9,
+                'jumlah_wisata_bobot' => 3,
+                'terbilang' => 'Rp500.000,00',
+            ],
         ];
 
+        foreach ($paketwisata as $data) {
+            // $data['slug'] = Str::slug($data['name']);
 
+            $judul = ($data['nama']);
+            $imagePath = "/paketwisata-image/{$judul}.jpg";
+
+            PaketWisata::create([
+                'nama' => $data['nama'],
+                'user_id' => rand(1, 4),
+                'slug' => $data['slug'],
+                'body' => $data['deskripsi'],
+
+                'harga' => $data['harga'],
+                'popularitas' => $data['popularitas'],
+                'rating' => $data['rating'],
+                'durasi' => $data['durasi'],
+                'jumlah_wisata_dikunjungi' => $data['jumlah_wisata_dikunjungi'],
+
+                'harga_bobot' => $data['harga_bobot'],
+                'popularitas_bobot' => $data['popularitas_bobot'],
+                'rating_bobot' => $data['rating_bobot'],
+                'durasi_bobot' => $data['durasi_bobot'],
+                'jumlah_wisata_bobot' => $data['jumlah_wisata_bobot'],
+
+                'pariwisata_yang_dikunjungi' => $data['pariwisata_yang_dikunjungi'],
+                'terbilang' => $data['terbilang']
+            ]);
+        }
 
         User::create([
             'name' => 'Sandhika Galih',
             'username' => 'sandika',
             'email' => 'sandhika@gmail.com',
             'password' => bcrypt('12345'),
-            'is_admin' => 1
+            'is_admin' => 0,
+            'is_pengelola_paket_wisata' => 1,
+            'is_pengelola_wisata' => 1,
         ]);
 
         User::create([
@@ -465,15 +1074,6 @@ class DatabaseSeeder extends Seeder
                 'Jam Operasional' => '24 Jam',
             ],
             [
-                'title' => 'Pantai Kuta',
-                'body' => 'Pantai Kuta adalah pantai yang terkenal dengan kehidupan malam yang sibuk, pusat perbelanjaan, dan ombak yang cocok untuk berselancar.',
-                'Kategori Umum' => 5,
-                'Kategori Detail' => 'Pantai',
-                'Lokasi Umum' => 'Kuta, Badung',
-                'Lokasi Detail' => 'Jalan Pantai Kuta',
-                'Jam Operasional' => '24 Jam',
-            ],
-            [
                 'title' => 'Pantai Labuan Sait',
                 'body' => 'Pantai Labuan Sait adalah pantai dengan ombak yang bagus untuk berselancar dan pemandangan tebing yang dramatis.',
                 'Kategori Umum' => 5,
@@ -498,15 +1098,6 @@ class DatabaseSeeder extends Seeder
                 'Kategori Detail' => 'Pantai',
                 'Lokasi Umum' => 'Kutuh, Badung',
                 'Lokasi Detail' => 'Jalan Pantai Melasti',
-                'Jam Operasional' => '24 Jam',
-            ],
-            [
-                'title' => 'Pantai Nusa Dua',
-                'body' => 'Pantai Nusa Dua adalah pantai yang terkenal dengan pasir putih yang lembut dan terletak di kompleks resor Nusa Dua.',
-                'Kategori Umum' => 5,
-                'Kategori Detail' => 'Pantai',
-                'Lokasi Umum' => 'Nusa Dua, Badung',
-                'Lokasi Detail' => 'Jalan Pantai Nusa Dua',
                 'Jam Operasional' => '24 Jam',
             ],
             [
@@ -564,15 +1155,6 @@ class DatabaseSeeder extends Seeder
                 'Jam Operasional' => '24 Jam',
             ],
             [
-                'title' => 'Pantai Suluban',
-                'body' => 'Pantai Suluban adalah pantai tersembunyi dengan akses melalui jalan setapak di antara tebing.',
-                'Kategori Umum' => 5,
-                'Kategori Detail' => 'Pantai',
-                'Lokasi Umum' => 'Pecatu, Badung',
-                'Lokasi Detail' => 'Jalan Pantai Suluban',
-                'Jam Operasional' => '24 Jam',
-            ],
-            [
                 'title' => 'Pantai Tanjung Benoa',
                 'body' => 'Pantai Tanjung Benoa adalah pantai yang terkenal dengan kegiatan air seperti jet ski, banana boat, dan snorkeling.',
                 'Kategori Umum' => 5,
@@ -611,6 +1193,288 @@ class DatabaseSeeder extends Seeder
             ['title' => 'Via Ferrata Malini Agro Park',    'body' => 'Via Ferrata Malini Agro Park adalah taman petualangan dengan rute hiking dan pemandangan pegunungan yang menakjubkan.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Petualangan Alam',    'Lokasi Umum' => 'Petang, Badung',    'Lokasi Detail' => 'Jalan Subak Malini',    'Jam Operasional' => '09.00-17.00',],
             ['title' => 'Water Blow Peninsula Nusa Dua',    'body' => 'Water Blow Peninsula Nusa Dua adalah atraksi alam yang menakjubkan di mana ombak laut menghantam tebing dan menciptakan semburan air.',    'Kategori Umum' => 6,    'Kategori Detail' => 'Atraksi Alam',    'Lokasi Umum' => 'Nusa Dua, Badung',    'Lokasi Detail' => 'Jalan Pantai Nusa Dua',    'Jam Operasional' => '06.00-19.00',],
             ['title' => 'Wisata Agro Plaga',    'body' => 'Wisata Agro Plaga adalah tempat wisata pertanian di pegunungan dengan pemandangan sawah dan kebun-kebun sayuran.',    'Kategori Umum' => 2,    'Kategori Detail' => 'Pertanian',    'Lokasi Umum' => 'Plaga, Badung',    'Lokasi Detail' => 'Desa Plaga',    'Jam Operasional' => '08.00-17.00',],
+            [
+                'title' => 'Pantai Suluban',
+                'body' => 'Pantai indah di Pecatu dengan akses melalui gua, cocok untuk berselancar dan menikmati pemandangan sunset.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Suluban, Pecatu',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Watersports di Tanjung Benoa',
+                'body' => 'Tempat yang populer untuk aktivitas air seperti jet ski, banana boat, dan parasailing di sepanjang pantai Benoa.',
+                'Kategori Umum' => 6,
+                'Kategori Detail' => 'Watersports',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Tanjung Benoa',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Makan Malam Sunset',
+                'body' => 'Nikmati makan malam romantis sambil menikmati pemandangan sunset yang memukau di salah satu restoran di Badung.',
+                'Kategori Umum' => 7,
+                'Kategori Detail' => 'Restoran',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => '-',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Jalan Legian',
+                'body' => 'Jalan terkenal di Badung dengan beragam toko, restoran, dan tempat hiburan yang ramai di malam hari.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Jalan',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Legian',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Beachwalk Mall',
+                'body' => 'Mall modern di Kuta yang menawarkan pusat perbelanjaan, restoran, bioskop, dan hiburan keluarga.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Mall',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Kuta',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pura Tanah Lot',
+                'body' => 'Pura ikonik di atas batu karang di tepi laut, menawarkan pemandangan matahari terbenam yang spektakuler.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Beraban, Kediri',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Jatiluwih Rice Terrace',
+                'body' => 'Pemandangan sawah terasering yang menakjubkan dengan latar belakang pegunungan, tempat ideal untuk trekking.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Pemandangan',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Jatiluwih',
+                'Jam Operasional' => '09.00-18.00',
+            ],
+            [
+                'title' => 'Pantai Kelingking',
+                'body' => 'Pantai dengan pemandangan ikonik tebing berbentuk T-Rex di Nusa Penida, sering disebut sebagai "Pantai Dinosaur".',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Crystal Bay',
+                'body' => 'Pantai dengan air jernih dan terumbu karang yang indah, tempat yang sempurna untuk snorkeling dan menyelam.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pantai Atuh',
+                'body' => 'Pantai yang menakjubkan dengan air biru dan karang-karang eksotis di Nusa Penida, populer untuk foto-foto.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pulau Seribu',
+                'body' => 'Pulau kecil di Serangan dengan pantai berpasir putih dan air jernih, cocok untuk snorkeling dan piknik.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Pulau',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Serangan',
+                'Jam Operasional' => '09.00-17.00',
+            ],
+            [
+                'title' => 'Pantai Sanur',
+                'body' => 'Pantai yang tenang dengan sunrise indah, penuh dengan restoran, hotel, dan aktivitas air di sepanjang pantai.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Sanur',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Pantai Uluwatu',
+                'body' => 'Pantai yang terkenal dengan ombak besar, juga terdapat Pura Uluwatu yang menawarkan pertunjukan tari kecak.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Uluwatu',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pantai Nusa Dua',
+                'body' => 'Pantai yang terkenal dengan pasir putih dan fasilitas resor mewah, tempat yang sempurna untuk bersantai dan berenang.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Dua',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Bar dan Klub',
+                'body' => 'Tempat hiburan malam yang beragam di Badung, mulai dari bar tepi pantai hingga klub malam dengan musik live.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Bar dan Klub',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => '-',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Belajar Surfing',
+                'body' => 'Pelajari seni berselancar di salah satu sekolah selancar yang terkenal di Badung dan rasakan sensasi berselancar.',
+                'Kategori Umum' => 6,
+                'Kategori Detail' => 'Surfing',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => '',
+                'Jam Operasional' => '06.00-19.00',
+            ],
+            [
+                'title' => "Angel's Billabong",
+                'body' => 'Kolam alami dengan air hijau jernih di Nusa Penida, tempat yang sempurna untuk berenang dan menikmati keindahan.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Alam',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Broken Beach',
+                'body' => 'Teluk alami dengan pemandangan yang dramatis di Nusa Penida, diapit oleh tebing-tebing yang spektakuler.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Balangan',
+                'body' => 'Pantai yang tenang di Bukit Peninsula dengan ombak yang bagus untuk berselancar dan pemandangan matahari terbenam.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Balangan',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Green Bowl',
+                'body' => 'Pantai tersembunyi di Badung dengan akses melalui tangga, menawarkan keindahan alam yang masih alami.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Ungasan',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pantai Kuta',
+                'body' => 'Pantai yang terkenal di Badung dengan ombak yang bagus untuk berselancar, juga terdapat berbagai tempat hiburan.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Kuta',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Waterbom Bali',
+                'body' => 'Taman air terbesar di Badung dengan beragam wahana perosotan, kolam renang, dan area bermain air untuk keluarga.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Taman Hiburan',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Kuta',
+                'Jam Operasional' => '24 Jam',
+            ],
+            [
+                'title' => 'Pulau Penida',
+                'body' => 'Pulau yang indah dan eksotis di sebelah tenggara Bali, terkenal dengan pantai-pantai yang memukau dan snorkeling.',
+                'Kategori Umum' => 1,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Penida',
+                'Jam Operasional' => '09.00-18.00',
+            ],
+            [
+                'title' => 'Jalan Oberoi',
+                'body' => 'Jalan di Seminyak yang terkenal dengan bar, restoran, dan butik-boutik yang mewah, menjadi pusat gaya hidup Bali.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Jalan',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Seminyak',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Seminyak Square',
+                'body' => 'Pusat perbelanjaan dan hiburan di Seminyak dengan berbagai toko, restoran, dan pertunjukan seni.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Pusat Perbelanjaan',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Seminyak',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Makan Malam Seafood',
+                'body' => 'Nikmati hidangan seafood segar yang lezat di salah satu restoran di Badung, terutama di daerah pantai.',
+                'Kategori Umum' => 7,
+                'Kategori Detail' => 'Restoran',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => '',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pantai Batu Bolong',
+                'body' => 'Pantai yang populer di Canggu dengan suasana yang santai, cocok untuk berselancar, berjemur, dan menikmati sunset.',
+                'Kategori Umum' => 5,
+                'Kategori Detail' => 'Pantai',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Canggu',
+                'Jam Operasional' => '09.00-17.00',
+            ],
+            [
+                'title' => "Finn's Beach Club",
+                'body' => 'Tempat yang populer di Canggu untuk bersantai di tepi pantai dengan kolam renang, bar, dan pemandangan laut.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Beach Club',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Canggu',
+                'Jam Operasional' => '08.00-18.00',
+            ],
+            [
+                'title' => 'Watersports di Nusa Dua',
+                'body' => 'Nikmati beragam aktivitas air seperti snorkeling, jet ski, dan flyboarding di perairan Nusa Dua yang indah.',
+                'Kategori Umum' => 3,
+                'Kategori Detail' => 'Watersports',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Nusa Dua',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pura Taman Ayun',
+                'body' => 'Pura yang terkenal di Mengwi dengan taman yang indah dan arsitektur tradisional Bali yang megah.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Mengwi',
+                'Jam Operasional' => '08.00-17.00',
+            ],
+            [
+                'title' => 'Pura Mengwi',
+                'body' => 'Pura bersejarah di Mengwi dengan arsitektur yang menakjubkan, menjadi tempat penting dalam budaya Bali.',
+                'Kategori Umum' => 4,
+                'Kategori Detail' => 'Pura',
+                'Lokasi Umum' => 'Badung',
+                'Lokasi Detail' => 'Mengwi',
+                'Jam Operasional' => '24 Jam',
+            ],
+            // new
+            ['title' => 'Pantai Seminyak',    'body' => 'Pantai dengan pasir putih yang indah di Seminyak, Bali. Terkenal dengan ombaknya yang cocok untuk berselancar.',    'Kategori Umum' => 5,    'Kategori Detail' => 'Pantai',    'Lokasi Umum' => 'Badung',    'Lokasi Detail' => 'Seminyak',    'Jam Operasional' => '24 Jam',],
+            ['title' => 'Pura Besakih',    'body' => 'Pura terbesar dan paling suci di Bali, terletak di Desa Besakih, Kabupaten Karangasem. Dikenal sebagai "Pura Agung Besakih" atau "Pura Besakih Mother Temple".',    'Kategori Umum' => 4,    'Kategori Detail' => 'Pura',    'Lokasi Umum' => 'Karangasem',    'Lokasi Detail' => 'Desa Besakih',    'Jam Operasional' => '08:00 - 17:00',]
         ];
 
         foreach ($data as $post) {
@@ -623,7 +1487,7 @@ class DatabaseSeeder extends Seeder
 
             Post::create([
                 'category_id' => $post['Kategori Umum'],
-                'user_id' => 1,
+                'user_id' => rand(1, 4),
                 'title' => $post['title'],
                 'body' => $post['body'],
                 'excerpt' => Str::words($post['body'], 200),
@@ -633,6 +1497,75 @@ class DatabaseSeeder extends Seeder
                 'lokasi' => $post['Lokasi Umum'],
                 'lokasi_detail' => $post['Lokasi Detail'],
                 'jam' => $post['Jam Operasional'],
+            ]);
+        }
+
+        $dataAdditional = [
+            ['paketwisata_id' => 1, 'post_id' => 10],
+            ['paketwisata_id' => 2, 'post_id' => 45],
+            ['paketwisata_id' => 3, 'post_id' => 18],
+            ['paketwisata_id' => 4, 'post_id' => 47],
+            ['paketwisata_id' => 5, 'post_id' => 16],
+            ['paketwisata_id' => 6, 'post_id' => 10],
+            ['paketwisata_id' => 7, 'post_id' => 73],
+            ['paketwisata_id' => 8, 'post_id' => 52],
+            ['paketwisata_id' => 9, 'post_id' => 64],
+            ['paketwisata_id' => 10, 'post_id' => 64],
+            ['paketwisata_id' => 11, 'post_id' => 64],
+            ['paketwisata_id' => 12, 'post_id' => 57],
+            ['paketwisata_id' => 13, 'post_id' => 18],
+            ['paketwisata_id' => 14, 'post_id' => 57],
+            ['paketwisata_id' => 15, 'post_id' => 75],
+            ['paketwisata_id' => 16, 'post_id' => 16],
+            ['paketwisata_id' => 17, 'post_id' => 52],
+            ['paketwisata_id' => 18, 'post_id' => 49],
+            ['paketwisata_id' => 19, 'post_id' => 64],
+            ['paketwisata_id' => 20, 'post_id' => 64],
+            ['paketwisata_id' => 21, 'post_id' => 52],
+            ['paketwisata_id' => 22, 'post_id' => 49],
+            ['paketwisata_id' => 23, 'post_id' => 67],
+            ['paketwisata_id' => 24, 'post_id' => 18],
+            ['paketwisata_id' => 25, 'post_id' => 70],
+            ['paketwisata_id' => 26, 'post_id' => 72],
+            ['paketwisata_id' => 27, 'post_id' => 73],
+            ['paketwisata_id' => 1, 'post_id' => 44],
+            ['paketwisata_id' => 3, 'post_id' => 46],
+            ['paketwisata_id' => 4, 'post_id' => 48],
+            ['paketwisata_id' => 5, 'post_id' => 49],
+            ['paketwisata_id' => 6, 'post_id' => 25],
+            ['paketwisata_id' => 7, 'post_id' => 50],
+            ['paketwisata_id' => 8, 'post_id' => 52],
+            ['paketwisata_id' => 9, 'post_id' => 53],
+            ['paketwisata_id' => 10, 'post_id' => 55],
+            ['paketwisata_id' => 11, 'post_id' => 16],
+            ['paketwisata_id' => 12, 'post_id' => 10],
+            ['paketwisata_id' => 13, 'post_id' => 75],
+            ['paketwisata_id' => 14, 'post_id' => 42],
+            ['paketwisata_id' => 15, 'post_id' => 58],
+            ['paketwisata_id' => 16, 'post_id' => 59],
+            ['paketwisata_id' => 17, 'post_id' => 60],
+            ['paketwisata_id' => 18, 'post_id' => 10],
+            ['paketwisata_id' => 19, 'post_id' => 62],
+            ['paketwisata_id' => 20, 'post_id' => 65],
+            ['paketwisata_id' => 21, 'post_id' => 66],
+            ['paketwisata_id' => 22, 'post_id' => 73],
+            ['paketwisata_id' => 23, 'post_id' => 68],
+            ['paketwisata_id' => 24, 'post_id' => 69],
+            ['paketwisata_id' => 25, 'post_id' => 71],
+            ['paketwisata_id' => 8, 'post_id' => 61],
+            ['paketwisata_id' => 9, 'post_id' => 54],
+            ['paketwisata_id' => 10, 'post_id' => 76],
+            ['paketwisata_id' => 17, 'post_id' => 61],
+            ['paketwisata_id' => 19, 'post_id' => 63],
+            ['paketwisata_id' => 10, 'post_id' => 57],
+            ['paketwisata_id' => 10, 'post_id' => 10],
+            ['paketwisata_id' => 19, 'post_id' => 10],
+        ];
+
+        foreach ($dataAdditional as $post) {
+            Paketwisata_pariwisata::create([
+                'paketwisata_id' => $post['paketwisata_id'],
+                'post_id' => $post['post_id']
             ]);
         }
     }

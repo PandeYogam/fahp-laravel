@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
@@ -38,7 +40,25 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validatedData = $request->validate([
+            'name' => 'required|min:4|max:225',
+            'username' => ['required', 'min:8', 'max:12', 'unique:users'],
+            'email' => ['required', 'email:dns', 'unique:users'],
+            'password' => ['required', 'min:8', 'max:255']
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        $roles = $request->input('role', []);
+
+        $validatedData['is_pengelola_paket_wisata'] = in_array('pengelola_paket_wisata', $roles) ? 1 : 0;
+        $validatedData['is_pengelola_wisata'] = in_array('pengelola_wisata', $roles) ? 1 : 0;
+
+        User::create($validatedData);
+        $request = session();
+
+        return redirect('dashboard/user')->with('success', 'New admin has been added!');
     }
 
     /**

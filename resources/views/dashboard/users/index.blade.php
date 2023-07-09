@@ -16,6 +16,7 @@
   <a href="/dashboard/users/create" class="btn btn-primary my-1">
     Create a new user
   </a>
+  
 
   <div class="table-responsive col-lg-8">
     <table class="table table-striped table-sm">
@@ -34,7 +35,7 @@
             <td>{{ $user->name }}</td>
             <td>{{ $user->posts->count() }}</td>
             <td>
-              <a href="/dashboard/users/{{ $user->username }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a>
+              {{-- <a href="/dashboard/users/{{ $user->username }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a> --}}
 
               <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
 

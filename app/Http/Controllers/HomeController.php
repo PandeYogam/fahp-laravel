@@ -25,7 +25,7 @@ class HomeController extends Controller
             "title" => "home",
             'categories' => Category::all(),
             "active" => 'index',
-            "total_posts" => Post::latest(),
+            "total_posts" => Post::all(),
             "post_1" => $posts1,
             "post_2" => $posts2,
             "post_3" => $posts3,

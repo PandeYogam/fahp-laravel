@@ -2,7 +2,11 @@
 
 @section('container')
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">My Posts</h1>
+    @if (auth()->user()->is_admin == 1)
+      <h1 class="h2">All Package</h1>
+    @else
+      <h1 class="h2">My Package</h1>
+    @endif
   </div>
 
   @if (session()->has('success'))
@@ -18,15 +22,14 @@
   @endforeach
   
   <a href="/dashboard/paketwisata/create" class="btn btn-primary my-1 me-1">
-    Create Post
+    Create Package
   </a>
   
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  {{-- <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
     Upload Excel
   </button>
 
-  <!-- Modal -->
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -49,7 +52,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> --}}
 
 
   {{-- List Daftar Alternatif --}}

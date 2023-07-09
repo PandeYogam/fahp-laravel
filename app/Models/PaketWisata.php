@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaketWisata extends Model
 {
-    protected $fillable = ['nama', 'slug', 'user_id', 'harga', 'popularitas', 'rating', 'durasi', 'deskripsi', 'jumlah_wisata_dikunjungi'];
+    protected $guarded = ['id'];
+    // protected $fillable = ['nama', 'slug', 'user_id', 'harga', 'popularitas', 'rating', 'durasi', 'deskripsi', 'jumlah_wisata_dikunjungi'];
 
     use HasFactory;
 
     protected $table = 'paket_wisata';
+
+    public function pariwisataPosts()
+    {
+        return $this->belongsToMany(Post::class, 'paketwisata_pariwisata', 'paketwisata_id', 'post_id');
+    }
+
 
     public function admin()
     {

@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('nama');
             $table->string('slug')->unique();
-            $table->text('deskripsi')->nullable();
+            $table->text('body')->nullable();
 
             $table->unsignedInteger('harga');
             $table->integer('popularitas');
@@ -33,6 +33,8 @@ return new class extends Migration
             $table->integer('durasi_bobot')->nullable();
             $table->integer('jumlah_wisata_bobot')->nullable();
 
+            $table->text('pariwisata_yang_dikunjungi')->nullable();
+            $table->text('terbilang')->nullable();
             // Kolom untuk menyimpan wisata yang dikunjungi
             // $table->json('wisata_dikunjungi');
 

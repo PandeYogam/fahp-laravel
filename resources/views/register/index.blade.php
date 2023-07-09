@@ -26,19 +26,19 @@
 
             <div class="d-flex justify-content-evenly">
               <div class="ms-2 form-check">
-                  <input class="form-check-input" type="checkbox" value="pengujung" id="checkboxPengujung" name="role[]">
+                  <input class="form-check-input disable" type="checkbox" value="pengujung" id="checkboxPengujung" name="role[]" >
                   <label class="form-check-label text-white ps-0 px-3" for="checkboxPengujung">
                       Pengujung
                   </label>
               </div>
               <div class="ms-4 form-check">
-                  <input class="form-check-input" type="checkbox" value="pengelola_paket_wisata" id="checkboxPengelolaPaketWisata" name="role[]">
+                  <input class="form-check-input" type="checkbox" value="pengelola_paket_wisata" id="checkboxPengelolaPaketWisata" name="role[]" >
                   <label class="form-check-label text-white ps-0" for="checkboxPengelolaPaketWisata">
                       Pengelola Pariwisata
                   </label>
               </div>
               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="pengelola_wisata" id="checkboxPengelolaWisata" name="role[]">
+                  <input class="form-check-input" type="checkbox" value="pengelola_wisata" id="checkboxPengelolaWisata" name="role[]" >
                   <label class="form-check-label text-white ps-0" for="checkboxPengelolaWisata">
                       Pengelola Wisata
                   </label>
@@ -86,26 +86,70 @@
   </div>
 </div>
 
+
 <script>
-  $(document).ready(function() {
-    $('input[name="role"]').change(function() {
-      var pengujungChecked = $('#checkboxPengujung').is(':checked');
-      var pengelolaWisataChecked = $('#checkboxPengelolaWisata').is(':checked');
-      var pengelolaPaketWisataChecked = $('#checkboxPengelolaPaketWisata').is(':checked');
-  
-      if ((pengelolaWisataChecked || pengelolaPaketWisataChecked) && pengujungChecked) {
-        // Jika Pengujung dan salah satu Pengelola dipilih, nonaktifkan pilihan Pengujung
-        $('#checkboxPengujung').prop('disabled', true);
-      } else if (pengujungChecked && (pengelolaWisataChecked || pengelolaPaketWisataChecked)) {
-        // Jika salah satu Pengelola dan Pengujung dipilih, nonaktifkan pilihan Pengelola
-        $('#checkboxPengelolaWisata').prop('disabled', true);
-        $('#checkboxPengelolaPaketWisata').prop('disabled', true);
+  // Mendapatkan referensi ke elemen tombol
+  const checkboxPengelolaPaketWisata = document.getElementById('checkboxPengelolaPaketWisata');
+  const checkboxPengujung = document.getElementById('checkboxPengujung');
+  const checkboxPengelolaWisata = document.getElementById('checkboxPengelolaWisata');
+
+  // Menonaktifkan tombol secara default
+  checkboxPengujung.disabled = false;
+  checkboxPengelolaPaketWisata.disabled = false;
+  checkboxPengelolaWisata.disabled = false;
+
+  function updateCheckboxStatus() {
+      if (checkboxPengelolaPaketWisata.checked || checkboxPengelolaWisata.checked) {
+        checkboxPengujung.disabled = true;
       } else {
-        // Jika hanya Pengujung yang dipilih, nonaktifkan pilihan Pengelola
-        $('#checkboxPengelolaWisata').prop('disabled', false);
-        $('#checkboxPengelolaPaketWisata').prop('disabled', false);
+        checkboxPengujung.disabled = false;
       }
-    });
-  });
-  </script>
+
+      if (checkboxPengujung.checked) {
+        checkboxPengelolaPaketWisata.disabled = true;
+        checkboxPengelolaWisata.disabled = true;
+      } else {
+        checkboxPengelolaPaketWisata.disabled = false;
+        checkboxPengelolaWisata.disabled = false;
+      }
+    }
+
+    checkboxPengujung.addEventListener('change', updateCheckboxStatus);
+    checkboxPengelolaPaketWisata.addEventListener('change', updateCheckboxStatus);
+    checkboxPengelolaWisata.addEventListener('change', updateCheckboxStatus);
+
+    // Panggil fungsi untuk menginisialisasi status checkbox saat halaman dimuat
+    updateCheckboxStatus();
+
+</script>
+{{-- <script>
+  // Tempatkan kode JavaScript yang telah diberikan di sini
+  // ...
+
+  // Mendapatkan referensi ke elemen checkbox
+  const checkboxPengujung = document.getElementById('checkboxPengujung');
+  const checkboxPengelolaPaketWisata = document.getElementById('checkboxPengelolaPaketWisata');
+  const checkboxPengelolaWisata = document.getElementById('checkboxPengelolaWisata');
+
+  // Mendapatkan referensi ke semua elemen checkbox
+  const checkboxes = [checkboxPengujung, checkboxPengelolaPaketWisata, checkboxPengelolaWisata];
+
+  // Mendefinisikan fungsi untuk mengatur status checkbox
+  function setCheckboxStatus(checkbox, status) {
+    checkbox.checked = status;
+    checkbox.disabled = status;
+  }
+
+  // Mendefinisikan fungsi untuk mengatur status checkbox berdasarkan kondisi
+  function updateCheckboxStatus() {
+    // ...
+  }
+
+  // Tambahkan event listener ke setiap checkbox
+  // ...
+
+  // Inisialisasi status checkbox saat halaman dimuat
+  updateCheckboxStatus();
+</script> --}}
+
 @endsection

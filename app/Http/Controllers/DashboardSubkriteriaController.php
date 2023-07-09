@@ -32,7 +32,7 @@ class DashboardSubkriteriaController extends Controller
             'rentang_max' => ['required'],
             'bobot' => ['required'],
         ]);
-
+        
         Subkriteria::create($validatedData);
 
         return redirect('dashboard/subkriteria')->with('success', 'New package has been added!');

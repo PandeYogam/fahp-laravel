@@ -21,8 +21,6 @@ use App\Models\PaketWisata;
 
 Route::get('/', [HomeController::class, 'index']);
 
-
-
 Route::get('/about', function () {
     return view('about', [
         "title" => "about",

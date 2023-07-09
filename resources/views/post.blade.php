@@ -14,26 +14,60 @@
 @endpush
 
 @section('container')
-<div class="container-xxl bg-dark hero-header">
+<div class="container-xxl bg-dark hero-background">
   <div class="row justify-content-center text-white">
     <div style=" height: 100px"></div>
-    <div class="col-8 text-center">
-      <h1 class="mb-3 text-white">{{ $post->title }}</h1>
-      
-      <h5 class="text-white">by. <a href="/posts?admin?={{$post->admin->username }}" class="text-decoration-none">{{$post->admin->name }}</a> in <a href="/posts?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></h5>
-      
-      @if ($post->image)
-        <div style="max-height: 350px; overflow:hidden" >
-          <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid mt-3">
+    <div class="col-8">
+
+      <article class="blog-post">
+        <h1 class="mb-1 text-white">{{ $post->title }}</h1>
+        <p class="mb-1 blog-post-meta">{{ \Carbon\Carbon::parse($post->created_at)->format('F j, Y') }}
+          by <a href="#">{{ $post->admin->name }}</a></p>
+
+        <div class="nav-scroller py-1 mb-3 y-1 border-bottom">
+          <nav class="nav nav-underline d-flex flex-wrap">
+            @foreach ($categories as $item)
+              <a class=" pe-5 px-0 py-1 nav-item nav-link link-body-emphasis
+                @if ($item->name == $post->category->name)
+                  active
+                @else
+                  text-white
+                @endif" 
+                href="#">
+                {{ $item->name }}
+              </a>
+            @endforeach
+          </nav>
         </div>
-      @else
-        <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">
-      @endif
+
+        <div class="container">
+
+          <div class="row ">
+            <div class="col-4 d-flex align-items-center">
+              @if ($post->image)
+                <div style="max-height: 350px; overflow:hidden" >
+                  <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
+                </div>
+              @else
+                <img src="https://source.unsplash.com/600x400?{{ $post->title }}" class="card-img-top" alt="{{ $post->title }}">
+              @endif
+            </div>
+            <div class="col-8">
+              <h3 class="text-white align-items">Details</h3>
+              <p>Lokasi : {{ $post->lokasi }}, {{ $post->lokasi_Detail }}</p>
+              <ul>
+                <li>{{ $post->category->name }}, {{ $post->category_detail }}</li>
+                <li>Jam Wisata : {{ $post->jam }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
       <article class="my-3 fs-5">
         {!! $post->body !!}
       </article>
 
+      {{-- comment --}}
       <div>
         <h3 class="text-white">Comments Section </h3>
           <div>

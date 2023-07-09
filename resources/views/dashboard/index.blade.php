@@ -11,7 +11,20 @@
     <b>Nama</b>  : {{ auth()->user()->name }} <br>
     <b>Email</b>  : {{ auth()->user()->email }} <br>
     <b>Dibuat</b>  : {{ auth()->user()->created_at->format('d F Y') }} || {{ auth()->user()->created_at->diffForHumans() }}<br>
-    <b>Role</b>  : <br>
+    <b>Role</b>  : 
+    
+    @if (auth()->user()->is_admin == 1)
+        Super Admin
+    @else
+        @if (auth()->user()->is_pengelola_paket_wisata == 1)
+            Admin Biru Wisata
+        @endif
+        @if (auth()->user()->is_pengelola_wisata == 1)
+            Admin Pariwisata
+        @endif
+    @endif
+
+    <br>
     
   </h5>
 
