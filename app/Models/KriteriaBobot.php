@@ -17,11 +17,15 @@ class KriteriaBobot extends Model
         'kriteria_3',
         'kriteria_4',
         'kriteria_5',
-        // 'user_id',
+        'user_id',
     ];
 
     public function hasildss()
     {
         return $this->belongsTo(HasilDss::class, 'hasil_dss_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

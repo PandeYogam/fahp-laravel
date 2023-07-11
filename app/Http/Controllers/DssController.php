@@ -8,6 +8,7 @@ use App\Models\PaketWisata;
 use Illuminate\Http\Request;
 use App\Models\KriteriaBobot;
 use App\Models\HasilBobotVektor;
+use App\Models\HasilDss;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -27,20 +28,30 @@ class DssController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'kriteria_1' => ['required'],
+            'kriteria_2' => ['required'],
+            'kriteria_3' => ['required'],
+            'kriteria_4' => ['required'],
+            'kriteria_5' => ['required'],
+        ]);
+
         if (Auth::check()) {
-            $validatedData = $request->validate([
-                'kriteria_1' => ['required'],
-                'kriteria_2' => ['required'],
-                'kriteria_3' => ['required'],
-                'kriteria_4' => ['required'],
-                'kriteria_5' => ['required'],
-            ]);
+
+            $validatedData['user_id'] = auth()->user()->id;
             KriteriaBobot::create($validatedData);
+            // $kriteriaBobot = KriteriaBobot::Where('user_id', auth()->user()->id)->get();
+            $kriteriaBobot = KriteriaBobot::latest()->first();
+
+
+            // $kriteriaBobot = KriteriaBobot::latest()->first();
+        } else {
+            KriteriaBobot::create($validatedData);
+            $kriteriaBobot = KriteriaBobot::latest()->first();
         }
 
-        $kriteriaBobot = KriteriaBobot::latest()->first();
         // $this->idSesion = $kriteriaBobot->id;
-
+        // $kriteria_id = $kriteriaBobot->id;
         // dd($this->idSesion);
         $kriteriaBobotArray = $kriteriaBobot->toArray();
 
@@ -87,7 +98,7 @@ class DssController extends Controller
                     $PerbandinganKriteria[$i - 1][$j - 1] = 1;
                     $matriksPairwaise[$i - 1][$j - 1] = $skalaFuzzyTerbalik[$PerbandinganKriteria[$i - 1][$j - 1]];
                 }
-                // kalau perbadingan bernilai postifi 
+                // kalau perbadingan bernilai postifif 
                 else {
                     $matriksPairwaise[$i - 1][$j - 1] = $skalaFuzzy[$PerbandinganKriteria[$i - 1][$j - 1]];
                 }
@@ -170,6 +181,15 @@ class DssController extends Controller
         // dd($data);
 
         HasilBobotVektor::create($data);
+
+        // $hasil = [
+        //     'kriteria_bobot_id' => $kriteria_id,
+        //     'user_id' => auth()->user()->id,
+
+        // ];
+
+
+        // HasilDss::create($hasil);
 
         Session::flash('success', 'Bobot telah tersimpan');
         return redirect('/dss')->with('success', 'Bobot telah tersimpan');

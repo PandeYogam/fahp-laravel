@@ -63,6 +63,8 @@ class DashboardPostController extends Controller
             'body' => ['required']
         ]);
 
+        
+
         $title = $request->title;
 
         if ($request->file('image')) {
@@ -71,6 +73,13 @@ class DashboardPostController extends Controller
             $path = $request->file('image')->storeAs('post-image', $filename);
             $validatedData['image'] = $path;
         }
+        
+        $validatedData['category_detail'] = $request->category_detail;
+        
+        $validatedData['category_detail'] = $request->category_detail;
+        $validatedData['lokasi'] = $request->lokasi;
+        $validatedData['lokasi_Detail'] = $request->lokasi_Detail;
+        $validatedData['jam'] = $request->jam;
 
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 200);

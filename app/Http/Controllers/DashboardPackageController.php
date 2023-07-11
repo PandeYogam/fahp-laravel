@@ -67,6 +67,8 @@ class DashboardPackageController extends Controller
             // 'jumlah_wisata_dikunjungi' => ['required']
         ]);
 
+        $validatedData = $request->body;
+
         $roles = $request->input('role');
         $validatedData['jumlah_wisata_dikunjungi'] = count($roles);
 

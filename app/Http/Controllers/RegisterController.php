@@ -29,6 +29,7 @@ class RegisterController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
+        
         // Mengatur nilai 'is_pengelola_paket_wisata' dan 'is_pengelola_wisata' berdasarkan role yang dipilih
         $roles = $request->input('role', []);
 

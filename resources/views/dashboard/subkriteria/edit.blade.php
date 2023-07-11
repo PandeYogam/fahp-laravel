@@ -6,13 +6,13 @@
 </div>
 
 <div class="col-lg-8">
-  <form action="/dashboard/paketwisata/{{ $paketwisata->slug }}" method="POST" class="mb-5" enctype="multipart/form-data">
+  <form action="/dashboard/subkriteria/{{ $subkriteria->id}}" method="POST" class="mb-5" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
     <div class="mb-3">
       <label for="nama" class="form-label">Nama</label>
-      <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required autofocus value="{{ old('nama', $paketwisata->nama) }}">
+      <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" required autofocus value="{{ old('nama', $subkriteria->nama) }}">
       @error('nama')
         <div class="invalid-feedback">
           {{ $message }}
@@ -21,9 +21,9 @@
     </div>
 
     <div class="mb-3">
-      <label for="slug" class="form-label">Slug</label>
-      <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug', $paketwisata->slug) }}">
-      @error('slug')
+      <label for="rentang_min" class="form-label">rentang_min</label>
+      <input type="text" class="form-control @error('rentang_min') is-invalid @enderror" id="rentang_min" name="rentang_min" required autofocus value="{{ old('rentang_min', $subkriteria->rentang_min) }}">
+      @error('rentang_min')
         <div class="invalid-feedback">
           {{ $message }}
         </div>
@@ -31,9 +31,9 @@
     </div>
 
     <div class="mb-3">
-      <label for="harga" class="form-label">harga</label>
-      <input type="number" step="50000" pattern="\d+" min="0" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" required ="{{ old('harga', $paketwisata->harga) }}">
-      @error('harga')
+      <label for="rentang_max" class="form-label">rentang_max</label>
+      <input type="text" class="form-control @error('rentang_max') is-invalid @enderror" id="rentang_max" name="rentang_max" required autofocus value="{{ old('rentang_max', $subkriteria->rentang_max) }}">
+      @error('rentang_max')
         <div class="invalid-feedback">
           {{ $message }}
         </div>
@@ -41,92 +41,16 @@
     </div>
     
     <div class="mb-3">
-      <label for="popularitas" class="form-label">Popularitas</label>
-      <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('popularitas') is-invalid @enderror" id="popularitas" name="popularitas" required ="{{ old('popularitas', $paketwisata->popularitas) }}">
-      @error('popularitas')
+      <label for="bobot" class="form-label">bobot</label>
+      <input type="text" class="form-control @error('bobot') is-invalid @enderror" id="bobot" name="bobot" required autofocus value="{{ old('bobot', $subkriteria->bobot) }}">
+      @error('bobot')
         <div class="invalid-feedback">
           {{ $message }}
         </div>
       @enderror
     </div>
 
-    <div class="mb-3">
-      <label for="rating" class="form-label">rating</label>
-      <input type="number" step="1" pattern="\d+" min="0" max="10" class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating" required ="{{ old('rating', $paketwisata->rating) }}">
-      @error('rating')
-        <div class="invalid-feedback">
-          {{ $message }}
-        </div>
-      @enderror
-    </div>
-    
-    <div class="mb-3">
-      <label for="durasi" class="form-label">durasi</label>
-      <input type="number" step="1" pattern="\d+" min="0" class="form-control @error('durasi') is-invalid @enderror" id="durasi" name="durasi" required ="{{ old('durasi', $paketwisata->durasi) }}">
-      @error('durasi')
-        <div class="invalid-feedback">
-          {{ $message }}
-        </div>
-      @enderror
-    </div>
 
-    <div class="mb-3">
-      <label for="jumlah_wisata_dikunjungi" class="form-label">jumlahwisata</label>
-      <input type="number" step="1" pattern="\d+" min="0"  class="form-control @error('jumlah_wisata_dikunjungi') is-invalid @enderror" id="jumlah_wisata_dikunjungi" name="jumlah_wisata_dikunjungi" required ="{{ old('jumlah_wisata_dikunjungi', $paketwisata->jumlah_wisata_dikunjungi) }}">
-      @error('jumlah_wisata_dikunjungi')
-        <div class="invalid-feedback">
-          {{ $message }}
-        </div>
-      @enderror
-    </div>
-
-    {{-- <div class="mb-3">
-      <label for="category" class="form-label">Category</label>
-      <select class="form-select" name="category_id">
-        @foreach ($categories as $category)
-        @if (old('category_id', $package->category_id) == $category->id)
-        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-        @else
-        <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endif
-        @endforeach
-      </select>
-    </div> --}}
-
-    {{-- <div class="mb-3">
-      <label for="image" class="form-label">Post Image</label>
-      <input type="hidden" name="oldImage" value="{{ $post->image }}">
-      @if ($post->image)
-        <img src="{{ asset('storage/'. $post->image) }}" class=" img-preview img-fluid mb-3 col-sm-5 d-block">
-      @else
-        <img class=" img-preview img-fluid mb-3 col-sm-5">
-      @endif
-      <img class=" img-preview img-fluid mb-3 col-sm-5">
-      <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-      
-      <div id="emailHelp" class="form-text">Ukuran foto harus kurang dari 1 Mb</div>
-      @error('image')
-        <div class="invalid-feedback">
-          {{ $message }}
-        </div>
-      @enderror
-    </div> --}}
-
-    {{-- <div class="mb-3">
-      <label for="image" class="form-label">Post Image</label>
-      <input class="form-control" type="file" id="image" name="image">
-    </div> --}}
-
-    {{-- <div class="mb-3">
-      <label for="body" class="form-label">Body</label>
-      @error('body')
-      <p class="text-danger">{{ $message }}</p>
-      @enderror
-      <input id="body" type="hidden" name="body" value="{{ old('body', $package->body) }}">
-      <trix-editor input="body"></trix-editor>
-    </div> --}}
-
-    {{-- <a href=""></a> --}}
     <button type="submit" class="btn btn-primary">Update Package</button>
   </form>
 </div>

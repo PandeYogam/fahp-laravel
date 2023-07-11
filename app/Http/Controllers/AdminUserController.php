@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminUserController extends Controller
 {
@@ -38,9 +39,9 @@ class AdminUserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'name' => 'required|min:4|max:225',
             'username' => ['required', 'min:8', 'max:12', 'unique:users'],
@@ -55,10 +56,13 @@ class AdminUserController extends Controller
         $validatedData['is_pengelola_paket_wisata'] = in_array('pengelola_paket_wisata', $roles) ? 1 : 0;
         $validatedData['is_pengelola_wisata'] = in_array('pengelola_wisata', $roles) ? 1 : 0;
 
-        User::create($validatedData);
-        $request = session();
+        // dd($validatedData);
 
-        return redirect('dashboard/user')->with('success', 'New admin has been added!');
+        User::create($validatedData);
+
+        $request->flash('success', 'Registration successfull! Please login');
+
+        return redirect('dashboard/users');
     }
 
     /**
@@ -78,10 +82,20 @@ class AdminUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($username)
     {
-        return view('dashboard.users.edit', []);
+        $user = User::where('username', $username)->first();
+
+
+        if (!$user) {
+            // Handle the case when the user is not found
+            abort(404);
+        }
+
+        return view('dashboard.users.edit', ['user' => $user]);
     }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -92,8 +106,33 @@ class AdminUserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|min:4|max:225',
+            'username' => ['required', 'min:8', 'max:12', Rule::unique('users')->ignore($user)],
+            'email' => ['required', 'email:dns', Rule::unique('users')->ignore($user)],
+
+        ]);
+
+        $roles = $request->input('role', []);
+
+        // dd($roles);
+        // dd($request->all());
+
+        $validatedData['is_admin'] = in_array('pengujung', $roles) ? 0 : 1;
+        $validatedData['is_pengelola_paket_wisata'] = in_array('pengelola_paket_wisata', $roles) ? 1 : 0;
+        $validatedData['is_pengelola_wisata'] = in_array('pengelola_wisata', $roles) ? 1 : 0;
+
+        User::where('username', $user)->update($validatedData);
+
+        // return redirect('dashboard/paketwisata')->with('success', 'Post has been updated!');
+
+
+        // dd($request->is_admin);
+
+        return redirect('dashboard/users')->with('success', 'User has been updated!');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -101,8 +140,16 @@ class AdminUserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
-        //
+    public function destroy($username)
+{
+    $user = User::where('username', $username)->first();
+
+    if ($user) {
+        $user->delete();
+        return redirect('dashboard/users')->with('success', 'User has been deleted!');
     }
+
+    return redirect('dashboard/users')->with('error', 'User not found!');
+}
+
 }

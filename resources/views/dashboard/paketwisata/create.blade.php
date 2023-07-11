@@ -102,6 +102,16 @@
         @enderror
       </div>
 
+      <div class="mb-3">
+        <label for="body" class="form-label">Deskripsi</label>
+        <input type="text" class="form-control @error('body') is-invalid @enderror" id="body" name="body" required autofocus value="{{ old('body') }}">
+        @error('body')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
       {{-- <div class="mb-3">
         <label for="jumlah_wisata_dikunjungi" class="form-label">jumlahwisata</label>
         <input type="number" step="1" pattern="\d+" min="0"  class="form-control @error('jumlah_wisata_dikunjungi') is-invalid @enderror" id="jumlah_wisata_dikunjungi" name="jumlah_wisata_dikunjungi" required ="{{ old('jumlah_wisata_dikunjungi') }}">

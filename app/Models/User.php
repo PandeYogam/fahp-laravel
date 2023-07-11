@@ -64,4 +64,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(PaketWisata::class);
     }
+    public function bobot()
+    {
+        return $this->hasMany(KriteriaBobot::class);
+    }
 }

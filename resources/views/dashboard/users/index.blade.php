@@ -37,7 +37,7 @@
             <td>
               {{-- <a href="/dashboard/users/{{ $user->username }}" class="badge bg-info"><span data-feather="eye" class="align-text-bottom"></span></a> --}}
 
-              <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a>
+              {{-- <a href="/dashboard/users/{{ $user->username }}/edit" class="badge bg-warning"><span data-feather="edit" class="align-text-bottom"></span></a> --}}
 
               <form action="/dashboard/users/{{ $user->username }}" method="post" class="d-inline">
                 @method('delete')

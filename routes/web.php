@@ -92,6 +92,9 @@ Route::resource('/dashboard/paketwisata', DashboardPackageController::class)
 Route::delete('/dashboard/paketwisata/{paketwisata}', [DashboardPackageController::class, 'destroy'])->name('dashboard.paketwisata.destroy');
 
 Route::resource('/dashboard/subkriteria', DashboardSubkriteriaController::class)->middleware('auth');
+Route::get('/dashboard/subkriteria/{id}/edit', [DashboardSubkriteriaController::class, 'edit'])->name('subkriteria.edit');
+Route::put('/dashboard/subkriteria/{id}', [DashboardSubkriteriaController::class, 'update'])->name('subkriteria.update');
+Route::delete('/dashboard/subkriteria/{id}', [DashboardSubkriteriaController::class, 'destroy'])->name('subkriteria.destroy');
 
 Route::middleware(['admin'])->group(function () {
     Route::resource('dashboard/categories', AdminCategoryController::class);
@@ -102,4 +105,11 @@ Route::middleware(['admin'])->group(function () {
     Route::put('dashboard/categories/update/{category:slug}', [AdminCategoryController::class, 'update'])->name('dashboard.categories.update');
 });
 
-Route::resource('dashboard/users', AdminUserController::class)->except('show')->middleware('admin');
+Route::resource('dashboard/users', AdminUserController::class)
+    ->middleware('admin')
+    ->parameter('users', 'username');
+
+Route::put('/dashboard/users/{user}', [AdminController::class, 'update'])
+    ->name('users.update');
+
+Route::delete('/dashboard/users/{user}', [AdminController::class, 'destroy'])->name('dashboard.users.destroy');

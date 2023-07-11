@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('kriteria_3');
             $table->integer('kriteria_4');
             $table->integer('kriteria_5');
+            $table->foreignId('user_id')->nullable();
             // Tambahkan kolom kriteria lainnya jika diperlukan
 
             $table->timestamps();

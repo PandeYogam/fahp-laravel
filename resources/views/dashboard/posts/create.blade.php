@@ -17,6 +17,49 @@
           </div>
         @enderror
       </div>
+
+      <div class="mb-3">
+        <label for="category_detail" class="form-label">category_detail</label>
+        <input type="text" class="form-control @error('category_detail') is-invalid @enderror" id="category_detail" name="category_detail" required autofocus value="{{ old('category_detail') }}">
+        @error('category_detail')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="lokasi" class="form-label">lokasi</label>
+        <input type="text" class="form-control @error('lokasi') is-invalid @enderror" id="lokasi" name="lokasi" required autofocus value="{{ old('lokasi') }}">
+        @error('lokasi')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="lokasi_Detail" class="form-label">lokasi_Detail</label>
+        <input type="text" class="form-control @error('lokasi_Detail') is-invalid @enderror" id="lokasi_Detail" name="lokasi_Detail" required autofocus value="{{ old('lokasi_Detail') }}">
+        @error('lokasi_Detail')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3">
+        <label for="jam" class="form-label">jam</label>
+        <input type="text" class="form-control @error('jam') is-invalid @enderror" id="jam" name="jam" required autofocus value="{{ old('jam') }}">
+        @error('jam')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+
+
       <div class="mb-3">
         <label for="slug" class="form-label">Slug</label>
         <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" required value="{{ old('slug') }}">
@@ -39,6 +82,8 @@
           @endforeach
         </select>
       </div>
+
+      
 
       <div class="mb-3">
         <label for="image" class="form-label">Post Image</label>

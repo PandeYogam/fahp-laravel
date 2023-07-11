@@ -13,11 +13,11 @@
       <div class="mb-3">
         <label for="nama" class="form-label">Kriteria</label>
         <select class="form-select" name="nama">
-          <option value="harga_bobot" selected>harga</option>
-          <option value="popularitas_bobot" selected>popularitas</option>
-          <option value="rating_bobot" selected>rating</option>
-          <option value="durasi_bobot" selected>durasi</option>
-          <option value="jumlah_wisata_bobot" selected>jumlah wisata</option>
+          <option value="harga" selected>harga</option>
+          <option value="popularitas" selected>popularitas</option>
+          <option value="rating" selected>rating</option>
+          <option value="durasi" selected>durasi</option>
+          <option value="jumlah_wisata_dikunjungi" selected>jumlah wisata</option>
         </select>
       </div>
 

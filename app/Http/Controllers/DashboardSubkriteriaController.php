@@ -22,19 +22,43 @@ class DashboardSubkriteriaController extends Controller
         return view('dashboard.subkriteria.create', []);
     }
 
-    public function store(Request $request)
+    public function edit($id)
     {
-        // return $request->file('image')->store('post-image');
+        $subkriteria = Subkriteria::findOrFail($id);
+
+        return view('dashboard.subkriteria.edit', ['subkriteria' => $subkriteria]);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        // dd($request->all());
 
         $validatedData = $request->validate([
-            'nama' => ['required'],
-            'rentang_min' => ['required'],
-            'rentang_max' => ['required'],
-            'bobot' => ['required'],
+            'nama' => 'required',
+            'rentang_min' => 'required|numeric',
+            'rentang_max' => 'required|numeric',
+            'bobot' => 'required|integer',
         ]);
-        
-        Subkriteria::create($validatedData);
 
-        return redirect('dashboard/subkriteria')->with('success', 'New package has been added!');
+        $subkriteria = Subkriteria::findOrFail($id);
+
+        $subkriteria->nama = $validatedData['nama'];
+        $subkriteria->rentang_min = $validatedData['rentang_min'];
+        $subkriteria->rentang_max = $validatedData['rentang_max'];
+        $subkriteria->bobot = $validatedData['bobot'];
+
+        $subkriteria->save();
+
+        return redirect('/dashboard/subkriteria')->with('success', 'Subkriteria telah diperbarui!');
+    }
+
+    public function destroy($id)
+    {
+        $subkriteria = Subkriteria::findOrFail($id);
+
+        $subkriteria->delete();
+
+        return redirect('/dashboard/subkriteria')->with('success', 'Subkriteria telah dihapus!');
     }
 }
